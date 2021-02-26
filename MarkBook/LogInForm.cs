@@ -16,18 +16,13 @@ namespace MarkBook
         {
             InitializeComponent();
         }
-        private int GetAlphaFromPercent(int percent)
-        {
-            return 255 - (percent * 255) / 100;
-        }
+        private int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100; 
         private void LogInForm_Load(object sender, EventArgs e)
         {
             NavBar.BackColor = Color.FromArgb(GetAlphaFromPercent(30), NavBar.BackColor);
+            ButtonBoard.BackColor = Color.FromArgb(GetAlphaFromPercent(30), ButtonBoard.BackColor);
+            buttonLogIn.BackColor = Color.FromArgb(255, 95, 165, 255);
             LabelFormText.Text = this.Text;
-        }
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
         Point firstLocation = new Point();
         bool MouseIsDown = false;
@@ -47,5 +42,10 @@ namespace MarkBook
         {
             MouseIsDown = false;
         }
+
+        private void minimizeButton_Click(object sender, EventArgs e ) => this.WindowState = FormWindowState.Minimized;
+
+        private void CloseButton_Click(object sender, EventArgs e) => Application.Exit();
+        
     }
 }
