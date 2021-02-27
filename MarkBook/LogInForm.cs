@@ -16,6 +16,7 @@ namespace MarkBook
         {
             InitializeComponent();
         }
+        bool[] textboxClikedStates = { true, true };
         private int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100; 
         private void LogInForm_Load(object sender, EventArgs e)
         {
@@ -46,6 +47,28 @@ namespace MarkBook
         private void minimizeButton_Click(object sender, EventArgs e ) => this.WindowState = FormWindowState.Minimized;
 
         private void CloseButton_Click(object sender, EventArgs e) => Application.Exit();
-        
+
+        private void NormalizeMaximizeForm_Click(object sender, EventArgs e)
+        => this.WindowState = 
+            (this.WindowState == FormWindowState.Maximized) ?
+            FormWindowState.Normal : 
+            FormWindowState.Maximized;
+
+        private void buttonLogIn_Click(object sender, EventArgs e)
+        {
+            //Използвах този код за проверка на дизайна и информацията, която се извлича.
+            //
+            //string username = textBoxUsername.Text,
+            //       password = textBoxPassword.Text;
+            //if (!string.IsNullOrEmpty(username) && 
+            //    !string.IsNullOrEmpty(password))
+            //    MessageBox.Show
+            //    (
+            //        string.Format($"Username: {username}\nPassword: {password}"),
+            //        "Login info...", 
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Information
+            //    );
+        }
     }
 }

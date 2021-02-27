@@ -35,6 +35,7 @@ namespace MarkBook
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
             this.NavBar = new System.Windows.Forms.Panel();
             this.LabelFormText = new System.Windows.Forms.Label();
+            this.NormalizeMaximizeForm = new MarkBook.CircularFlatButton();
             this.minimizeButton = new MarkBook.CircularFlatButton();
             this.CloseButton = new MarkBook.CircularFlatButton();
             this.ButtonBoard = new System.Windows.Forms.Panel();
@@ -50,6 +51,7 @@ namespace MarkBook
             // 
             this.NavBar.BackColor = System.Drawing.Color.Black;
             this.NavBar.Controls.Add(this.LabelFormText);
+            this.NavBar.Controls.Add(this.NormalizeMaximizeForm);
             this.NavBar.Controls.Add(this.minimizeButton);
             this.NavBar.Controls.Add(this.CloseButton);
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -73,12 +75,23 @@ namespace MarkBook
             this.LabelFormText.TabIndex = 2;
             this.LabelFormText.Text = "Form text here ...";
             // 
+            // NormalizeMaximizeForm
+            // 
+            this.NormalizeMaximizeForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NormalizeMaximizeForm.BackColor = System.Drawing.Color.Transparent;
+            this.NormalizeMaximizeForm.FillColor = System.Drawing.Color.Lime;
+            this.NormalizeMaximizeForm.Location = new System.Drawing.Point(846, 9);
+            this.NormalizeMaximizeForm.Name = "NormalizeMaximizeForm";
+            this.NormalizeMaximizeForm.Size = new System.Drawing.Size(20, 20);
+            this.NormalizeMaximizeForm.TabIndex = 1;
+            this.NormalizeMaximizeForm.Click += new System.EventHandler(this.NormalizeMaximizeForm_Click);
+            // 
             // minimizeButton
             // 
             this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
-            this.minimizeButton.Location = new System.Drawing.Point(846, 9);
+            this.minimizeButton.Location = new System.Drawing.Point(820, 9);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 1;
@@ -97,6 +110,7 @@ namespace MarkBook
             // 
             // ButtonBoard
             // 
+            this.ButtonBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonBoard.BackColor = System.Drawing.Color.Black;
             this.ButtonBoard.Controls.Add(this.PictureFrame);
             this.ButtonBoard.Controls.Add(this.buttonLogIn);
@@ -126,29 +140,35 @@ namespace MarkBook
             this.buttonLogIn.Location = new System.Drawing.Point(19, 333);
             this.buttonLogIn.Name = "buttonLogIn";
             this.buttonLogIn.Size = new System.Drawing.Size(450, 55);
-            this.buttonLogIn.TabIndex = 1;
+            this.buttonLogIn.TabIndex = 0;
             this.buttonLogIn.Text = "Log in";
             this.buttonLogIn.UseVisualStyleBackColor = false;
+            this.buttonLogIn.Click += new System.EventHandler(this.buttonLogIn_Click);
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPassword.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxPassword.ForeColor = System.Drawing.Color.Gray;
             this.textBoxPassword.Location = new System.Drawing.Point(19, 270);
             this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.PlaceholderText = "Password here ...";
             this.textBoxPassword.Size = new System.Drawing.Size(450, 47);
-            this.textBoxPassword.TabIndex = 0;
+            this.textBoxPassword.TabIndex = 2;
             // 
             // textBoxUsername
             // 
             this.textBoxUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxUsername.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxUsername.ForeColor = System.Drawing.Color.Gray;
             this.textBoxUsername.Location = new System.Drawing.Point(19, 207);
             this.textBoxUsername.Name = "textBoxUsername";
+            this.textBoxUsername.PlaceholderText = "Username here ...";
             this.textBoxUsername.Size = new System.Drawing.Size(450, 47);
-            this.textBoxUsername.TabIndex = 0;
+            this.textBoxUsername.TabIndex = 1;
             // 
             // LogInForm
             // 
@@ -183,6 +203,7 @@ namespace MarkBook
         private TextBox textBoxPassword;
         private TextBox textBoxUsername;
         private CircularFlatButton minimizeButton;
+        private CircularFlatButton NormalizeMaximizeForm;
     }
 }
 
