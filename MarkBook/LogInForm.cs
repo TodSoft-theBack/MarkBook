@@ -16,8 +16,14 @@ namespace MarkBook
         {
             InitializeComponent();
         }
+        public static LogInForm operator +(LogInForm a)
+        {
+            LogInForm pp = new LogInForm();
+            pp.Text += a.Text;
+            return pp;
+        }
         bool[] textboxClikedStates = { true, true };
-        private int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100; 
+        public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
         private void LogInForm_Load(object sender, EventArgs e)
         {
             NavBar.BackColor = Color.FromArgb(GetAlphaFromPercent(30), NavBar.BackColor);
@@ -40,14 +46,11 @@ namespace MarkBook
             firstLocation = e.Location;
         }
         private void NavBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            MouseIsDown = false;
-        }
-
-        private void minimizeButton_Click(object sender, EventArgs e ) => this.WindowState = FormWindowState.Minimized;
-
-        private void CloseButton_Click(object sender, EventArgs e) => Application.Exit();
-
+            => MouseIsDown = false;
+        private void minimizeButton_Click(object sender, EventArgs e ) 
+            => this.WindowState = FormWindowState.Minimized;
+        private void CloseButton_Click(object sender, EventArgs e) 
+            => Application.Exit();
         private void NormalizeMaximizeForm_Click(object sender, EventArgs e)
         => this.WindowState = 
             (this.WindowState == FormWindowState.Maximized) ?
@@ -56,19 +59,25 @@ namespace MarkBook
 
         private void buttonLogIn_Click(object sender, EventArgs e)
         {
+
             //Използвах този код за проверка на дизайна и информацията, която се извлича.
             //
-            //string username = textBoxUsername.Text,
-            //       password = textBoxPassword.Text;
-            //if (!string.IsNullOrEmpty(username) && 
-            //    !string.IsNullOrEmpty(password))
-            //    MessageBox.Show
-            //    (
-            //        string.Format($"Username: {username}\nPassword: {password}"),
-            //        "Login info...", 
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Information
-            //    );
+            string username = textBoxUsername.Text,
+                   password = textBoxPassword.Text;
+            if (!string.IsNullOrEmpty(username) &&
+                !string.IsNullOrEmpty(password))
+                MessageBox.Show
+                (
+                    string.Format($"Username: {username}\nPassword: {password}"),
+                    "Login info...",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+            using (StudentView form = new StudentView())
+            {
+                form.ShowDialog();
+            }
         }
     }
 }

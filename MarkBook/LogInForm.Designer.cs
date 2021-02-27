@@ -58,7 +58,7 @@ namespace MarkBook
             this.NavBar.ForeColor = System.Drawing.Color.White;
             this.NavBar.Location = new System.Drawing.Point(0, 0);
             this.NavBar.Name = "NavBar";
-            this.NavBar.Size = new System.Drawing.Size(904, 39);
+            this.NavBar.Size = new System.Drawing.Size(904, 40);
             this.NavBar.TabIndex = 0;
             this.NavBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseDown);
             this.NavBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseMove);
@@ -125,9 +125,9 @@ namespace MarkBook
             // 
             this.PictureFrame.BackColor = System.Drawing.Color.Transparent;
             this.PictureFrame.FillColor = System.Drawing.Color.Snow;
-            this.PictureFrame.Location = new System.Drawing.Point(166, 28);
+            this.PictureFrame.Location = new System.Drawing.Point(164, 29);
             this.PictureFrame.Name = "PictureFrame";
-            this.PictureFrame.Size = new System.Drawing.Size(159, 164);
+            this.PictureFrame.Size = new System.Drawing.Size(160, 160);
             this.PictureFrame.TabIndex = 2;
             // 
             // buttonLogIn

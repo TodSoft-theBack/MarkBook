@@ -34,6 +34,14 @@ namespace MarkBook
                 new SolidBrush(this.FillColor),
                 this.ClientRectangle
             );
+            TextRenderer.DrawText
+            (
+                e.Graphics,
+                this.Text,
+                this.Font,
+                this.ClientRectangle,
+                this.ForeColor
+            );
         }
     }
 }
