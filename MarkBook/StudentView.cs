@@ -46,7 +46,7 @@ namespace MarkBook
                 for (int i = 0; i < marks.Length; i++)
                 {
                     CircularFlatButton mark = new CircularFlatButton();
-                    mark.FillColor = Color.Green;
+                    mark.FillColor = Color.YellowGreen;
                     mark.ForeColor = Color.White;
                     mark.Size = new Size(30, 30);
                     mark.Location = GetLocation(cell, mark, space, i);

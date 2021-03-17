@@ -56,24 +56,21 @@ namespace MarkBook
             (this.WindowState == FormWindowState.Maximized) ?
             FormWindowState.Normal : 
             FormWindowState.Maximized;
-
         private void buttonLogIn_Click(object sender, EventArgs e)
         {
-
-            //Използвах този код за проверка на дизайна и информацията, която се извлича.
-            //
             string username = textBoxUsername.Text,
                    password = textBoxPassword.Text;
-            if (!string.IsNullOrEmpty(username) &&
-                !string.IsNullOrEmpty(password))
-                MessageBox.Show
-                (
-                    string.Format($"Username: {username}\nPassword: {password}"),
-                    "Login info...",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
+            //Използвах този код за проверка на дизайна и информацията, която се извлича.
+            //
+            //if (!string.IsNullOrEmpty(username) &&
+            //    !string.IsNullOrEmpty(password))
+            //    MessageBox.Show
+            //    (
+            //        string.Format($"Username: {username}\nPassword: {password}"),
+            //        "Login info...",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Information
+            //    );
             using (StudentView form = new StudentView())
                 form.ShowDialog();
         }

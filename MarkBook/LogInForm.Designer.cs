@@ -68,10 +68,10 @@ namespace MarkBook
             // 
             this.LabelFormText.AutoSize = true;
             this.LabelFormText.BackColor = System.Drawing.Color.Transparent;
-            this.LabelFormText.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelFormText.Location = new System.Drawing.Point(0, 0);
+            this.LabelFormText.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.LabelFormText.Location = new System.Drawing.Point(0, 3);
             this.LabelFormText.Name = "LabelFormText";
-            this.LabelFormText.Size = new System.Drawing.Size(183, 31);
+            this.LabelFormText.Size = new System.Drawing.Size(162, 28);
             this.LabelFormText.TabIndex = 2;
             this.LabelFormText.Text = "Form text here ...";
             // 
@@ -129,6 +129,7 @@ namespace MarkBook
             this.PictureFrame.BackColor = System.Drawing.Color.Transparent;
             this.PictureFrame.DisplayText = "User";
             this.PictureFrame.FillColor = System.Drawing.Color.Snow;
+            this.PictureFrame.Font = new System.Drawing.Font("Script MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PictureFrame.Location = new System.Drawing.Point(164, 29);
             this.PictureFrame.Name = "PictureFrame";
             this.PictureFrame.Size = new System.Drawing.Size(160, 160);
@@ -171,6 +172,7 @@ namespace MarkBook
             this.textBoxUsername.Location = new System.Drawing.Point(19, 207);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.PlaceholderText = "Username here ...";
+            this.textBoxUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBoxUsername.Size = new System.Drawing.Size(450, 47);
             this.textBoxUsername.TabIndex = 1;
             // 
