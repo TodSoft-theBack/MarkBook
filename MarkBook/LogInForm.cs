@@ -75,9 +75,7 @@ namespace MarkBook
                 );
 
             using (StudentView form = new StudentView())
-            {
                 form.ShowDialog();
-            }
         }
     }
 }

@@ -10,10 +10,11 @@ namespace MarkBook
     class CircularFlatButton : Label
     {
         public Color FillColor { get; set; }
+        public string DisplayText { get; set; }
         public CircularFlatButton() : base()
         {
             this.BackColor = Color.Transparent;
-            this.Text = string.Empty;
+            this.DisplayText = string.Empty;
             this.AutoSize = false;
             this.FillColor = Color.Red;
             this.Paint += Button_Paint;
@@ -34,14 +35,17 @@ namespace MarkBook
                 new SolidBrush(this.FillColor),
                 this.ClientRectangle
             );
-            TextRenderer.DrawText
-            (
-                e.Graphics,
-                this.Text,
-                this.Font,
-                this.ClientRectangle,
-                this.ForeColor
-            );
+            if (!string.IsNullOrEmpty(this.DisplayText))
+            {
+                TextRenderer.DrawText
+                    (
+                        e.Graphics,
+                        this.DisplayText,
+                        this.Font,
+                        this.ClientRectangle,
+                        this.ForeColor
+                    ); 
+            }
         }
     }
 }

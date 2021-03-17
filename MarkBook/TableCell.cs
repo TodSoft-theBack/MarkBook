@@ -9,11 +9,13 @@ namespace MarkBook
     class TableCell : Panel
     {
         private Pen border;
+        public bool ShowText { get; set; }
         public Color FillColor { get; set; }
         public Color BorderColor { get; set; }
         public int BorderThickness { get; set; }
         public string DisplayText { get; set; }
         public bool HasBorder { get; set; } = true;
+        public TextFormatFlags TextAlign { get; set; }
         public TableCell() : base()
         {
             this.DisplayText = this.Name;
@@ -23,6 +25,8 @@ namespace MarkBook
             this.Paint += border_Paint;
             this.BackColor = this.FillColor;
             this.border = new Pen(this.BorderColor, this.BorderThickness);
+            this.ShowText = true;
+            this.TextAlign = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
         }
         public TableCell(Color borderColor, int thickness) : base()
         {
@@ -53,6 +57,8 @@ namespace MarkBook
             this.BackColor = this.FillColor;
             this.border = new Pen(this.BorderColor, this.BorderThickness);
             this.DisplayText = text;
+            this.ShowText = true;
+            this.TextAlign = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
         }
         private void border_Paint(object sender, PaintEventArgs e)
         {
@@ -70,14 +76,19 @@ namespace MarkBook
                         )
                     ); 
             }
-            TextRenderer.DrawText
-            (
-                e.Graphics,
-                this.DisplayText,
-                this.Font,
-                this.ClientRectangle,
-                this.ForeColor
-            );
+            if (this.ShowText)
+            {
+                TextRenderer.DrawText
+                    (
+                        e.Graphics,
+                        this.DisplayText,
+                        this.Font,
+                        this.ClientRectangle,
+                        this.ForeColor,
+                        Color.Transparent,
+                        this.TextAlign
+                    );
+            }
         }
     }
 }

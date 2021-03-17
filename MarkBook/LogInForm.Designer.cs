@@ -79,6 +79,7 @@ namespace MarkBook
             // 
             this.NormalizeMaximizeForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NormalizeMaximizeForm.BackColor = System.Drawing.Color.Transparent;
+            this.NormalizeMaximizeForm.DisplayText = "";
             this.NormalizeMaximizeForm.FillColor = System.Drawing.Color.Lime;
             this.NormalizeMaximizeForm.Location = new System.Drawing.Point(846, 9);
             this.NormalizeMaximizeForm.Name = "NormalizeMaximizeForm";
@@ -90,6 +91,7 @@ namespace MarkBook
             // 
             this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeButton.DisplayText = "";
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
             this.minimizeButton.Location = new System.Drawing.Point(820, 9);
             this.minimizeButton.Name = "minimizeButton";
@@ -101,6 +103,7 @@ namespace MarkBook
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseButton.BackColor = System.Drawing.Color.Transparent;
+            this.CloseButton.DisplayText = "";
             this.CloseButton.FillColor = System.Drawing.Color.Red;
             this.CloseButton.Location = new System.Drawing.Point(872, 9);
             this.CloseButton.Name = "CloseButton";
@@ -124,6 +127,7 @@ namespace MarkBook
             // PictureFrame
             // 
             this.PictureFrame.BackColor = System.Drawing.Color.Transparent;
+            this.PictureFrame.DisplayText = "User";
             this.PictureFrame.FillColor = System.Drawing.Color.Snow;
             this.PictureFrame.Location = new System.Drawing.Point(164, 29);
             this.PictureFrame.Name = "PictureFrame";

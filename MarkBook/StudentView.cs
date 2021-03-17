@@ -15,25 +15,60 @@ namespace MarkBook
         {
             InitializeComponent();
         }
-        Dictionary<string, List<double>> marks = new Dictionary<string, List<double>>()
+        Dictionary<string, ICollection<object>> marks = new Dictionary<string, ICollection<object>>()
         {
-            ["Български език"] = new List<double> { 6, 4, 6, 2 },
-            ["pp"] = new List<double> { 6, 4, 6, 2 },
-            ["Dosafpms"] = new List<double> { 6, 4, 6, 2 }
+            ["Български език"] = new List<object> { 6, 5, 6, 3 },
+            ["Английски език"] = new List<object> { 6, 5, 6, 3 },
+            ["Руски език"] = new List<object> { 6, 5, 6, 6 }
         };
-        public static void DrawTable( Control[] headers, Dictionary<string, ICollection<object>> Data)
+        public void DrawTable(Dictionary<string, ICollection<object>> Data, Control SubjectHeader, Control MarkHeader)
         {
-            TableCell[] cellsToDraw;
-            foreach (var item in headers)
+            TableCell[,]  table = new TableCell[Data.Count,2];
+            for (int i = 0; i < Data.Count; i++)
             {
-                cellsToDraw = DrawColumn(item, Data.Count);
+                var item = Data.ElementAt(i);
+                table[i, 0] = new TableCell(Color.Black, Color.FromArgb(50, Color.Blue), 3, item.Key);
+                table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", item.Value));
+                table[i, 1].ShowText = false;
+                DrawCell(table[i, 0], SubjectHeader, i+1);
+                DrawCell(table[i, 1], MarkHeader, i+1);
             }
         }
-
-        private static TableCell[] DrawColumn(Control header,int count)
+        private void DrawCell(TableCell cell, Control header, int index)
         {
-            //TableCell[] objects = new TableCell[count];
-            throw new NotImplementedException();
+            int offset = cell.BorderThickness;
+            cell.Size = header.Size;
+            cell.Location = new Point(header.Location.X, (header.Location.Y + offset) + index * (header.Height - offset));
+            if (!cell.ShowText)
+            {
+                var marks = cell.DisplayText.Split().Select(double.Parse).ToArray();
+                int space = 10;
+                for (int i = 0; i < marks.Length; i++)
+                {
+                    CircularFlatButton mark = new CircularFlatButton();
+                    mark.FillColor = Color.Green;
+                    mark.ForeColor = Color.White;
+                    mark.Size = new Size(30, 30);
+                    mark.Location = GetLocation(cell, mark, space, i);
+                    mark.DisplayText = marks[i].ToString();
+                    mark.MouseHover += Mark_Hover;
+                    mark.MouseLeave += Mark_Leave;
+                    cell.Controls.Add(mark);
+                }
+            }
+            this.Controls.Add(cell);
+        }
+        private void Mark_Hover(object sender, EventArgs e)
+        {
+            markToolTipConcept.Visible = true;
+        }
+        private void Mark_Leave(object sender, EventArgs e)
+        {
+            markToolTipConcept.Visible = false;
+        }
+        private Point GetLocation(TableCell parent,CircularFlatButton button,int space, int index)
+        {
+            return new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2);
         }
 
         private void StudentView_Load(object sender, EventArgs e)
@@ -42,19 +77,7 @@ namespace MarkBook
             NavBar.BackColor = Color.FromArgb(LogInForm.GetAlphaFromPercent(30), NavBar.BackColor);
             subjectsHeader.BackColor = Color.FromArgb(LogInForm.GetAlphaFromPercent(30), subjectsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(LogInForm.GetAlphaFromPercent(30), marksHeader.BackColor);
-            int i = 1;
-            foreach (var item in marks)
-            {
-                TableCell subject = new TableCell(Color.Black, Color.Transparent, 3, item.Key);
-                subject.Size = subjectsHeader.Size;
-                subject.Location = new Point(subjectsHeader.Location.X, (subjectsHeader.Location.Y + subject.BorderThickness) + i * (subjectsHeader.Height - subject.BorderThickness));
-                TableCell mark = new TableCell(Color.Black, Color.Transparent, 3, string.Join(", ", item.Value));
-                mark.Size = new Size(marksHeader.Width + mark.BorderThickness, marksHeader.Height);
-                mark.Location = new Point(marksHeader.Location.X - mark.BorderThickness, (marksHeader.Location.Y + mark.BorderThickness) + i * (marksHeader.Height - subject.BorderThickness));
-                this.Controls.Add(subject);
-                this.Controls.Add(mark);
-                i++;
-            }
+            this.DrawTable(marks, subjectsHeader, marksHeader);
         }
         private void StudentView_TextChanged(object sender, EventArgs e)
             => labelFormText.Text = this.Text;
