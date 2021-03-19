@@ -7,7 +7,7 @@ using System.Drawing.Drawing2D;
 
 namespace MarkBook
 {
-    class MarkToolTip:Panel
+    public class MarkToolTip:Panel
     {
         private float thickness;
         private int radius;

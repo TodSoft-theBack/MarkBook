@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,11 +24,11 @@ namespace MarkBook
             return pp;
         }
         bool[] textboxClikedStates = { true, true };
-        public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
+        
         private void LogInForm_Load(object sender, EventArgs e)
         {
-            NavBar.BackColor = Color.FromArgb(GetAlphaFromPercent(30), NavBar.BackColor);
-            ButtonBoard.BackColor = Color.FromArgb(GetAlphaFromPercent(30), ButtonBoard.BackColor);
+            NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
+            ButtonBoard.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), ButtonBoard.BackColor);
             buttonLogIn.BackColor = Color.FromArgb(255, 95, 165, 255);
             LabelFormText.Text = this.Text;
         }
@@ -60,18 +61,7 @@ namespace MarkBook
         {
             string username = textBoxUsername.Text,
                    password = textBoxPassword.Text;
-            //Използвах този код за проверка на дизайна и информацията, която се извлича.
-            //
-            //if (!string.IsNullOrEmpty(username) &&
-            //    !string.IsNullOrEmpty(password))
-            //    MessageBox.Show
-            //    (
-            //        string.Format($"Username: {username}\nPassword: {password}"),
-            //        "Login info...",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Information
-            //    );
-            using (StudentView form = new StudentView())
+            using (Form form = new TeacherView())
                 form.ShowDialog();
         }
     }

@@ -35,12 +35,18 @@ namespace MarkBook
             this.labelFormText = new System.Windows.Forms.Label();
             this.studentsHeader = new MarkBook.TableCell();
             this.marksHeader = new MarkBook.TableCell();
+            this.buttonAddMark = new MarkBook.CircularFlatButton();
+            this.tableCellGrade = new MarkBook.TableCell();
             this.tableCellSubject = new MarkBook.TableCell();
             this.tableCellSubjectName = new MarkBook.TableCell();
-            this.tableCell1 = new MarkBook.TableCell();
-            this.tableCell2 = new MarkBook.TableCell();
-            this.buttonAddMark = new MarkBook.CircularFlatButton();
+            this.comboBoxGrade = new System.Windows.Forms.ComboBox();
+            this.markToolTipConcept = new MarkBook.MarkToolTip();
+            this.circularFlatButton2 = new MarkBook.CircularFlatButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.NavBar.SuspendLayout();
+            this.markToolTipConcept.SuspendLayout();
             this.SuspendLayout();
             // 
             // NavBar
@@ -115,6 +121,36 @@ namespace MarkBook
             this.marksHeader.TabIndex = 1;
             this.marksHeader.textFormat = MarkBook.TextFormats.Center;
             // 
+            // buttonAddMark
+            // 
+            this.buttonAddMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddMark.BackColor = System.Drawing.Color.Transparent;
+            this.buttonAddMark.DisplayText = "Добави oценка";
+            this.buttonAddMark.FillColor = System.Drawing.Color.Lime;
+            this.buttonAddMark.Location = new System.Drawing.Point(247, 718);
+            this.buttonAddMark.Name = "buttonAddMark";
+            this.buttonAddMark.Size = new System.Drawing.Size(132, 134);
+            this.buttonAddMark.TabIndex = 2;
+            this.buttonAddMark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonAddMark.Click += new System.EventHandler(this.closeButton_Click);
+            // 
+            // tableCellGrade
+            // 
+            this.tableCellGrade.BackColor = System.Drawing.Color.Black;
+            this.tableCellGrade.BorderColor = System.Drawing.Color.Black;
+            this.tableCellGrade.BorderThickness = 3;
+            this.tableCellGrade.DisplayText = "Grade:";
+            this.tableCellGrade.FillColor = System.Drawing.Color.Transparent;
+            this.tableCellGrade.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tableCellGrade.ForeColor = System.Drawing.Color.White;
+            this.tableCellGrade.HasBorder = false;
+            this.tableCellGrade.Location = new System.Drawing.Point(40, 106);
+            this.tableCellGrade.Name = "tableCellGrade";
+            this.tableCellGrade.ShowText = true;
+            this.tableCellGrade.Size = new System.Drawing.Size(230, 40);
+            this.tableCellGrade.TabIndex = 1;
+            this.tableCellGrade.textFormat = MarkBook.TextFormats.Right;
+            // 
             // tableCellSubject
             // 
             this.tableCellSubject.BackColor = System.Drawing.Color.Black;
@@ -142,58 +178,98 @@ namespace MarkBook
             this.tableCellSubjectName.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tableCellSubjectName.ForeColor = System.Drawing.Color.Black;
             this.tableCellSubjectName.HasBorder = false;
-            this.tableCellSubjectName.Location = new System.Drawing.Point(270, 60);
+            this.tableCellSubjectName.Location = new System.Drawing.Point(276, 60);
             this.tableCellSubjectName.Name = "tableCellSubjectName";
             this.tableCellSubjectName.ShowText = true;
-            this.tableCellSubjectName.Size = new System.Drawing.Size(270, 40);
+            this.tableCellSubjectName.Size = new System.Drawing.Size(264, 40);
             this.tableCellSubjectName.TabIndex = 1;
             this.tableCellSubjectName.textFormat = MarkBook.TextFormats.Left;
             // 
-            // tableCell1
+            // comboBoxGrade
             // 
-            this.tableCell1.BackColor = System.Drawing.Color.Black;
-            this.tableCell1.BorderColor = System.Drawing.Color.Black;
-            this.tableCell1.BorderThickness = 3;
-            this.tableCell1.DisplayText = ".grade";
-            this.tableCell1.FillColor = System.Drawing.Color.Transparent;
-            this.tableCell1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tableCell1.ForeColor = System.Drawing.Color.White;
-            this.tableCell1.HasBorder = false;
-            this.tableCell1.Location = new System.Drawing.Point(310, 106);
-            this.tableCell1.Name = "tableCell1";
-            this.tableCell1.ShowText = true;
-            this.tableCell1.Size = new System.Drawing.Size(230, 40);
-            this.tableCell1.TabIndex = 1;
-            this.tableCell1.textFormat = MarkBook.TextFormats.Left;
+            this.comboBoxGrade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.comboBoxGrade.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBoxGrade.FormattingEnabled = true;
+            this.comboBoxGrade.Items.AddRange(new object[] {
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxGrade.Location = new System.Drawing.Point(276, 106);
+            this.comboBoxGrade.Name = "comboBoxGrade";
+            this.comboBoxGrade.Size = new System.Drawing.Size(264, 39);
+            this.comboBoxGrade.TabIndex = 3;
+            this.comboBoxGrade.Text = "Grade";
             // 
-            // tableCell2
+            // markToolTipConcept
             // 
-            this.tableCell2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.tableCell2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.tableCell2.BorderThickness = 3;
-            this.tableCell2.DisplayText = "Grade";
-            this.tableCell2.FillColor = System.Drawing.Color.Transparent;
-            this.tableCell2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tableCell2.ForeColor = System.Drawing.Color.Black;
-            this.tableCell2.HasBorder = false;
-            this.tableCell2.Location = new System.Drawing.Point(40, 106);
-            this.tableCell2.Name = "tableCell2";
-            this.tableCell2.ShowText = true;
-            this.tableCell2.Size = new System.Drawing.Size(270, 40);
-            this.tableCell2.TabIndex = 1;
-            this.tableCell2.textFormat = MarkBook.TextFormats.Right;
+            this.markToolTipConcept.BackColor = System.Drawing.Color.Transparent;
+            this.markToolTipConcept.BorderColor = System.Drawing.Color.Lime;
+            this.markToolTipConcept.BorderRadius = 15;
+            this.markToolTipConcept.BorderThickness = 3F;
+            this.markToolTipConcept.Controls.Add(this.circularFlatButton2);
+            this.markToolTipConcept.Controls.Add(this.label3);
+            this.markToolTipConcept.Controls.Add(this.label2);
+            this.markToolTipConcept.Controls.Add(this.label1);
+            this.markToolTipConcept.Controls.Add(this.circularFlatButton1);
+            this.markToolTipConcept.CssMode = false;
+            this.markToolTipConcept.DisplayText = "";
+            this.markToolTipConcept.FillColor = System.Drawing.Color.Lime;
+            this.markToolTipConcept.Location = new System.Drawing.Point(136, 381);
+            this.markToolTipConcept.Name = "markToolTipConcept";
+            this.markToolTipConcept.Size = new System.Drawing.Size(308, 117);
+            this.markToolTipConcept.TabIndex = 4;
+            this.markToolTipConcept.Visible = false;
             // 
-            // buttonAddMark
+            // circularFlatButton2
             // 
-            this.buttonAddMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddMark.BackColor = System.Drawing.Color.Transparent;
-            this.buttonAddMark.DisplayText = "Добави oценка";
-            this.buttonAddMark.FillColor = System.Drawing.Color.Lime;
-            this.buttonAddMark.Location = new System.Drawing.Point(247, 718);
-            this.buttonAddMark.Name = "buttonAddMark";
-            this.buttonAddMark.Size = new System.Drawing.Size(132, 134);
-            this.buttonAddMark.TabIndex = 2;
-            this.buttonAddMark.Click += new System.EventHandler(this.closeButton_Click);
+            this.circularFlatButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.circularFlatButton2.BackColor = System.Drawing.Color.Transparent;
+            this.circularFlatButton2.DisplayText = "";
+            this.circularFlatButton2.FillColor = System.Drawing.Color.Red;
+            this.circularFlatButton2.Location = new System.Drawing.Point(278, 13);
+            this.circularFlatButton2.Name = "circularFlatButton2";
+            this.circularFlatButton2.Size = new System.Drawing.Size(20, 20);
+            this.circularFlatButton2.TabIndex = 2;
+            this.circularFlatButton2.Click += new System.EventHandler(this.closeButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(11, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(287, 32);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Контролна работа на вектори.";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(11, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(287, 33);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "5.87";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(11, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 28);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Оценка";
             // 
             // TeacherView
             // 
@@ -202,11 +278,12 @@ namespace MarkBook
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 879);
+            this.Controls.Add(this.markToolTipConcept);
+            this.Controls.Add(this.comboBoxGrade);
             this.Controls.Add(this.buttonAddMark);
-            this.Controls.Add(this.tableCell2);
             this.Controls.Add(this.tableCellSubjectName);
             this.Controls.Add(this.marksHeader);
-            this.Controls.Add(this.tableCell1);
+            this.Controls.Add(this.tableCellGrade);
             this.Controls.Add(this.tableCellSubject);
             this.Controls.Add(this.studentsHeader);
             this.Controls.Add(this.NavBar);
@@ -219,6 +296,8 @@ namespace MarkBook
             this.TextChanged += new System.EventHandler(this.TeacherView_TextChanged);
             this.NavBar.ResumeLayout(false);
             this.NavBar.PerformLayout();
+            this.markToolTipConcept.ResumeLayout(false);
+            this.markToolTipConcept.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -230,11 +309,16 @@ namespace MarkBook
         private TableCell studentsHeader;
         private TableCell marksHeader;
         #endregion
-
+        private CircularFlatButton buttonAddMark;
+        private TableCell tableCellGrade;
         private TableCell tableCellSubject;
         private TableCell tableCellSubjectName;
-        private TableCell tableCell1;
-        private TableCell tableCell2;
-        private CircularFlatButton buttonAddMark;
+        private System.Windows.Forms.ComboBox comboBoxGrade;
+        private MarkToolTip markToolTipConcept;
+        private CircularFlatButton circularFlatButton2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private CircularFlatButton circularFlatButton1;
     }
 }

@@ -84,7 +84,6 @@ namespace MarkBook
             }
             if (this.ShowText)
             {
-
                 TextRenderer.DrawText
                     (
                         e.Graphics,

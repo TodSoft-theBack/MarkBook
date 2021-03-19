@@ -129,7 +129,7 @@ namespace MarkBook
             this.markToolTipConcept.CssMode = false;
             this.markToolTipConcept.DisplayText = "";
             this.markToolTipConcept.FillColor = System.Drawing.Color.Lime;
-            this.markToolTipConcept.Location = new System.Drawing.Point(260, 500);
+            this.markToolTipConcept.Location = new System.Drawing.Point(27, 750);
             this.markToolTipConcept.Name = "markToolTipConcept";
             this.markToolTipConcept.Size = new System.Drawing.Size(308, 117);
             this.markToolTipConcept.TabIndex = 2;
@@ -161,6 +161,7 @@ namespace MarkBook
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(11, 13);
             this.label1.Name = "label1";
