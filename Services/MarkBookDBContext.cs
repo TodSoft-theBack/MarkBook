@@ -35,6 +35,8 @@ namespace Services
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseMySQL("Server=127.0.0.1;Database=schooldiary; uID=root; pwd=rootpassword; persistsecurityinfo=True");
+                // тука го сменете така да е н а вашата база данни с вашата парола, по грешка си кръстих скемата schooldiary и затова мие  така,
+                //но в идеален случай ще се казва markbook
             }
         }
    
