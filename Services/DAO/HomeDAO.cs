@@ -22,14 +22,13 @@ namespace Services.DAO
         public void RegisterUser(Users userInfo)
         {
             this.context.Users.Add(userInfo);
-            this.context.Users.Add(userInfo);
             this.context.SaveChanges();
         }
 
         public void RegisterTeacher(Teachers teacher, Users teacherInfo)
         {
             this.context.Teachers.Add(teacher);
-            this.context.Teachers.Add(teacher);
+            this.context.Users.Add(teacherInfo);
             this.context.SaveChanges();
         }
 
