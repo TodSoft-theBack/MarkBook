@@ -215,7 +215,6 @@ namespace MarkBook
             this.markToolTipConcept.Controls.Add(this.label3);
             this.markToolTipConcept.Controls.Add(this.label2);
             this.markToolTipConcept.Controls.Add(this.label1);
-            this.markToolTipConcept.Controls.Add(this.circularFlatButton1);
             this.markToolTipConcept.CssMode = false;
             this.markToolTipConcept.DisplayText = "";
             this.markToolTipConcept.FillColor = System.Drawing.Color.Lime;
