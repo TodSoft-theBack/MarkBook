@@ -17,14 +17,7 @@ namespace MarkBook
         {
             InitializeComponent();
         }
-        public static LogInForm operator +(LogInForm a)
-        {
-            LogInForm pp = new LogInForm();
-            pp.Text += a.Text;
-            return pp;
-        }
-        bool[] textboxClikedStates = { true, true };
-        
+
         private void LogInForm_Load(object sender, EventArgs e)
         {
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);

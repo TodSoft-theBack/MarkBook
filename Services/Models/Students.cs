@@ -20,8 +20,6 @@ namespace Services.Models
         public int GradeID { get; set; }
 
         public virtual Grades Grade { get; set; }
-
-
         public virtual ICollection<Marks> Marks { get; set; }
     }
 }

@@ -218,9 +218,9 @@ namespace MarkBook
             this.markToolTipConcept.CssMode = false;
             this.markToolTipConcept.DisplayText = "";
             this.markToolTipConcept.FillColor = System.Drawing.Color.Lime;
-            this.markToolTipConcept.Location = new System.Drawing.Point(136, 381);
+            this.markToolTipConcept.Location = new System.Drawing.Point(12, 733);
             this.markToolTipConcept.Name = "markToolTipConcept";
-            this.markToolTipConcept.Size = new System.Drawing.Size(308, 117);
+            this.markToolTipConcept.Size = new System.Drawing.Size(213, 134);
             this.markToolTipConcept.TabIndex = 4;
             this.markToolTipConcept.Visible = false;
             // 
@@ -230,7 +230,7 @@ namespace MarkBook
             this.circularFlatButton2.BackColor = System.Drawing.Color.Transparent;
             this.circularFlatButton2.DisplayText = "";
             this.circularFlatButton2.FillColor = System.Drawing.Color.Red;
-            this.circularFlatButton2.Location = new System.Drawing.Point(278, 13);
+            this.circularFlatButton2.Location = new System.Drawing.Point(183, 13);
             this.circularFlatButton2.Name = "circularFlatButton2";
             this.circularFlatButton2.Size = new System.Drawing.Size(20, 20);
             this.circularFlatButton2.TabIndex = 2;
@@ -243,7 +243,7 @@ namespace MarkBook
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(11, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(287, 32);
+            this.label3.Size = new System.Drawing.Size(192, 50);
             this.label3.TabIndex = 3;
             this.label3.Text = "Контролна работа на вектори.";
             // 
@@ -254,7 +254,7 @@ namespace MarkBook
             this.label2.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(11, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 33);
+            this.label2.Size = new System.Drawing.Size(192, 33);
             this.label2.TabIndex = 3;
             this.label2.Text = "5.87";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
