@@ -11,7 +11,7 @@ namespace Markbook.Services.DAO
 {
     public class MarkDAO
     {
-        public int AddMark(int markValue, int subjectId, int studentId, string comment)
+        public int AddMark(double markValue, int subjectId, int studentId, string comment)
         {
             if (markValue < 2 || markValue > 6)
             {
