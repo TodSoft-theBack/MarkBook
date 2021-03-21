@@ -51,7 +51,7 @@ namespace Interface
             this.NavBar.ForeColor = System.Drawing.Color.White;
             this.NavBar.Location = new System.Drawing.Point(0, 0);
             this.NavBar.Name = "NavBar";
-            this.NavBar.Size = new System.Drawing.Size(904, 40);
+            this.NavBar.Size = new System.Drawing.Size(1258, 40);
             this.NavBar.TabIndex = 0;
             this.NavBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseDown);
             this.NavBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseMove);
@@ -74,7 +74,7 @@ namespace Interface
             this.NormalizeMaximizeForm.BackColor = System.Drawing.Color.Transparent;
             this.NormalizeMaximizeForm.DisplayText = "";
             this.NormalizeMaximizeForm.FillColor = System.Drawing.Color.Lime;
-            this.NormalizeMaximizeForm.Location = new System.Drawing.Point(846, 9);
+            this.NormalizeMaximizeForm.Location = new System.Drawing.Point(1200, 9);
             this.NormalizeMaximizeForm.Name = "NormalizeMaximizeForm";
             this.NormalizeMaximizeForm.Size = new System.Drawing.Size(20, 20);
             this.NormalizeMaximizeForm.TabIndex = 1;
@@ -86,7 +86,7 @@ namespace Interface
             this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
             this.minimizeButton.DisplayText = "";
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
-            this.minimizeButton.Location = new System.Drawing.Point(820, 9);
+            this.minimizeButton.Location = new System.Drawing.Point(1174, 9);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 1;
@@ -98,7 +98,7 @@ namespace Interface
             this.CloseButton.BackColor = System.Drawing.Color.Transparent;
             this.CloseButton.DisplayText = "";
             this.CloseButton.FillColor = System.Drawing.Color.Red;
-            this.CloseButton.Location = new System.Drawing.Point(872, 9);
+            this.CloseButton.Location = new System.Drawing.Point(1226, 9);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(20, 20);
             this.CloseButton.TabIndex = 1;
@@ -110,7 +110,7 @@ namespace Interface
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(904, 581);
+            this.ClientSize = new System.Drawing.Size(1258, 598);
             this.Controls.Add(this.NavBar);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

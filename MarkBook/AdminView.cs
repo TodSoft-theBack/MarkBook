@@ -17,7 +17,6 @@ namespace Interface
         private void AdminView_Load(object sender, EventArgs e)
         {
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
-            LabelFormText.Text = this.Text;
         }
         Point firstLocation = new Point();
         bool MouseIsDown = false;
@@ -38,7 +37,7 @@ namespace Interface
         private void minimizeButton_Click(object sender, EventArgs e)
             => this.WindowState = FormWindowState.Minimized;
         private void CloseButton_Click(object sender, EventArgs e)
-            => Application.Exit();
+            => this.Close();
         private void NormalizeMaximizeForm_Click(object sender, EventArgs e)
         => this.WindowState =
             (this.WindowState == FormWindowState.Maximized) ?
