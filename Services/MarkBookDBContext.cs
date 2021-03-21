@@ -69,7 +69,7 @@ namespace Services
                 entity.ToTable("students");
 
                 entity.HasIndex(e => e.UserID)
-                      .HasName("FK_User's_ID");
+                      .HasName("FK_UserID");
 
                 entity.HasIndex(e => e.GradeID)
                     .HasName("FK_GradeID");
@@ -92,6 +92,9 @@ namespace Services
                 entity.Property(e => e.SubjectTitle)
                     .IsRequired()
                     .HasMaxLength(45);
+
+                entity.HasIndex(e => e.GradeID)
+                      .HasName("FK_GradeId");
 
                 entity.HasIndex(e => e.TeacherID)
                       .HasName("FK_TeacherId");

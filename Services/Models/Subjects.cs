@@ -7,8 +7,8 @@
 
         public string SubjectTitle { get; set; }
 
-        public int TeacherID { get; set; }
+        public int GradeID { get; set; }
 
-        public virtual Teachers Teacher { get; set; }
+        public int TeacherID { get; set; }
     }
 }
