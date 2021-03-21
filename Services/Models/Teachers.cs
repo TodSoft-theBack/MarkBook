@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Services.Models
 {
@@ -9,14 +10,12 @@ namespace Services.Models
             Subjects = new HashSet<Subjects>();
         }
 
-        public int TeacherID { get; set; }
-        
+        public int TeacherId { get; set; }
         public string FirstName { get; set; }
-        
         public string LastName { get; set; }
-        
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
+        public virtual Users User { get; set; }
         public virtual ICollection<Subjects> Subjects { get; set; }
     }
 }

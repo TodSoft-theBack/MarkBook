@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Services.Models
 {
@@ -11,13 +10,10 @@ namespace Services.Models
             Subjects = new HashSet<Subjects>();
         }
 
-        public int GradeID { get; set; }
-
+        public int GradeId { get; set; }
         public int GradeNumber { get; set; }
-
         public string GradeForm { get; set; }
 
         public virtual ICollection<Subjects> Subjects { get; set; }
-
     }
 }
