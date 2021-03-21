@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.IncorectCredentialsException
+namespace Business.ControllerExceptions
 {
     public class IncorectCredentialsException : Exception
     {

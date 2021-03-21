@@ -18,7 +18,6 @@ namespace Business.Controllers
             registrationViewModel.LastName = student.LastName;
             return registrationViewModel;
         }
-
         public StudentController(StudentDAO studentDAO)
         {
             this.StudentDAO = studentDAO;

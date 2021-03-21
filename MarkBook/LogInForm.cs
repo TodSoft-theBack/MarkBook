@@ -1,4 +1,5 @@
 ﻿using Interface;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,18 +9,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Business.Controllers;
+using Business.ControllerExceptions;
+using Services.DAO;
+
 
 namespace MarkBook
 {
     public partial class LogInForm : Form
     {
+        private Form[] forms = 
+        {
+            new StudentView(),
+            new TeacherView()
+        };
         public LogInForm()
         {
             InitializeComponent();
         }
-
+        MarkBookDBContext database;
         private void LogInForm_Load(object sender, EventArgs e)
         {
+            database = new MarkBookDBContext();
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             ButtonBoard.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), ButtonBoard.BackColor);
             buttonLogIn.BackColor = Color.FromArgb(255, 95, 165, 255);
@@ -54,8 +65,24 @@ namespace MarkBook
         {
             string username = textBoxUsername.Text,
                    password = textBoxPassword.Text;
-            using (Form form = new TeacherView())
-                form.ShowDialog();
+            HomeController logInController = new HomeController(database);
+            try
+            {
+                using (Form form = this.forms[logInController.Login(username, password)])
+                    form.ShowDialog();
+            }
+            catch (IncorectCredentialsException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An Error has ocured! Please, contact tech support! " + ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
         }
     }
 }

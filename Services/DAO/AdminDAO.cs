@@ -34,7 +34,10 @@ namespace Services.DAO
         {
             return this.context.Admins.FirstOrDefault(t => t.AdminID.Equals(AdminId));
         }
-
+        public Admins GetUserById(int userID)
+        {
+            return this.context.Admins.FirstOrDefault(t => t.UserID == userID);
+        }
         private MarkBookDBContext context;
 
         public AdminDAO(MarkBookDBContext context)

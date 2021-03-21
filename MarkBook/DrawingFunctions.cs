@@ -10,8 +10,11 @@ namespace Interface
 {
     class DrawingFunctions
     {
+        private Color SelectedMarkColor = Color.Red;
+        private Color UnselectedMarkColor = Color.Lime;
+        public MarkToolTip HoverControl { get; set; }
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
-        public static void DrawTable(TeacherView parent, Dictionary<string, ICollection<object>> Data, Control SubjectHeader, Control MarkHeader)
+        public static void DrawTable(Form parent, Dictionary<string, ICollection<object>> Data, Control SubjectHeader, Control MarkHeader)
         {
             TableCell[,] table = new TableCell[Data.Count, 2];
             for (int i = 0; i < Data.Count; i++)
@@ -24,7 +27,7 @@ namespace Interface
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }
         }
-        private static void DrawCell(TeacherView parent, TableCell cell, Control header, int index)
+        private static void DrawCell(Form parent, TableCell cell, Control header, int index)
         {
             int offset = cell.BorderThickness;
             cell.Size = header.Size;
@@ -41,15 +44,12 @@ namespace Interface
                     mark.Size = new Size(30, 30);
                     mark.Location = GetLocation(cell, mark, space, i);
                     mark.DisplayText = marks[i].ToString();
-                    mark.MouseHover += parent.Mark_Hover;
-                    mark.MouseLeave += parent.Mark_Leave;
                     mark.Parent = cell;
                     cell.Controls.Add(mark);
                 }
             }
             parent.Controls.Add(cell);
         }
-        
         private static Point GetLocation(TableCell parent, CircularFlatButton button, int space, int index)
                 => new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2);
         

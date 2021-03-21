@@ -5,38 +5,20 @@ namespace Services
 {
     public partial class MarkBookDBContext : DbContext
     {
-        public MarkBookDBContext()
-        {
-
-        }
-
-        public MarkBookDBContext(DbContextOptions<MarkBookDBContext> options)
-     : base(options)
-        {
-
-        }
-
+        public MarkBookDBContext() : base() { }
+        public MarkBookDBContext(DbContextOptions<MarkBookDBContext> options) : base(options) { }
         public virtual DbSet<Grades> Grades { get; set; }
-
         public virtual DbSet<Subjects> Subjects { get; set; }
-        
         public virtual DbSet<Users> Users { get; set; }
-        
         public virtual DbSet<Marks> Marks { get; set; }
-        
         public virtual DbSet<Admins> Admins { get; set; }
-        
         public virtual DbSet<Teachers> Teachers { get; set; }
-        
         public virtual DbSet<Students> Students { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("Server=127.0.0.1;Database=schooldiary; uID=root; pwd=rootpassword; persistsecurityinfo=True");
-                // тука го сменете така да е н а вашата база данни с вашата парола, по грешка си кръстих скемата schooldiary и затова мие  така,
-                //но в идеален случай ще се казва markbook
+                optionsBuilder.UseMySQL("Server=127.0.0.1; Database=markbook_db; uID=MarkBook; pwd=123456789; persistsecurityinfo=True");
             }
         }
    

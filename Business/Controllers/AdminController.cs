@@ -19,7 +19,6 @@ namespace Business.Controllers
 
             return registrationViewModel;
         }
-
         public void Register(RegistrationViewModel registrationViewModel)
         {
             Admins admin = new Admins();
@@ -30,8 +29,6 @@ namespace Business.Controllers
             loginInfo.Username = registrationViewModel.Username;
             loginInfo.Password = registrationViewModel.Password;
         }
-
-        private AdminDAO admiNDAO = null;
         public  AdminController(AdminDAO adminDAO)
         {
             this.AdminDAO = adminDAO;
