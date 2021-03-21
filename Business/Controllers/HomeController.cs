@@ -24,6 +24,7 @@ namespace Business.Controllers
             {
                 Students student = this.studentDAO.GetStudentByUserID(user.UserID);
                 Teachers teacher = this.teacherDAO.GetTeacherByUserID(user.UserID);
+                Admins admin = this.adminDAO.GetAdminByUserID(user.UserID);
                 if (student != null)
                 {
                     LogInInfo = student;
@@ -33,6 +34,11 @@ namespace Business.Controllers
                 {
                     LogInInfo = teacher;
                     return 1;
+                }
+                else if(admin != null)
+                {
+                    LogInInfo = admin;
+                    return 2;
                 }
                 else
                     throw new ArgumentException("There is no such student,admin or teacher");

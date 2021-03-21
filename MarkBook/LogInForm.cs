@@ -21,15 +21,15 @@ namespace MarkBook
         private Form[] forms = 
         {
             new StudentView(),
-            new TeacherView()
+            new TeacherView(),
+            new AdminView()
         };
         public Object LogInInfo { get; set; }
+        MarkBookDBContext database;
         public LogInForm()
         {
             InitializeComponent();
         }
-        MarkBookDBContext database;
-        
         private void LogInForm_Load(object sender, EventArgs e)
         {
             database = new MarkBookDBContext();
@@ -81,19 +81,17 @@ namespace MarkBook
             }
             catch (IncorectCredentialsException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                ClearFields();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                ClearFields();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception ex)
             {
-                MessageBox.Show("An Error has ocured! Please, contact tech support! " + ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                ClearFields();
+                MessageBox.Show("An Error has ocured! Please, contact tech support! " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            ClearFields();
         }
     }
 }

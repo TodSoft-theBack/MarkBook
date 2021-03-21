@@ -34,7 +34,7 @@ namespace Services.DAO
         {
             return this.context.Admins.FirstOrDefault(t => t.AdminID.Equals(AdminId));
         }
-        public Admins GetUserById(int userID)
+        public Admins GetAdminByUserID(int userID)
         {
             return this.context.Admins.FirstOrDefault(t => t.UserID == userID);
         }
