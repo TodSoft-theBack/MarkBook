@@ -22,45 +22,7 @@ namespace MarkBook
             ["Petar"] = new List<object> { 6, 5, 6, 3 },
             ["Alexander"] = new List<object> { 6, 5, 6, 6 }
         };
-        public void DrawTable(Dictionary<string, ICollection<object>> Data, Control SubjectHeader, Control MarkHeader)
-        {
-            TableCell[,] table = new TableCell[Data.Count, 2];
-            for (int i = 0; i < Data.Count; i++)
-            {
-                var item = Data.ElementAt(i);
-                table[i, 0] = new TableCell(Color.Black, Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(20), Color.SkyBlue), 3, item.Key);
-                table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", item.Value));
-                table[i, 1].ShowText = false;
-                DrawCell(table[i, 0], SubjectHeader, i + 1);
-                DrawCell(table[i, 1], MarkHeader, i + 1);
-            }
-        }
-        private void DrawCell(TableCell cell, Control header, int index)
-        {
-            int offset = cell.BorderThickness;
-            cell.Size = header.Size;
-            cell.Location = new Point(header.Location.X, (header.Location.Y + offset) + index * (header.Height - offset));
-            if (!cell.ShowText)
-            {
-                var marks = cell.DisplayText.Split().Select(double.Parse).ToArray();
-                int space = 10;
-                for (int i = 0; i < marks.Length; i++)
-                {
-                    CircularFlatButton mark = new CircularFlatButton();
-                    mark.FillColor = Color.Lime;
-                    mark.ForeColor = Color.White;
-                    mark.Size = new Size(30, 30);
-                    mark.Location = GetLocation(cell, mark, space, i);
-                    mark.DisplayText = marks[i].ToString();
-                    mark.MouseHover += Mark_Hover;
-                    mark.MouseLeave += Mark_Leave;
-                    mark.Parent = cell;
-                    cell.Controls.Add(mark);
-                }
-            }
-            this.Controls.Add(cell);
-        }
-        private void Mark_Hover(object sender, EventArgs e)
+        public void Mark_Hover(object sender, EventArgs e)
         {
             markToolTipConcept.Visible = true;
             CircularFlatButton button = (CircularFlatButton)sender;
@@ -68,16 +30,12 @@ namespace MarkBook
             button.FillColor = Color.FromArgb(128, Color.Black);
             button.Invalidate();
         }
-        private void Mark_Leave(object sender, EventArgs e)
+        public void Mark_Leave(object sender, EventArgs e)
         {
             markToolTipConcept.Visible = false;
             CircularFlatButton button = (CircularFlatButton)sender;
             button.FillColor = Color.Lime;
             button.Invalidate();
-        }
-        private static Point GetLocation(TableCell parent, CircularFlatButton button, int space, int index)
-        {
-            return new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2);
         }
         private void closeButton_Click(object sender, EventArgs e)
             => this.Close();
@@ -87,7 +45,7 @@ namespace MarkBook
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             studentsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), studentsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
-            DrawTable(marks, studentsHeader, marksHeader);
+            DrawingFunctions.DrawTable(this, marks, studentsHeader, marksHeader);
         }
         private void TeacherView_TextChanged(object sender, EventArgs e)
             => labelFormText.Text = this.Text;

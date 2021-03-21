@@ -9,6 +9,7 @@ namespace Business.Controllers
 {
     class TeacherController
     {
+        private TeacherDAO teacherDAO { get; set; }
         public RegistrationViewModel GetTeacherById(int id)
         {
             Teachers teacher = teacherDAO.GetTeacherById(id);
@@ -17,8 +18,6 @@ namespace Business.Controllers
             registrationViewModel.LastName = teacher.LastName;
             return registrationViewModel;
         }
-
-        private TeacherDAO teacherDAO = null;
         public TeacherController(TeacherDAO teacherDAO)
         {
             this.teacherDAO = teacherDAO;

@@ -19,7 +19,7 @@ namespace Business.Controllers
             }
             else
             {
-                return user.Id;
+                return user.UserID;
             }
         }
 

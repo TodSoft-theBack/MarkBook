@@ -6,6 +6,9 @@ namespace Business.IncorectCredentialsException
 {
     public class IncorectCredentialsException : Exception
     {
-        public IncorectCredentialsException(string message) : base(message);
+        public IncorectCredentialsException(string message) : base(message)
+        {
+
+        }
     }
 }

@@ -9,9 +9,10 @@ namespace Business.Controllers
 {
     public class AdminController
     {
+        private AdminDAO AdminDAO { get; set; }
         public RegistrationViewModel GetAdminById(int id)
         {
-            Admins admin = adminDAO.GetAdminById(id);
+            Admins admin = this.AdminDAO.GetAdminById(id);
             RegistrationViewModel registrationViewModel = new RegistrationViewModel();
             registrationViewModel.FirstName = admin.FirstName;
             registrationViewModel.LastName = admin.LastName;
@@ -33,7 +34,7 @@ namespace Business.Controllers
         private AdminDAO admiNDAO = null;
         public  AdminController(AdminDAO adminDAO)
         {
-            this.adminDAO = adminDAO;
+            this.AdminDAO = adminDAO;
         }
     }
 }

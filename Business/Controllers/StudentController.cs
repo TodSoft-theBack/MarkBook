@@ -9,9 +9,10 @@ namespace Business.Controllers
 {
     public class StudentController
     {
+        private  StudentDAO StudentDAO { get; set; }
         public RegistrationViewModel GetStudentById(int id)
         {
-            Students student = studentDAO.GetStudentById(id);
+            Students student = StudentDAO.GetStudentById(id);
             RegistrationViewModel registrationViewModel = new RegistrationViewModel();
             registrationViewModel.FirstName = student.FirstName;
             registrationViewModel.LastName = student.LastName;
@@ -20,7 +21,7 @@ namespace Business.Controllers
 
         public StudentController(StudentDAO studentDAO)
         {
-            this.studentDAO = studentDAO;
+            this.StudentDAO = studentDAO;
         }
     }
 }
