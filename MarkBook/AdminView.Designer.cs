@@ -1,18 +1,18 @@
 ﻿
-using System;
+using MarkBook;
 using System.Windows.Forms;
 
-namespace MarkBook
+namespace Interface
 {
-    partial class LogInForm
+    partial class AdminView
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -27,24 +27,17 @@ namespace MarkBook
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
             this.NavBar = new System.Windows.Forms.Panel();
             this.LabelFormText = new System.Windows.Forms.Label();
             this.NormalizeMaximizeForm = new MarkBook.CircularFlatButton();
             this.minimizeButton = new MarkBook.CircularFlatButton();
             this.CloseButton = new MarkBook.CircularFlatButton();
-            this.ButtonBoard = new System.Windows.Forms.Panel();
-            this.PictureFrame = new MarkBook.CircularFlatButton();
-            this.buttonLogIn = new System.Windows.Forms.Button();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.textBoxUsername = new System.Windows.Forms.TextBox();
             this.NavBar.SuspendLayout();
-            this.ButtonBoard.SuspendLayout();
             this.SuspendLayout();
             // 
             // NavBar
@@ -71,9 +64,9 @@ namespace MarkBook
             this.LabelFormText.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.LabelFormText.Location = new System.Drawing.Point(0, 3);
             this.LabelFormText.Name = "LabelFormText";
-            this.LabelFormText.Size = new System.Drawing.Size(193, 28);
+            this.LabelFormText.Size = new System.Drawing.Size(416, 28);
             this.LabelFormText.TabIndex = 2;
-            this.LabelFormText.Text = "MarkBook - Log in";
+            this.LabelFormText.Text = "MarkBook(Admin) - {Name} {LastName}";
             // 
             // NormalizeMaximizeForm
             // 
@@ -111,104 +104,28 @@ namespace MarkBook
             this.CloseButton.TabIndex = 1;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // ButtonBoard
-            // 
-            this.ButtonBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonBoard.BackColor = System.Drawing.Color.Black;
-            this.ButtonBoard.Controls.Add(this.PictureFrame);
-            this.ButtonBoard.Controls.Add(this.buttonLogIn);
-            this.ButtonBoard.Controls.Add(this.textBoxPassword);
-            this.ButtonBoard.Controls.Add(this.textBoxUsername);
-            this.ButtonBoard.Location = new System.Drawing.Point(358, 99);
-            this.ButtonBoard.Name = "ButtonBoard";
-            this.ButtonBoard.Size = new System.Drawing.Size(491, 412);
-            this.ButtonBoard.TabIndex = 1;
-            // 
-            // PictureFrame
-            // 
-            this.PictureFrame.BackColor = System.Drawing.Color.Transparent;
-            this.PictureFrame.DisplayText = "User";
-            this.PictureFrame.FillColor = System.Drawing.Color.Snow;
-            this.PictureFrame.Font = new System.Drawing.Font("Script MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PictureFrame.Location = new System.Drawing.Point(164, 29);
-            this.PictureFrame.Name = "PictureFrame";
-            this.PictureFrame.Size = new System.Drawing.Size(160, 160);
-            this.PictureFrame.TabIndex = 2;
-            // 
-            // buttonLogIn
-            // 
-            this.buttonLogIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLogIn.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonLogIn.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonLogIn.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogIn.Location = new System.Drawing.Point(19, 333);
-            this.buttonLogIn.Name = "buttonLogIn";
-            this.buttonLogIn.Size = new System.Drawing.Size(450, 55);
-            this.buttonLogIn.TabIndex = 0;
-            this.buttonLogIn.Text = "Log in";
-            this.buttonLogIn.UseVisualStyleBackColor = false;
-            this.buttonLogIn.Click += new System.EventHandler(this.buttonLogIn_Click);
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassword.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxPassword.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxPassword.Location = new System.Drawing.Point(19, 270);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.PlaceholderText = "Password here ...";
-            this.textBoxPassword.Size = new System.Drawing.Size(450, 47);
-            this.textBoxPassword.TabIndex = 2;
-            // 
-            // textBoxUsername
-            // 
-            this.textBoxUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUsername.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxUsername.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxUsername.Location = new System.Drawing.Point(19, 207);
-            this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.PlaceholderText = "Username here ...";
-            this.textBoxUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBoxUsername.Size = new System.Drawing.Size(450, 47);
-            this.textBoxUsername.TabIndex = 1;
-            // 
-            // LogInForm
+            // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(904, 581);
-            this.Controls.Add(this.ButtonBoard);
             this.Controls.Add(this.NavBar);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "LogInForm";
-            this.Load += new System.EventHandler(this.LogInForm_Load);
+            this.Name = "AdminView";
+            this.Load += new System.EventHandler(this.AdminView_Load);
             this.NavBar.ResumeLayout(false);
             this.NavBar.PerformLayout();
-            this.ButtonBoard.ResumeLayout(false);
-            this.ButtonBoard.PerformLayout();
             this.ResumeLayout(false);
 
         }
         #endregion
-
         private System.Windows.Forms.Panel NavBar;
         private CircularFlatButton CloseButton;
         private Label LabelFormText;
-        private Panel ButtonBoard;
-        private CircularFlatButton PictureFrame;
-        private Button buttonLogIn;
-        private TextBox textBoxPassword;
-        private TextBox textBoxUsername;
         private CircularFlatButton minimizeButton;
         private CircularFlatButton NormalizeMaximizeForm;
     }
 }
-

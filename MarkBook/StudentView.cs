@@ -18,10 +18,11 @@ namespace MarkBook
             InitializeComponent();
         }
 
-        public Students Student { get; set; }
+        public Students student { get; set; }
         private void StudentView_Load(object sender, EventArgs e)
         {
-            labelFormText.Text = this.Text;
+            student = (Students)((LogInForm)this.Owner).LogInInfo;
+            labelFormText.Text = string.Format($"MarkBook(Student) - {student.FirstName} {student.LastName}");
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             subjectsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), subjectsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);

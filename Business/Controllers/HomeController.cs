@@ -12,6 +12,7 @@ namespace Business.Controllers
     
     public class HomeController
     {
+        public Object LogInInfo { get; set; }
         public int Login(string username, string password)
         {
             Users user = this.homeDAO.LogIn(username, password);
@@ -21,10 +22,20 @@ namespace Business.Controllers
             }
             else
             {
-                if (this.studentDAO.GetStudentByUserID(user.UserID) != null)
+                Students student = this.studentDAO.GetStudentByUserID(user.UserID);
+                Teachers teacher = this.teacherDAO.GetTeacherByUserID(user.UserID);
+                if (student != null)
+                {
+                    LogInInfo = student;
                     return 0;
-                else if (this.teacherDAO.GetStudentByUserID(user.UserID) != null)
+                }               
+                else if (teacher != null)
+                {
+                    LogInInfo = teacher;
                     return 1;
+                }
+                else
+                    throw new ArgumentException("There is no such student,admin or teacher");
             }
             throw new ArgumentException("There is no such student,admin or teacher");
         }

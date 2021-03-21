@@ -23,18 +23,19 @@ namespace MarkBook
             new StudentView(),
             new TeacherView()
         };
+        public Object LogInInfo { get; set; }
         public LogInForm()
         {
             InitializeComponent();
         }
         MarkBookDBContext database;
+        
         private void LogInForm_Load(object sender, EventArgs e)
         {
             database = new MarkBookDBContext();
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             ButtonBoard.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), ButtonBoard.BackColor);
             buttonLogIn.BackColor = Color.FromArgb(255, 95, 165, 255);
-            LabelFormText.Text = this.Text;
         }
         Point firstLocation = new Point();
         bool MouseIsDown = false;
@@ -61,6 +62,11 @@ namespace MarkBook
             (this.WindowState == FormWindowState.Maximized) ?
             FormWindowState.Normal : 
             FormWindowState.Maximized;
+        private void ClearFields()
+        {
+            textBoxUsername.Text = string.Empty;
+            textBoxPassword.Text = string.Empty;
+        }
         private void buttonLogIn_Click(object sender, EventArgs e)
         {
             string username = textBoxUsername.Text,
@@ -68,20 +74,25 @@ namespace MarkBook
             HomeController logInController = new HomeController(database);
             try
             {
-                using (Form form = this.forms[logInController.Login(username, password)])
-                    form.ShowDialog();
+                Form form = this.forms[logInController.Login(username, password)];
+                this.LogInInfo = logInController.LogInInfo;
+                form.Owner = this;
+                form.ShowDialog();
             }
             catch (IncorectCredentialsException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                ClearFields();
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                ClearFields();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("An Error has ocured! Please, contact tech support! " + ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("An Error has ocured! Please, contact tech support! " + ex.Message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                ClearFields();
             }
         }
     }

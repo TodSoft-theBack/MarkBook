@@ -83,9 +83,9 @@ namespace MarkBook
             this.labelFormText.ForeColor = System.Drawing.Color.White;
             this.labelFormText.Location = new System.Drawing.Point(0, 3);
             this.labelFormText.Name = "labelFormText";
-            this.labelFormText.Size = new System.Drawing.Size(156, 28);
+            this.labelFormText.Size = new System.Drawing.Size(425, 28);
             this.labelFormText.TabIndex = 1;
-            this.labelFormText.Text = "Form text here...";
+            this.labelFormText.Text = "MarkBook(Teacher) - {Name} {LastName}";
             // 
             // studentsHeader
             // 
@@ -290,7 +290,6 @@ namespace MarkBook
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TeacherView";
             this.RightToLeftLayout = true;
-            this.Text = "MarkBook - <Name> <FamilyName>";
             this.Load += new System.EventHandler(this.TeacherView_Load);
             this.TextChanged += new System.EventHandler(this.TeacherView_TextChanged);
             this.NavBar.ResumeLayout(false);
@@ -318,6 +317,5 @@ namespace MarkBook
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private CircularFlatButton circularFlatButton1;
     }
 }

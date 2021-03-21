@@ -28,7 +28,7 @@ namespace Services.DAO
             return this.context.SaveChanges();
         }
 
-        public Teachers GetStudentByUserID(int userID)
+        public Teachers GetTeacherByUserID(int userID)
         {
             return this.context.Teachers.FirstOrDefault(t => t.UserID == userID);
         }

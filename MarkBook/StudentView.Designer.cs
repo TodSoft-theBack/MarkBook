@@ -78,9 +78,9 @@ namespace MarkBook
             this.labelFormText.ForeColor = System.Drawing.Color.White;
             this.labelFormText.Location = new System.Drawing.Point(0, 3);
             this.labelFormText.Name = "labelFormText";
-            this.labelFormText.Size = new System.Drawing.Size(156, 28);
+            this.labelFormText.Size = new System.Drawing.Size(422, 28);
             this.labelFormText.TabIndex = 1;
-            this.labelFormText.Text = "Form text here...";
+            this.labelFormText.Text = "MarkBook(Student) - {Name} {LastName}";
             // 
             // subjectsHeader
             // 
@@ -196,7 +196,6 @@ namespace MarkBook
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StudentView";
             this.RightToLeftLayout = true;
-            this.Text = "MarkBook - <Name> <FamilyName>";
             this.Load += new System.EventHandler(this.StudentView_Load);
             this.TextChanged += new System.EventHandler(this.StudentView_TextChanged);
             this.NavBar.ResumeLayout(false);
