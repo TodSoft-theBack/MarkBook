@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
-namespace Services.Models
+namespace Services.DAO
 {
     public partial class TeacherDAO
     {
@@ -20,19 +22,26 @@ namespace Services.Models
         }
         public int RemoveTeacherById(int teacherId)
         {
-
-            // int userNum = context.Teachers.Where(t => t.TeacherID == teacherId).FirstOrDefault().UserID;
             context.Remove(context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault());
-            // context.Remove(context.Users.Where(u => u.UserID == userNum).FirstOrDefault());
             return this.context.SaveChanges();
         }
         public Teachers GetTeacherByUserID(int userID)
         {
-            return this.context.Teachers.FirstOrDefault(t => t.UserId == userID);
+            return this.context.Teachers
+                .FirstOrDefault(t => t.UserId == userID);
+        }
+        public ICollection<Subjects> GetTeacherSubjects(int teacherId)
+        {
+            return this.context.Teachers
+                .Include(t => t.Subjects)
+                .FirstOrDefault(t => t.TeacherId == teacherId)
+                .Subjects;
         }
         public Teachers GetTeacherById(int teacherId)
         {
-            return this.context.Teachers.FirstOrDefault(t => t.TeacherId.Equals(teacherId));
+            return this.context.Teachers
+                .Include(t => t.Subjects)
+                .FirstOrDefault(t => t.TeacherId == teacherId);
         }
         public ICollection<Subjects> GetSubjectsByTeacherId(int teacherID)
         {

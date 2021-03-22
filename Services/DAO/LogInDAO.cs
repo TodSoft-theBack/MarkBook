@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Services.DAO
 {
-    class LogInDAO
+    public class LogInDAO
     {
         public Users LogIn(string username, string password)
         {

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
-namespace Services.Models
+namespace Services.DAO
 {
     public partial class SubjectDAO
     {
@@ -23,7 +25,6 @@ namespace Services.Models
         public SubjectDAO(MarkBookDBContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
-
             this.context = context;
         }
     }

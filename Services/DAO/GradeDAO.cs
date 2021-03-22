@@ -1,18 +1,21 @@
-﻿using System;
+﻿using Services.Models;
+using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace Services.Models
+namespace Services.DAO
 {
     public partial class GradeDAO
     {
         public Grades GetGrade(int gradeId)
         {
             return this.context.Grades
+                .Include(g => g.Subjects)
+                .ThenInclude(s => s.Marks)
                 .Where(g => g.GradeId == gradeId)
                 .FirstOrDefault();
         }
-
         public int AddGrade(int gradeNumber, string gradeForm)
         {
             var grade = new Grades();

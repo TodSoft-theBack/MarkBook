@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business.ControllerExceptions;
+using Business.Controllers;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,17 +17,17 @@ namespace Interface
         {
             InitializeComponent();
         }
-        //private Form[] forms =
-        //{
-        //    new StudentView(),
-        //    new TeacherView(),
-        //    new AdminView()
-        //};
+        private Form[] forms =
+        {
+            new StudentView(),
+            new TeacherView(),
+            new AdminView()
+        };
         public Object LogInInfo { get; set; }
-        //MarkBookDBContext database;
+        public MarkBookDBContext Database { get; set; }
         private void LogInForm_Load(object sender, EventArgs e)
         {
-            //database = new MarkBookDBContext();
+            Database = new MarkBookDBContext();
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             ButtonBoard.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), ButtonBoard.BackColor);
             buttonLogIn.BackColor = Color.FromArgb(255, 95, 165, 255);
@@ -61,28 +64,34 @@ namespace Interface
         }
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            //string username = textBoxUsername.Text,
-            //       password = textBoxPassword.Text;
-            //HomeController logInController = new HomeController(database);
-            //try
-            //{
-            //    Form form = this.forms[logInController.Login(username, password)];
-            //    this.LogInInfo = logInController.LogInInfo;
-            //    form.Owner = this;
-            //    form.ShowDialog();
-            //}
-            //catch (IncorectCredentialsException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //catch (ArgumentException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("An Error has ocured! Please, contact tech support! " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            string username = textBoxUsername.Text,
+                   password = textBoxPassword.Text;
+            LogInController logInController = new LogInController(Database);
+            try
+            {
+                Form form = this.forms[logInController.Login(username, password)];
+                this.LogInInfo = logInController.LogInInfo;
+                form.Owner = this;
+                form.ShowDialog();
+            }
+            catch (IncorectCredentialsException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error has ocured! Please, contact tech support! " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            this.forms = new Form[]
+            {
+                new StudentView(),
+                new TeacherView(),
+                new AdminView()
+            };
             ClearFields();
         }
     }

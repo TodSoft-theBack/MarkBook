@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Business.Controllers;
+using Services;
+using Services.DAO;
+using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,15 +18,18 @@ namespace Interface
         {
             InitializeComponent();
         }
-        //public Students student { get; set; }
+        public Students student { get; set; }
+        public StudentController StudentController { get; set; }
+        MarkBookDBContext context = new MarkBookDBContext();
         private void StudentView_Load(object sender, EventArgs e)
         {
-            //student = (Students)((LogInForm)this.Owner).LogInInfo;
-            //labelFormText.Text = string.Format($"MarkBook(Student) - {student.FirstName} {student.LastName}");
+            student = (Students)((LogInForm)this.Owner).LogInInfo;
+            this.StudentController = new StudentController(((LogInForm)this.Owner).Database);
+            labelFormText.Text = string.Format($"MarkBook(Student) - {student.FirstName} {student.LastName}");
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             subjectsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), subjectsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
-            //DrawingFunctions.DrawTable(this,marks, subjectsHeader, marksHeader);
+            DrawingFunctions.DrawTable(this,StudentController.GetStudentData(student.StudentId), subjectsHeader, marksHeader);
         }
         private void StudentView_TextChanged(object sender, EventArgs e)
             => labelFormText.Text = this.Text;

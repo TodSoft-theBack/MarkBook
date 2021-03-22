@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Services.Models
+namespace Services.DAO
 {
     public partial class AdminDAO
     {

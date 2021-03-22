@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Business.ViewModels;
+using Interface.CustomControls;
+using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using Interface.CustomControls;
 
 namespace Interface
 {
@@ -20,7 +21,12 @@ namespace Interface
             cell.Location = new Point(header.Location.X, (header.Location.Y + offset) + index * (header.Height - offset));
             if (!cell.ShowText)
             {
-                var marks = cell.DisplayText.Split().Select(double.Parse).ToArray();
+                decimal[] marks = new decimal[0];
+                try
+                {
+                    marks = cell.DisplayText.Split().Select(decimal.Parse).ToArray();
+                }
+                catch { }
                 int space = 10;
                 for (int i = 0; i < marks.Length; i++)
                 {
@@ -31,24 +37,50 @@ namespace Interface
                         Size = new Size(30, 30)
                     };
                     mark.Location = GetLocation(cell, mark, space, i);
-                    mark.DisplayText = marks[i].ToString();
+                    mark.DisplayText = Math.Round(marks[i]).ToString();
                     mark.Parent = cell;
                     cell.Controls.Add(mark);
                 }
             }
             parent.Controls.Add(cell);
         }
-        public static void DrawTable(Form parent, ICollection<object> students, Control SubjectHeader, Control MarkHeader)
+        public static List<decimal> GetMarks(ICollection<Marks> Marks)
         {
-            TableCell[,] table = new TableCell[students.Count, 2];
-            for (int i = 0; i < students.Count; i++)
+            List<decimal> output = new List<decimal>();
+            foreach (var mark in Marks)
             {
-                var item = students.ElementAt(i);
-                table[i, 0] = new TableCell(Color.Black, Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue), 3, item.ToString());
-                table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", item))
-                {
-                    ShowText = false
-                };
+                output.Add(mark.MarkValue);
+            }
+            return output;
+        }
+        public static void DrawTable(Form parent, StudentViewModel student, Control SubjectHeader, Control MarkHeader)
+        {
+            TableCell[,] table = new TableCell[student.Data.Count, 2];
+            for (int i = 0; i < student.Data.Count; i++)
+            {
+                var item = student.Data.ElementAt(i);
+                table[i, 0] = new TableCell(Color.Black, Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue), 3, item.Key.SubjectTitle);
+                table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", GetMarks(item.Value)));
+                table[i, 1].ShowText = false;
+                DrawCell(parent, table[i, 0], SubjectHeader, i + 1);
+                DrawCell(parent, table[i, 1], MarkHeader, i + 1);
+            }
+        }
+        public static void DrawTable(Form parent, TeacherViewModel teacher, Control SubjectHeader, Control MarkHeader)
+        {
+            TableCell[,] table = new TableCell[teacher.Data.Count, 2];
+            for (int i = 0; i < teacher.Data.Count; i++)
+            {
+                var item = teacher.Data.ElementAt(i);
+                table[i, 0] = new TableCell
+                (
+                    Color.Black,
+                    Color.FromArgb(GetAlphaFromPercent(20),
+                    Color.SkyBlue), 3,
+                    string.Format($"{item.Key.FirstName} {item.Key.LastName}")
+                );
+                table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", GetMarks(item.Value)));
+                table[i, 1].ShowText = false;
                 DrawCell(parent, table[i, 0], SubjectHeader, i + 1);
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }

@@ -1,6 +1,7 @@
 ﻿using Services.Models;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 
@@ -23,7 +24,10 @@ namespace Services.DAO
         }
         public Students GetStudentById(int id)
         {
-            return context.Students.Where(st => st.StudentId == id).FirstOrDefault();
+            return context.Students
+                .Include(s => s.Marks)
+                .Where(st => st.StudentId == id)
+                .FirstOrDefault();
         }
         public int RemoveStudentById(int id)
         {
@@ -35,6 +39,7 @@ namespace Services.DAO
         public List<Students> AllStudentsFromGrade(int gradeId)
         {
             var students = this.context.Students
+                .Include(s => s.Marks)
                 .Where(st => st.GradeId.Equals(gradeId))
                 .ToList();
 
@@ -42,11 +47,16 @@ namespace Services.DAO
         }
         public Students GetStudentByUserID(int userID)
         {
-            return this.context.Students.Where(st => st.UserId == userID).FirstOrDefault();
+            return this.context.Students
+                .Include(s => s.User)
+                .Where(st => st.UserId == userID)
+                .FirstOrDefault();
         }
         public List<Marks> AllMarksOfStudent(int studentId)
         {
-            List<Marks> marks = context.Marks.Where(m => m.StudentId == studentId).ToList();
+            List<Marks> marks = context.Marks
+                .Where(m => m.StudentId == studentId)
+                .ToList();
             return marks;
         }
         public StudentDAO(MarkBookDBContext context)
