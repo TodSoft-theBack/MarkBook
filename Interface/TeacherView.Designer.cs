@@ -1,5 +1,6 @@
 ﻿
 using Interface.CustomControls;
+using System;
 
 namespace Interface
 {
@@ -138,10 +139,10 @@ namespace Interface
             this.tableCellSubject.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tableCellSubject.ForeColor = System.Drawing.Color.White;
             this.tableCellSubject.HasBorder = false;
-            this.tableCellSubject.Location = new System.Drawing.Point(40, 60);
+            this.tableCellSubject.Location = new System.Drawing.Point(40, 61);
             this.tableCellSubject.Name = "tableCellSubject";
             this.tableCellSubject.ShowText = true;
-            this.tableCellSubject.Size = new System.Drawing.Size(230, 40);
+            this.tableCellSubject.Size = new System.Drawing.Size(230, 39);
             this.tableCellSubject.TabIndex = 1;
             this.tableCellSubject.TextFormat = Interface.CustomControls.TextFormats.Right;
             // 
@@ -150,20 +151,12 @@ namespace Interface
             this.comboBoxGrade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.comboBoxGrade.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxGrade.FormattingEnabled = true;
-            this.comboBoxGrade.Items.AddRange(new object[] {
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12"});
             this.comboBoxGrade.Location = new System.Drawing.Point(276, 61);
             this.comboBoxGrade.Name = "comboBoxGrade";
             this.comboBoxGrade.Size = new System.Drawing.Size(264, 39);
             this.comboBoxGrade.TabIndex = 3;
             this.comboBoxGrade.Text = "Grade";
+            this.comboBoxGrade.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrade_SelectedIndexChanged);
             // 
             // TeacherView
             // 
@@ -183,7 +176,6 @@ namespace Interface
             this.Name = "TeacherView";
             this.RightToLeftLayout = true;
             this.Load += new System.EventHandler(this.TeacherView_Load);
-            this.TextChanged += new System.EventHandler(this.TeacherView_TextChanged);
             this.NavBar.ResumeLayout(false);
             this.NavBar.PerformLayout();
             this.ResumeLayout(false);

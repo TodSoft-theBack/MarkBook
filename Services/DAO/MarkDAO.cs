@@ -43,18 +43,18 @@ namespace Services.DAO
                 .ToList();
             return marks;
         }
-        public List<Marks> GetMarksForGivenSubjectById(int subjectId, int studentId) //vrushta ocenkite za predmeta
+        public List<Marks> GetMarksForGivenSubjectById(int subjectId, int studentId)
         {
             return this.context.Marks
-              .Where(s => s.SubjectId.Equals(subjectId) && s.StudentId.Equals(studentId))
+              .Where(s => s.SubjectId == subjectId && s.StudentId == studentId)
               .ToList();
         }
-        public List<Marks> GetMarksForGivenSubjectById(int subjectId) //vrushta vsichki ocenki za daden predmet na vsichki uchenici
+        public List<Marks> GetMarksForGivenSubjectById(int subjectId)
         {
             return this.context.Marks
                 .Include(s => s.Student)
-              .Where(s => s.SubjectId.Equals(subjectId))
-              .ToList();
+                .Where(s => s.SubjectId.Equals(subjectId))
+                .ToList();
         }
 
         private MarkBookDBContext context;

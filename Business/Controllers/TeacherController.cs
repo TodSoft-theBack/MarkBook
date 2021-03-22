@@ -4,6 +4,7 @@ using Services.DAO;
 using Services.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Controllers
@@ -12,6 +13,7 @@ namespace Business.Controllers
     {
         private TeacherDAO teacherDAO { get; set; }
         private MarkDAO markDAO { get; set; }
+        private StudentDAO studentDAO { get; set; }
 
         public RegistrationViewModel GetTeacherById(int id)
         {
@@ -21,31 +23,18 @@ namespace Business.Controllers
             registrationViewModel.LastName = teacher.LastName;
             return registrationViewModel;
         }
-        public List<string> Subjects(int teacherID)
+        public ICollection<Subjects> GetSubjects(int teacherID)
         {
-            List<string> output = new List<string>();
-            foreach (var subject in this.teacherDAO.GetTeacherSubjects(teacherID))
-            {
-                output.Add(string.Format($"{subject.SubjectTitle}({subject.Grade.GradeNumber}{subject.Grade.GradeForm})"));
-            }
-            return output;
+            return this.teacherDAO.GetTeacherSubjects(teacherID);
         }
-        public TeacherViewModel GetTeacherData(int techerID, int subjectId)
+        public TeacherViewModel GetTeacherData(int teacherID, int subjectId)
         {
             Dictionary<Students, ICollection<Marks>> teacherData = new Dictionary<Students, ICollection<Marks>>();
-
-            List<Marks> marks = markDAO.GetMarksForGivenSubjectById(subjectId);
-
-            foreach (var mark in marks)
+            Subjects subject = this.GetSubjects(teacherID).FirstOrDefault(s => s.SubjectId == subjectId);
+            foreach (var student in this.studentDAO.AllStudentsFromGrade(subject.GradeId))
             {
-                if (!teacherData.ContainsKey(mark.Student))
-                {
-                    teacherData.Add(mark.Student, new List<Marks>());
-                }
-
-                teacherData[mark.Student].Add(mark);
+                teacherData.Add(student, this.markDAO.GetMarksForGivenSubjectById(subjectId, student.StudentId));
             }
-
             return new TeacherViewModel()
             {
                 Data = teacherData
@@ -55,6 +44,7 @@ namespace Business.Controllers
         {
             this.teacherDAO = new TeacherDAO(context);
             this.markDAO = new MarkDAO(context);
+            this.studentDAO = new StudentDAO(context);
         }
     }
 }

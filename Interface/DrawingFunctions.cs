@@ -19,6 +19,7 @@ namespace Interface
             int offset = cell.BorderThickness;
             cell.Size = header.Size;
             cell.Location = new Point(header.Location.X, (header.Location.Y + offset) + index * (header.Height - offset));
+            cell.Name = header.Name + "_" + index;
             if (!cell.ShowText)
             {
                 decimal[] marks = new decimal[0];
@@ -66,12 +67,12 @@ namespace Interface
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }
         }
-        public static void DrawTable(Form parent, TeacherViewModel teacher, Control SubjectHeader, Control MarkHeader)
+        public static void DrawTable(Form parent, TeacherViewModel teacherView, Control SubjectHeader, Control MarkHeader)
         {
-            TableCell[,] table = new TableCell[teacher.Data.Count, 2];
-            for (int i = 0; i < teacher.Data.Count; i++)
+            TableCell[,] table = new TableCell[teacherView.Data.Count, 2];
+            for (int i = 0; i < teacherView.Data.Count; i++)
             {
-                var item = teacher.Data.ElementAt(i);
+                var item = teacherView.Data.ElementAt(i);
                 table[i, 0] = new TableCell
                 (
                     Color.Black,
@@ -84,6 +85,11 @@ namespace Interface
                 DrawCell(parent, table[i, 0], SubjectHeader, i + 1);
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }
+            
+        }
+        public static void DisposeTable(Control owner, Control header)
+        {
+
         }
         private static Point GetLocation(TableCell parent, CircularFlatButton button, int space, int index)
                 => new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2); 

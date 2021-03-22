@@ -34,6 +34,7 @@ namespace Services.DAO
         {
             return this.context.Teachers
                 .Include(t => t.Subjects)
+                .ThenInclude(t => t.Grade)
                 .FirstOrDefault(t => t.TeacherId == teacherId)
                 .Subjects;
         }
