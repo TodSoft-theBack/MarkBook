@@ -51,6 +51,11 @@ namespace Business.Controllers
                 Data = teacherData
             };
         }
+        public void AddMark(int markValue, int subjectId, int studentId, string comment)
+        {
+            markDAO.AddMark(markValue, subjectId, studentId, comment);
+        }
+
         public TeacherController(MarkBookDBContext context)
         {
             this.teacherDAO = new TeacherDAO(context);
