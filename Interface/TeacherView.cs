@@ -42,7 +42,7 @@ namespace Interface
             studentsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), studentsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
             tableCellSubject.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), tableCellSubject.FillColor);
-            DrawingFunctions.DrawTable(this, teacherController.GetTeacherData(teacher.TeacherId, 4), studentsHeader, marksHeader);
+            DrawingFunctions.DrawTable(this, teacherController.GetTeacherData(teacher.TeacherId, this.Subjects.FirstOrDefault().SubjectId), studentsHeader, marksHeader);
             //if(comboBoxGrade.SelectedIndex >= 0)
             //{
             //    DrawingFunctions.DrawTable(
