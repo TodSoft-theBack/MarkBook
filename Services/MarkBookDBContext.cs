@@ -151,6 +151,11 @@ namespace Services
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
+                entity.HasOne(d => d.Grade)
+                    .WithMany(p => p.Students)
+                    .HasForeignKey(d => d.GradeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Students)
                     .HasForeignKey(d => d.UserId)

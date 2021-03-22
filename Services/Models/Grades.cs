@@ -8,6 +8,7 @@ namespace Services.Models
         public Grades()
         {
             Subjects = new HashSet<Subjects>();
+            Students = new HashSet<Students>();
         }
 
         public int GradeId { get; set; }
@@ -15,5 +16,6 @@ namespace Services.Models
         public string GradeForm { get; set; }
 
         public virtual ICollection<Subjects> Subjects { get; set; }
+        public virtual ICollection<Students> Students { get; set; }
     }
 }

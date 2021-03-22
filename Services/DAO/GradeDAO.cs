@@ -24,6 +24,12 @@ namespace Services.DAO
             context.Grades.Add(grade);
             return context.SaveChanges();
         }
+        public ICollection<Students> GetStudentsByGradeId(int gradeId)
+        {
+            return this.context.Grades
+                .Include(g => g.Students)
+                .FirstOrDefault(g => g.GradeId == gradeId).Students;
+        }
         private MarkBookDBContext context;
         public GradeDAO(MarkBookDBContext context)
         {
