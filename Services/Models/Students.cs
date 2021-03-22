@@ -17,6 +17,7 @@ namespace Services.Models
         public int? UserId { get; set; }
 
         public virtual Users User { get; set; }
+        public virtual Grades Grade { get; set; }
         public virtual ICollection<Marks> Marks { get; set; }
     }
 }

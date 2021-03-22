@@ -14,6 +14,7 @@ namespace Business.Controllers
         private TeacherDAO teacherDAO { get; set; }
         private MarkDAO markDAO { get; set; }
         private StudentDAO studentDAO { get; set; }
+        private GradeDAO gradeDAO { get; set; }
 
         public RegistrationViewModel GetTeacherById(int id)
         {
@@ -40,10 +41,19 @@ namespace Business.Controllers
                 Data = teacherData
             };
         }
+        public ICollection<Students> GetStudentsByGradeId(int gradeId)
+        {
+            return gradeDAO.GetStudentsByGradeId(gradeId);
+        }
+        public void AddMark(decimal markValue, int subjectId, int studentId, string comment)
+        {
+            markDAO.AddMark(markValue, subjectId, studentId, comment);
+        }
         public TeacherController(MarkBookDBContext context)
         {
             this.teacherDAO = new TeacherDAO(context);
             this.markDAO = new MarkDAO(context);
+            this.gradeDAO = new GradeDAO(context);
             this.studentDAO = new StudentDAO(context);
         }
     }

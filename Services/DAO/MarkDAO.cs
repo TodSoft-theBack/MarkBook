@@ -8,12 +8,28 @@ namespace Services.DAO
 {
     public partial class MarkDAO
     {
-        public int AddMark(int markValue, int subjectId, int studentId, string comment)
+        public int AddMark(decimal markValue, int subjectId, int studentId, string comment)
         {
             if (markValue < 2 || markValue > 6)
             {
                 throw new ArgumentOutOfRangeException("Mark must be between 2 and 6");
             }
+
+            if (string.IsNullOrEmpty(comment))
+            {
+                throw new ArgumentException("Comment is required");
+            }
+
+            if (subjectId == 0)
+            {
+                throw new ArgumentException("SubjectID is required");
+            }
+
+            if (studentId == 0)
+            {
+                throw new ArgumentException("StudentId is required");
+            }
+
             Marks mark = new Marks
             {
                 MarkValue = markValue,
