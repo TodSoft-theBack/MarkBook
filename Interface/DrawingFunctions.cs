@@ -89,7 +89,10 @@ namespace Interface
         }
         public static void DisposeTable(Control owner, Control header)
         {
-
+            for (int i = 0; i < owner.Controls.Count; i++)
+            {
+                if (owner.Controls[i].Name.Contains(header.Name) && owner.Controls[i].Name != header.Name) owner.Controls.RemoveAt(i);
+            }
         }
         private static Point GetLocation(TableCell parent, CircularFlatButton button, int space, int index)
                 => new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2); 

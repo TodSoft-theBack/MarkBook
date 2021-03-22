@@ -26,8 +26,7 @@ namespace Interface
             => this.Close();
         public static string SubjectToString(Subjects subject)
             => string.Format($"{subject.SubjectTitle} (Grade: {subject.Grade.GradeNumber}{subject.Grade.GradeForm})");
-        //bool drawnTable = false;
-        
+        bool drawnTable = false;
         private void TeacherView_Load(object sender, EventArgs e)
         {
             teacher = (Teachers)((LogInForm)this.Owner).LogInInfo;
@@ -42,18 +41,16 @@ namespace Interface
             studentsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), studentsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
             tableCellSubject.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), tableCellSubject.FillColor);
-            DrawingFunctions.DrawTable(this, teacherController.GetTeacherData(teacher.TeacherId, 4), studentsHeader, marksHeader);
-            //if(comboBoxGrade.SelectedIndex >= 0)
-            //{
-            //    DrawingFunctions.DrawTable(
-            //        this,
-            //        teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId),
-            //        studentsHeader,
-            //        marksHeader
-            //        );
-            //    drawnTable = true;
-            //}
-
+            if (comboBoxGrade.SelectedIndex >= 0)
+            {
+                DrawingFunctions.DrawTable(
+                    this,
+                    teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId),
+                    studentsHeader,
+                    marksHeader
+                    );
+                drawnTable = true;
+            }
         }
 
         Point firstLocation = new Point();
@@ -75,11 +72,13 @@ namespace Interface
 
         private void comboBoxGrade_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(!drawnTable && comboBoxGrade.SelectedIndex >= 0)
-            //{
-            //    DrawingFunctions.DrawTable(this, teacherController.GetTeacherData(teacher.TeacherId, comboBoxGrade.SelectedIndex), studentsHeader, marksHeader);
-            //    drawnTable = true;
-            //}
+            DrawingFunctions.DisposeTable(this, studentsHeader);
+            DrawingFunctions.DisposeTable(this, marksHeader);
+            if (!drawnTable && comboBoxGrade.SelectedIndex >= 0)
+            {
+                DrawingFunctions.DrawTable(this, teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId), studentsHeader, marksHeader);
+                drawnTable = true;
+            }
         }
     }
 }
