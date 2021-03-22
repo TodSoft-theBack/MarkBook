@@ -1,4 +1,5 @@
-﻿using Services.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,14 @@ namespace Services.DAO
               .Where(s => s.SubjectId.Equals(subjectId) && s.StudentId.Equals(studentId))
               .ToList();
         }
+        public List<Marks> GetMarksForGivenSubjectById(int subjectId) //vrushta vsichki ocenki za daden predmet na vsichki uchenici
+        {
+            return this.context.Marks
+                .Include(s => s.Student)
+              .Where(s => s.SubjectId.Equals(subjectId))
+              .ToList();
+        }
+
         private MarkBookDBContext context;
         public MarkDAO(MarkBookDBContext context)
         {

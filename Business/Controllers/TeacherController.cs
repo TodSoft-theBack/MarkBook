@@ -11,6 +11,8 @@ namespace Business.Controllers
     public class TeacherController
     {
         private TeacherDAO teacherDAO { get; set; }
+        private MarkDAO markDAO { get; set; }
+
         public RegistrationViewModel GetTeacherById(int id)
         {
             Teachers teacher = teacherDAO.GetTeacherById(id);
@@ -28,10 +30,22 @@ namespace Business.Controllers
             }
             return output;
         }
-        public TeacherViewModel GetTeacherData(int techerID, int gradeID)
+        public TeacherViewModel GetTeacherData(int techerID, int subjectId)
         {
             Dictionary<Students, ICollection<Marks>> teacherData = new Dictionary<Students, ICollection<Marks>>();
-            
+
+            List<Marks> marks = markDAO.GetMarksForGivenSubjectById(subjectId);
+
+            foreach (var mark in marks)
+            {
+                if (!teacherData.ContainsKey(mark.Student))
+                {
+                    teacherData.Add(mark.Student, new List<Marks>());
+                }
+
+                teacherData[mark.Student].Add(mark);
+            }
+
             return new TeacherViewModel()
             {
                 Data = teacherData
@@ -40,6 +54,7 @@ namespace Business.Controllers
         public TeacherController(MarkBookDBContext context)
         {
             this.teacherDAO = new TeacherDAO(context);
+            this.markDAO = new MarkDAO(context);
         }
     }
 }
