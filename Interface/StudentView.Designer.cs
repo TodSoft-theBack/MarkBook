@@ -37,12 +37,14 @@ namespace Interface
             this.labelFormText = new System.Windows.Forms.Label();
             this.subjectsHeader = new Interface.CustomControls.TableCell();
             this.marksHeader = new Interface.CustomControls.TableCell();
+            this.minimizeButton = new Interface.CustomControls.CircularFlatButton();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // NavBar
             // 
             this.NavBar.BackColor = System.Drawing.Color.Black;
+            this.NavBar.Controls.Add(this.minimizeButton);
             this.NavBar.Controls.Add(this.closeButton);
             this.NavBar.Controls.Add(this.labelFormText);
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -112,11 +114,23 @@ namespace Interface
             this.marksHeader.TabIndex = 1;
             this.marksHeader.TextFormat = Interface.CustomControls.TextFormats.Center;
             // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeButton.DisplayText = "";
+            this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
+            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(20, 20);
+            this.minimizeButton.TabIndex = 3;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
+            // 
             // StudentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = Properties.Resources.Student_View;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 879);
             this.Controls.Add(this.marksHeader);
@@ -127,7 +141,6 @@ namespace Interface
             this.Name = "StudentView";
             this.RightToLeftLayout = true;
             this.Load += new System.EventHandler(this.StudentView_Load);
-            this.TextChanged += new System.EventHandler(this.StudentView_TextChanged);
             this.NavBar.ResumeLayout(false);
             this.NavBar.PerformLayout();
             this.ResumeLayout(false);
@@ -140,5 +153,6 @@ namespace Interface
         private CircularFlatButton closeButton;
         private TableCell subjectsHeader;
         private TableCell marksHeader;
+        private CircularFlatButton minimizeButton;
     }
 }

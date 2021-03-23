@@ -41,12 +41,14 @@ namespace Interface
             this.buttonAddMark = new Interface.CustomControls.CircularFlatButton();
             this.tableCellSubject = new Interface.CustomControls.TableCell();
             this.comboBoxGrade = new System.Windows.Forms.ComboBox();
+            this.minimizeButton = new Interface.CustomControls.CircularFlatButton();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // NavBar
             // 
             this.NavBar.BackColor = System.Drawing.Color.Black;
+            this.NavBar.Controls.Add(this.minimizeButton);
             this.NavBar.Controls.Add(this.closeButton);
             this.NavBar.Controls.Add(this.labelFormText);
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -127,7 +129,7 @@ namespace Interface
             this.buttonAddMark.Size = new System.Drawing.Size(132, 134);
             this.buttonAddMark.TabIndex = 2;
             this.buttonAddMark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.buttonAddMark.Click += new System.EventHandler(this.CloseButton_Click);
+            this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
             // 
             // tableCellSubject
             // 
@@ -142,7 +144,7 @@ namespace Interface
             this.tableCellSubject.Location = new System.Drawing.Point(40, 61);
             this.tableCellSubject.Name = "tableCellSubject";
             this.tableCellSubject.ShowText = true;
-            this.tableCellSubject.Size = new System.Drawing.Size(230, 39);
+            this.tableCellSubject.Size = new System.Drawing.Size(187, 39);
             this.tableCellSubject.TabIndex = 1;
             this.tableCellSubject.TextFormat = Interface.CustomControls.TextFormats.Right;
             // 
@@ -151,18 +153,30 @@ namespace Interface
             this.comboBoxGrade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.comboBoxGrade.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxGrade.FormattingEnabled = true;
-            this.comboBoxGrade.Location = new System.Drawing.Point(276, 61);
+            this.comboBoxGrade.Location = new System.Drawing.Point(233, 61);
             this.comboBoxGrade.Name = "comboBoxGrade";
-            this.comboBoxGrade.Size = new System.Drawing.Size(264, 39);
+            this.comboBoxGrade.Size = new System.Drawing.Size(307, 39);
             this.comboBoxGrade.TabIndex = 3;
             this.comboBoxGrade.Text = "Grade";
             this.comboBoxGrade.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrade_SelectedIndexChanged);
+            // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeButton.DisplayText = "";
+            this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
+            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(20, 20);
+            this.minimizeButton.TabIndex = 3;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // TeacherView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = Properties.Resources.Student_View;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 879);
             this.Controls.Add(this.comboBoxGrade);
@@ -190,5 +204,6 @@ namespace Interface
         private CircularFlatButton buttonAddMark;
         private TableCell tableCellSubject;
         private System.Windows.Forms.ComboBox comboBoxGrade;
+        private CircularFlatButton minimizeButton;
     }
 }

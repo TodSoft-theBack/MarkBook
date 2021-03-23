@@ -35,15 +35,15 @@ namespace Interface
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
             this.NavBar = new System.Windows.Forms.Panel();
+            this.normalizeMaximizeForm = new Interface.CustomControls.CircularFlatButton();
+            this.minimizeButton = new Interface.CustomControls.CircularFlatButton();
+            this.closeButton = new Interface.CustomControls.CircularFlatButton();
             this.LabelFormText = new System.Windows.Forms.Label();
             this.ButtonBoard = new System.Windows.Forms.Panel();
+            this.PictureFrame = new Interface.CustomControls.CircularFlatButton();
             this.buttonLogIn = new System.Windows.Forms.Button();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
-            this.NormalizeMaximizeForm = new CircularFlatButton();
-            this.minimizeButton = new CircularFlatButton();
-            this.CloseButton = new CircularFlatButton();
-            this.PictureFrame = new CircularFlatButton();
             this.NavBar.SuspendLayout();
             this.ButtonBoard.SuspendLayout();
             this.SuspendLayout();
@@ -51,9 +51,9 @@ namespace Interface
             // NavBar
             // 
             this.NavBar.BackColor = System.Drawing.Color.Black;
-            this.NavBar.Controls.Add(this.NormalizeMaximizeForm);
+            this.NavBar.Controls.Add(this.normalizeMaximizeForm);
             this.NavBar.Controls.Add(this.minimizeButton);
-            this.NavBar.Controls.Add(this.CloseButton);
+            this.NavBar.Controls.Add(this.closeButton);
             this.NavBar.Controls.Add(this.LabelFormText);
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.NavBar.ForeColor = System.Drawing.Color.White;
@@ -65,28 +65,17 @@ namespace Interface
             this.NavBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseMove);
             this.NavBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseUp);
             // 
-            // LabelFormText
-            // 
-            this.LabelFormText.AutoSize = true;
-            this.LabelFormText.BackColor = System.Drawing.Color.Transparent;
-            this.LabelFormText.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.LabelFormText.Location = new System.Drawing.Point(0, 3);
-            this.LabelFormText.Name = "LabelFormText";
-            this.LabelFormText.Size = new System.Drawing.Size(193, 28);
-            this.LabelFormText.TabIndex = 2;
-            this.LabelFormText.Text = "MarkBook - Log in";
-            // 
             // NormalizeMaximizeForm
             // 
-            this.NormalizeMaximizeForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NormalizeMaximizeForm.BackColor = System.Drawing.Color.Transparent;
-            this.NormalizeMaximizeForm.DisplayText = "";
-            this.NormalizeMaximizeForm.FillColor = System.Drawing.Color.Lime;
-            this.NormalizeMaximizeForm.Location = new System.Drawing.Point(846, 9);
-            this.NormalizeMaximizeForm.Name = "NormalizeMaximizeForm";
-            this.NormalizeMaximizeForm.Size = new System.Drawing.Size(20, 20);
-            this.NormalizeMaximizeForm.TabIndex = 1;
-            this.NormalizeMaximizeForm.Click += new System.EventHandler(this.NormalizeMaximizeForm_Click);
+            this.normalizeMaximizeForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.normalizeMaximizeForm.BackColor = System.Drawing.Color.Transparent;
+            this.normalizeMaximizeForm.DisplayText = "";
+            this.normalizeMaximizeForm.FillColor = System.Drawing.Color.Lime;
+            this.normalizeMaximizeForm.Location = new System.Drawing.Point(846, 9);
+            this.normalizeMaximizeForm.Name = "NormalizeMaximizeForm";
+            this.normalizeMaximizeForm.Size = new System.Drawing.Size(20, 20);
+            this.normalizeMaximizeForm.TabIndex = 1;
+            this.normalizeMaximizeForm.Click += new System.EventHandler(this.NormalizeMaximizeForm_Click);
             // 
             // minimizeButton
             // 
@@ -102,15 +91,26 @@ namespace Interface
             // 
             // CloseButton
             // 
-            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
-            this.CloseButton.DisplayText = "";
-            this.CloseButton.FillColor = System.Drawing.Color.Red;
-            this.CloseButton.Location = new System.Drawing.Point(872, 9);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(20, 20);
-            this.CloseButton.TabIndex = 1;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.BackColor = System.Drawing.Color.Transparent;
+            this.closeButton.DisplayText = "";
+            this.closeButton.FillColor = System.Drawing.Color.Red;
+            this.closeButton.Location = new System.Drawing.Point(872, 9);
+            this.closeButton.Name = "CloseButton";
+            this.closeButton.Size = new System.Drawing.Size(20, 20);
+            this.closeButton.TabIndex = 1;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // LabelFormText
+            // 
+            this.LabelFormText.AutoSize = true;
+            this.LabelFormText.BackColor = System.Drawing.Color.Transparent;
+            this.LabelFormText.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.LabelFormText.Location = new System.Drawing.Point(0, 3);
+            this.LabelFormText.Name = "LabelFormText";
+            this.LabelFormText.Size = new System.Drawing.Size(193, 28);
+            this.LabelFormText.TabIndex = 2;
+            this.LabelFormText.Text = "MarkBook - Log in";
             // 
             // ButtonBoard
             // 
@@ -203,14 +203,14 @@ namespace Interface
 
         #endregion
         private System.Windows.Forms.Panel NavBar;
-        private CircularFlatButton CloseButton;
+        private CustomControls.CircularFlatButton closeButton;
         private Label LabelFormText;
         private Panel ButtonBoard;
-        private CircularFlatButton PictureFrame;
+        private CustomControls.CircularFlatButton PictureFrame;
         private Button buttonLogIn;
         private TextBox textBoxPassword;
         private TextBox textBoxUsername;
-        private CircularFlatButton minimizeButton;
-        private CircularFlatButton NormalizeMaximizeForm;
+        private CustomControls.CircularFlatButton minimizeButton;
+        private CustomControls.CircularFlatButton normalizeMaximizeForm;
     }
 }

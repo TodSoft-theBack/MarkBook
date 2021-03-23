@@ -14,12 +14,13 @@ namespace Interface
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
         public static Color MakeTranslucent(int percent,  Color color)
         =>  Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(percent), color);
-        private static void DrawCell(Form parent, TableCell cell, Control header, int index)
+        private static void DrawCell(Form parent, TableCell cell, System.Windows.Forms.Control header, int index)
         {
             int offset = cell.BorderThickness;
             cell.Size = header.Size;
             cell.Location = new Point(header.Location.X, (header.Location.Y + offset) + index * (header.Height - offset));
             cell.Name = header.Name + "_" + index;
+            SetHover(cell);
             if (!cell.ShowText)
             {
                 decimal[] marks = new decimal[0];
@@ -31,15 +32,15 @@ namespace Interface
                 int space = 10;
                 for (int i = 0; i < marks.Length; i++)
                 {
-                    CircularFlatButton mark = new CircularFlatButton
+                    ContainerCircularFlatButton mark = new ContainerCircularFlatButton
                     {
                         FillColor = Color.Lime,
-                        ForeColor = Color.White,
+                        ForeColor = Color.Black,
                         Size = new Size(30, 30)
                     };
+                    SetHover(mark);
                     mark.Location = GetLocation(cell, mark, space, i);
                     mark.DisplayText = Math.Round(marks[i]).ToString();
-                    mark.Parent = cell;
                     cell.Controls.Add(mark);
                 }
             }
@@ -54,7 +55,7 @@ namespace Interface
             }
             return output;
         }
-        public static void DrawTable(Form parent, StudentViewModel student, Control SubjectHeader, Control MarkHeader)
+        public static void DrawTable(Form parent, StudentViewModel student, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
         {
             TableCell[,] table = new TableCell[student.Data.Count, 2];
             for (int i = 0; i < student.Data.Count; i++)
@@ -67,7 +68,7 @@ namespace Interface
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }
         }
-        public static void DrawTable(Form parent, TeacherViewModel teacherView, Control SubjectHeader, Control MarkHeader)
+        public static void DrawTable(Form parent, TeacherViewModel teacherView, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
         {
             TableCell[,] table = new TableCell[teacherView.Data.Count, 2];
             for (int i = 0; i < teacherView.Data.Count; i++)
@@ -85,16 +86,52 @@ namespace Interface
                 DrawCell(parent, table[i, 0], SubjectHeader, i + 1);
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }
-            
         }
-        public static void DisposeTable(Control owner, Control header)
+        public static void DisposeTable(System.Windows.Forms.Control owner, System.Windows.Forms.Control header)
         {
             for (int i = 0; i < owner.Controls.Count; i++)
             {
                 if (owner.Controls[i].Name.Contains(header.Name) && owner.Controls[i].Name != header.Name) owner.Controls.RemoveAt(i);
             }
         }
-        private static Point GetLocation(TableCell parent, CircularFlatButton button, int space, int index)
-                => new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2); 
+        public static void SetHover(params Control[] hoverable)
+        {
+            foreach (var control in hoverable)
+            {
+                control.MouseHover += SelectedControl_MouseHover;
+                control.MouseLeave += SelectedControl_MouseLeave;
+            }
+        }
+        private static void SelectedControl_MouseHover(object sender, EventArgs e)
+        {
+            try
+            {
+                ((CircularFlatButton)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((CircularFlatButton)sender).FillColor);
+            }
+            catch { }
+            try
+            {
+                ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(0), ((TableCell)sender).FillColor);
+            }
+            catch { }
+            ((Control)sender).Invalidate();
+        }
+
+        private static void SelectedControl_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                ((CircularFlatButton)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(0), ((CircularFlatButton)sender).FillColor);
+            }
+            catch { }
+            try
+            {
+                ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((TableCell)sender).FillColor);
+            }
+            catch { }
+            ((Control)sender).Invalidate();
+        }
+        private static Point GetLocation(TableCell parent, CustomControls.CircularFlatButton button, int space, int index)
+                => new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2);
     }
 }

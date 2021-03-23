@@ -21,12 +21,11 @@ namespace Interface
         Teachers teacher;
         TeacherController teacherController;
         public ICollection<Subjects> Subjects;
-        MarkBookDBContext context = new MarkBookDBContext();
+        MarkBookDBContext context;
         private void CloseButton_Click(object sender, EventArgs e)
             => this.Close();
         public static string SubjectToString(Subjects subject)
             => string.Format($"{subject.SubjectTitle} (Grade: {subject.Grade.GradeNumber}{subject.Grade.GradeForm})");
-        bool drawnTable = false;
         private void TeacherView_Load(object sender, EventArgs e)
         {
             teacher = (Teachers)((LogInForm)this.Owner).LogInInfo;
@@ -41,6 +40,7 @@ namespace Interface
             studentsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), studentsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
             tableCellSubject.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), tableCellSubject.FillColor);
+            DrawingFunctions.SetHover(minimizeButton, closeButton);
             if (comboBoxGrade.SelectedIndex >= 0)
             {
                 DrawingFunctions.DrawTable(
@@ -49,7 +49,6 @@ namespace Interface
                     studentsHeader,
                     marksHeader
                     );
-                drawnTable = true;
             }
         }
 
@@ -74,11 +73,18 @@ namespace Interface
         {
             DrawingFunctions.DisposeTable(this, studentsHeader);
             DrawingFunctions.DisposeTable(this, marksHeader);
-            if (!drawnTable && comboBoxGrade.SelectedIndex >= 0)
+            if (comboBoxGrade.SelectedIndex >= 0)
             {
                 DrawingFunctions.DrawTable(this, teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId), studentsHeader, marksHeader);
-                drawnTable = true;
             }
         }
+
+        private void buttonAddMark_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void minimizeButton_Click(object sender, EventArgs e)
+         => this.WindowState = FormWindowState.Minimized;
     }
 }

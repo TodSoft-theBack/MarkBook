@@ -16,7 +16,7 @@ namespace Interface.CustomControls
     {
         private readonly Pen border;
         public bool ShowText { get; set; }
-        public Color FillColor { get; set; }
+        public Color FillColor { get { return this.BackColor; } set { this.BackColor = value; } }
         public Color BorderColor { get; set; }
         public int BorderThickness { get; set; }
         public string DisplayText { get; set; }
@@ -29,7 +29,6 @@ namespace Interface.CustomControls
             this.FillColor = Color.Transparent;
             this.BorderColor = Color.Black;
             this.Paint += Border_Paint;
-            this.BackColor = this.FillColor;
             this.border = new Pen(this.BorderColor, this.BorderThickness);
             this.ShowText = true;
             this.TextFormat = TextFormats.Center;
@@ -41,7 +40,6 @@ namespace Interface.CustomControls
             this.FillColor = Color.Transparent;
             this.BorderColor = borderColor;
             this.Paint += Border_Paint;
-            this.BackColor = this.FillColor;
             this.border = new Pen(this.BorderColor, this.BorderThickness);
         }
         public TableCell(Color borderColor, Color fillColor, int thickness) : base()
@@ -51,7 +49,6 @@ namespace Interface.CustomControls
             this.FillColor = fillColor;
             this.BorderColor = borderColor;
             this.Paint += Border_Paint;
-            this.BackColor = this.FillColor;
             this.border = new Pen(this.BorderColor, this.BorderThickness);
         }
         public TableCell(Color borderColor, Color fillColor, int thickness, string text) : base()
@@ -60,7 +57,6 @@ namespace Interface.CustomControls
             this.FillColor = fillColor;
             this.BorderColor = borderColor;
             this.Paint += Border_Paint;
-            this.BackColor = this.FillColor;
             this.border = new Pen(this.BorderColor, this.BorderThickness);
             this.DisplayText = text;
             this.ShowText = true;

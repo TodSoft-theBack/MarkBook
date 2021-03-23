@@ -1,5 +1,6 @@
 ﻿using Business.ControllerExceptions;
 using Business.Controllers;
+using Interface.CustomControls;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -31,15 +32,19 @@ namespace Interface
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             ButtonBoard.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), ButtonBoard.BackColor);
             buttonLogIn.BackColor = Color.FromArgb(255, 95, 165, 255);
+            DrawingFunctions.SetHover
+            (
+                closeButton,
+                normalizeMaximizeForm,
+                minimizeButton
+            );
         }
         Point firstLocation = new Point();
         bool MouseIsDown = false;
         private void NavBar_MouseMove(object sender, MouseEventArgs e)
         {
             if (MouseIsDown)
-            {
                 this.Location = new Point(this.Location.X - firstLocation.X + e.X, this.Location.Y - firstLocation.Y + e.Y);
-            }
         }
         private void NavBar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -53,10 +58,9 @@ namespace Interface
         private void CloseButton_Click(object sender, EventArgs e)
             => Application.Exit();
         private void NormalizeMaximizeForm_Click(object sender, EventArgs e)
-        => this.WindowState =
-            (this.WindowState == FormWindowState.Maximized) ?
-            FormWindowState.Normal :
-            FormWindowState.Maximized;
+            => this.WindowState =
+                (this.WindowState == FormWindowState.Maximized) ?
+                FormWindowState.Normal : FormWindowState.Maximized;
         private void ClearFields()
         {
             textBoxUsername.Text = string.Empty;

@@ -34,9 +34,9 @@ namespace Interface
         {
             this.NavBar = new System.Windows.Forms.Panel();
             this.LabelFormText = new System.Windows.Forms.Label();
-            this.NormalizeMaximizeForm = new CircularFlatButton();
-            this.minimizeButton = new CircularFlatButton();
-            this.CloseButton = new CircularFlatButton();
+            this.NormalizeMaximizeForm = new CustomControls.CircularFlatButton();
+            this.minimizeButton = new CustomControls.CircularFlatButton();
+            this.CloseButton = new CustomControls.CircularFlatButton();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,9 +123,9 @@ namespace Interface
         }
         #endregion
         private System.Windows.Forms.Panel NavBar;
-        private CircularFlatButton CloseButton;
+        private CustomControls.CircularFlatButton CloseButton;
         private Label LabelFormText;
-        private CircularFlatButton minimizeButton;
-        private CircularFlatButton NormalizeMaximizeForm;
+        private CustomControls.CircularFlatButton minimizeButton;
+        private CustomControls.CircularFlatButton NormalizeMaximizeForm;
     }
 }

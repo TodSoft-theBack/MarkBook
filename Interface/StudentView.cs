@@ -30,12 +30,10 @@ namespace Interface
             subjectsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), subjectsHeader.BackColor);
             marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
             DrawingFunctions.DrawTable(this,StudentController.GetStudentData(student.StudentId), subjectsHeader, marksHeader);
+            DrawingFunctions.SetHover(closeButton, minimizeButton);
         }
-        private void StudentView_TextChanged(object sender, EventArgs e)
-            => labelFormText.Text = this.Text;
         private void CloseButton_Click(object sender, EventArgs e)
             => this.Close();
-
         Point firstLocation = new Point();
         bool MouseIsDown = false;
         private void NavBar_MouseUp(object sender, MouseEventArgs e)
@@ -48,9 +46,9 @@ namespace Interface
         private void NavBar_MouseMove(object sender, MouseEventArgs e)
         {
             if (MouseIsDown)
-            {
                 this.Location = new Point(this.Location.X - firstLocation.X + e.X, this.Location.Y - firstLocation.Y + e.Y);
-            }
         }
+        private void minimizeButton_Click(object sender, EventArgs e)
+            => this.WindowState = FormWindowState.Minimized;
     }
 }
