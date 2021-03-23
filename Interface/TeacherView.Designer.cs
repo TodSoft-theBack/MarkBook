@@ -34,6 +34,7 @@ namespace Interface
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherView));
             this.NavBar = new System.Windows.Forms.Panel();
+            this.minimizeButton = new Interface.CustomControls.CircularFlatButton();
             this.closeButton = new Interface.CustomControls.CircularFlatButton();
             this.labelFormText = new System.Windows.Forms.Label();
             this.studentsHeader = new Interface.CustomControls.TableCell();
@@ -41,7 +42,6 @@ namespace Interface
             this.buttonAddMark = new Interface.CustomControls.CircularFlatButton();
             this.tableCellSubject = new Interface.CustomControls.TableCell();
             this.comboBoxGrade = new System.Windows.Forms.ComboBox();
-            this.minimizeButton = new Interface.CustomControls.CircularFlatButton();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,18 @@ namespace Interface
             this.NavBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseDown);
             this.NavBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseMove);
             this.NavBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseUp);
+            // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeButton.DisplayText = "";
+            this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
+            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(20, 20);
+            this.minimizeButton.TabIndex = 3;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // closeButton
             // 
@@ -88,9 +100,9 @@ namespace Interface
             // 
             this.studentsHeader.BackColor = System.Drawing.Color.Black;
             this.studentsHeader.BorderColor = System.Drawing.Color.Black;
-            this.studentsHeader.BorderThickness = 3;
+            this.studentsHeader.BorderThickness = 3F;
             this.studentsHeader.DisplayText = "Students";
-            this.studentsHeader.FillColor = System.Drawing.Color.Transparent;
+            this.studentsHeader.FillColor = System.Drawing.Color.Black;
             this.studentsHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.studentsHeader.ForeColor = System.Drawing.Color.White;
             this.studentsHeader.HasBorder = false;
@@ -105,9 +117,9 @@ namespace Interface
             // 
             this.marksHeader.BackColor = System.Drawing.Color.Black;
             this.marksHeader.BorderColor = System.Drawing.Color.Black;
-            this.marksHeader.BorderThickness = 3;
+            this.marksHeader.BorderThickness = 3F;
             this.marksHeader.DisplayText = "Marks";
-            this.marksHeader.FillColor = System.Drawing.Color.Transparent;
+            this.marksHeader.FillColor = System.Drawing.Color.Black;
             this.marksHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.marksHeader.ForeColor = System.Drawing.Color.White;
             this.marksHeader.HasBorder = false;
@@ -133,11 +145,11 @@ namespace Interface
             // 
             // tableCellSubject
             // 
-            this.tableCellSubject.BackColor = System.Drawing.Color.Black;
+            this.tableCellSubject.BackColor = System.Drawing.Color.Transparent;
             this.tableCellSubject.BorderColor = System.Drawing.Color.Black;
-            this.tableCellSubject.BorderThickness = 3;
+            this.tableCellSubject.BorderThickness = 3F;
             this.tableCellSubject.DisplayText = "Subject:";
-            this.tableCellSubject.FillColor = System.Drawing.Color.Transparent;
+            this.tableCellSubject.FillColor = System.Drawing.Color.Black;
             this.tableCellSubject.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tableCellSubject.ForeColor = System.Drawing.Color.White;
             this.tableCellSubject.HasBorder = false;
@@ -160,18 +172,6 @@ namespace Interface
             this.comboBoxGrade.Text = "Grade";
             this.comboBoxGrade.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrade_SelectedIndexChanged);
             // 
-            // minimizeButton
-            // 
-            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
-            this.minimizeButton.DisplayText = "";
-            this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
-            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(20, 20);
-            this.minimizeButton.TabIndex = 3;
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
-            // 
             // TeacherView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -179,10 +179,10 @@ namespace Interface
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 879);
+            this.Controls.Add(this.tableCellSubject);
             this.Controls.Add(this.comboBoxGrade);
             this.Controls.Add(this.buttonAddMark);
             this.Controls.Add(this.marksHeader);
-            this.Controls.Add(this.tableCellSubject);
             this.Controls.Add(this.studentsHeader);
             this.Controls.Add(this.NavBar);
             this.DoubleBuffered = true;

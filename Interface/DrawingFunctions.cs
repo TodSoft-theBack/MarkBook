@@ -12,11 +12,9 @@ namespace Interface
     class DrawingFunctions
     {
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
-        public static Color MakeTranslucent(int percent,  Color color)
-        =>  Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(percent), color);
-        private static void DrawCell(Form parent, TableCell cell, System.Windows.Forms.Control header, int index)
+        private static void DrawCell(Form parent, TableCell cell, Control header, int index)
         {
-            int offset = cell.BorderThickness;
+            int offset = (int)cell.BorderThickness;
             cell.Size = header.Size;
             cell.Location = new Point(header.Location.X, (header.Location.Y + offset) + index * (header.Height - offset));
             cell.Name = header.Name + "_" + index;
@@ -61,8 +59,17 @@ namespace Interface
             for (int i = 0; i < student.Data.Count; i++)
             {
                 var item = student.Data.ElementAt(i);
-                table[i, 0] = new TableCell(Color.Black, Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue), 3, item.Key.SubjectTitle);
-                table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", GetMarks(item.Value)));
+                table[i, 0] = new TableCell
+                (
+                    Color.Black,
+                    Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue), 3,
+                    item.Key.SubjectTitle
+                );
+                table[i, 1] = new TableCell
+                (
+                    Color.Black, 
+                    Color.Transparent, 3,
+                    string.Join(" ", GetMarks(item.Value)));
                 table[i, 1].ShowText = false;
                 DrawCell(parent, table[i, 0], SubjectHeader, i + 1);
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
@@ -77,8 +84,8 @@ namespace Interface
                 table[i, 0] = new TableCell
                 (
                     Color.Black,
-                    Color.FromArgb(GetAlphaFromPercent(20),
-                    Color.SkyBlue), 3,
+                    Color.FromArgb(GetAlphaFromPercent(20),Color.SkyBlue),
+                    3,
                     string.Format($"{item.Key.FirstName} {item.Key.LastName}")
                 );
                 table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", GetMarks(item.Value)));
@@ -106,12 +113,12 @@ namespace Interface
         {
             try
             {
-                ((CircularFlatButton)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((CircularFlatButton)sender).FillColor);
+                ((CircularFlatButton)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(50), ((CircularFlatButton)sender).FillColor);
             }
             catch { }
             try
             {
-                ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(0), ((TableCell)sender).FillColor);
+
             }
             catch { }
             ((Control)sender).Invalidate();
@@ -126,7 +133,7 @@ namespace Interface
             catch { }
             try
             {
-                ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((TableCell)sender).FillColor);
+
             }
             catch { }
             ((Control)sender).Invalidate();

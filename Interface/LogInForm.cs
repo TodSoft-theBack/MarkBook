@@ -76,7 +76,9 @@ namespace Interface
                 Form form = this.forms[logInController.Login(username, password)];
                 this.LogInInfo = logInController.LogInInfo;
                 form.Owner = this;
+                this.Hide();
                 form.ShowDialog();
+                this.Show();
             }
             catch (IncorectCredentialsException ex)
             {

@@ -33,11 +33,11 @@ namespace Interface
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentView));
             this.NavBar = new System.Windows.Forms.Panel();
+            this.minimizeButton = new Interface.CustomControls.CircularFlatButton();
             this.closeButton = new Interface.CustomControls.CircularFlatButton();
             this.labelFormText = new System.Windows.Forms.Label();
             this.subjectsHeader = new Interface.CustomControls.TableCell();
             this.marksHeader = new Interface.CustomControls.TableCell();
-            this.minimizeButton = new Interface.CustomControls.CircularFlatButton();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +55,18 @@ namespace Interface
             this.NavBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseDown);
             this.NavBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseMove);
             this.NavBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseUp);
+            // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeButton.DisplayText = "";
+            this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
+            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(20, 20);
+            this.minimizeButton.TabIndex = 3;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // closeButton
             // 
@@ -82,11 +94,11 @@ namespace Interface
             // 
             // subjectsHeader
             // 
-            this.subjectsHeader.BackColor = System.Drawing.Color.Black;
+            this.subjectsHeader.BackColor = System.Drawing.Color.Transparent;
             this.subjectsHeader.BorderColor = System.Drawing.Color.Black;
-            this.subjectsHeader.BorderThickness = 3;
+            this.subjectsHeader.BorderThickness = 3F;
             this.subjectsHeader.DisplayText = "Subjects";
-            this.subjectsHeader.FillColor = System.Drawing.Color.Transparent;
+            this.subjectsHeader.FillColor = System.Drawing.Color.Black;
             this.subjectsHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.subjectsHeader.ForeColor = System.Drawing.Color.White;
             this.subjectsHeader.HasBorder = false;
@@ -99,11 +111,11 @@ namespace Interface
             // 
             // marksHeader
             // 
-            this.marksHeader.BackColor = System.Drawing.Color.Black;
+            this.marksHeader.BackColor = System.Drawing.Color.Transparent;
             this.marksHeader.BorderColor = System.Drawing.Color.Black;
-            this.marksHeader.BorderThickness = 3;
+            this.marksHeader.BorderThickness = 3F;
             this.marksHeader.DisplayText = "Marks";
-            this.marksHeader.FillColor = System.Drawing.Color.Transparent;
+            this.marksHeader.FillColor = System.Drawing.Color.Black;
             this.marksHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.marksHeader.ForeColor = System.Drawing.Color.White;
             this.marksHeader.HasBorder = false;
@@ -113,18 +125,6 @@ namespace Interface
             this.marksHeader.Size = new System.Drawing.Size(270, 50);
             this.marksHeader.TabIndex = 1;
             this.marksHeader.TextFormat = Interface.CustomControls.TextFormats.Center;
-            // 
-            // minimizeButton
-            // 
-            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
-            this.minimizeButton.DisplayText = "";
-            this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
-            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(20, 20);
-            this.minimizeButton.TabIndex = 3;
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // StudentView
             // 

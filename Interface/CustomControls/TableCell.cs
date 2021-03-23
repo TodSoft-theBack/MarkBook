@@ -16,54 +16,62 @@ namespace Interface.CustomControls
     {
         private readonly Pen border;
         public bool ShowText { get; set; }
-        public Color FillColor { get { return this.BackColor; } set { this.BackColor = value; } }
-        public Color BorderColor { get; set; }
-        public int BorderThickness { get; set; }
+        public Color FillColor { get; set; }
+        public Color BorderColor { get { return this.border.Color; } set { this.border.Color = value; } }
+        public float BorderThickness { get { return this.border.Width; } set { this.border.Width = value; } }
         public string DisplayText { get; set; }
         public bool HasBorder { get; set; } = true;
         public TextFormats TextFormat { get; set; }
         public TableCell() : base()
         {
             this.DisplayText = this.Name;
-            this.BorderThickness = 3;
-            this.FillColor = Color.Transparent;
-            this.BorderColor = Color.Black;
-            this.Paint += Border_Paint;
-            this.border = new Pen(this.BorderColor, this.BorderThickness);
             this.ShowText = true;
+            this.FillColor = Color.Transparent;
+            this.BackColor = Color.Transparent;
+            this.border = new Pen(Color.Black, 3);
             this.TextFormat = TextFormats.Center;
+            this.Paint += Border_Paint;
         }
         public TableCell(Color borderColor, int thickness) : base()
         {
             this.DisplayText = this.Name;
-            this.BorderThickness = thickness;
+            this.ShowText = true;
             this.FillColor = Color.Transparent;
-            this.BorderColor = borderColor;
+            this.BackColor = Color.Transparent;
+            this.border = new Pen(borderColor, thickness);
+            this.TextFormat = TextFormats.Center;
             this.Paint += Border_Paint;
-            this.border = new Pen(this.BorderColor, this.BorderThickness);
         }
         public TableCell(Color borderColor, Color fillColor, int thickness) : base()
         {
             this.DisplayText = this.Name;
-            this.BorderThickness = thickness;
+            this.ShowText = true;
             this.FillColor = fillColor;
-            this.BorderColor = borderColor;
+            this.BackColor = Color.Transparent;
+            this.border = new Pen(borderColor, thickness);
+            this.TextFormat = TextFormats.Center;
             this.Paint += Border_Paint;
-            this.border = new Pen(this.BorderColor, this.BorderThickness);
         }
         public TableCell(Color borderColor, Color fillColor, int thickness, string text) : base()
         {
-            this.BorderThickness = thickness;
-            this.FillColor = fillColor;
-            this.BorderColor = borderColor;
-            this.Paint += Border_Paint;
-            this.border = new Pen(this.BorderColor, this.BorderThickness);
             this.DisplayText = text;
             this.ShowText = true;
+            this.FillColor = fillColor;
+            this.BackColor = Color.Transparent;
+            this.border = new Pen(borderColor, thickness);
             this.TextFormat = TextFormats.Center;
+            this.Paint += Border_Paint;
         }
         private void Border_Paint(object sender, PaintEventArgs e)
         {
+            if(this.FillColor != Color.Transparent)
+            {
+                e.Graphics.FillRectangle
+                (
+                    new SolidBrush(this.FillColor),
+                    this.ClientRectangle
+                );
+            }
             if (this.HasBorder)
             {
                 e.Graphics.DrawRectangle
