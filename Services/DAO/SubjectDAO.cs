@@ -10,6 +10,23 @@ namespace Services.DAO
     {
         public int AddSubject(string title, int teacherId)
         {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentException("Invalid subject name");
+            }
+
+            if (teacherId == 0)
+            {
+                throw new ArgumentException("A valid teacher id is required");
+            }
+
+            var teacher = this.context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();
+
+            if (teacher == null)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
             Subjects subject = new Subjects();
             subject.SubjectTitle = title;
             subject.TeacherId = teacherId;

@@ -10,26 +10,55 @@ namespace Services.DAO
     {
         public Grades GetGrade(int gradeId)
         {
+            if (gradeId == 0)
+            {
+                throw new ArgumentException("Invalid grade id");
+            }
+
+            var grade = this.context.Grades.Where(g => g.GradeId == gradeId).FirstOrDefault();
+            if (grade == null)
+            {
+                throw new ArgumentException("This grade does not exist");
+            }
+
             return this.context.Grades
                 .Include(g => g.Subjects)
                 .ThenInclude(s => s.Marks)
                 .Where(g => g.GradeId == gradeId)
                 .FirstOrDefault();
         }
+
         public int AddGrade(int gradeNumber, string gradeForm)
         {
+            if (gradeNumber < 1 || gradeNumber > 12)
+            {
+                throw new ArgumentException("Invalid number for a grade, grades can only have a number between 1 and 12");
+            }
+
+            if (gradeForm == null)
+            {
+                throw new ArgumentException("Invalid grade form");
+            }
+
             var grade = new Grades();
             grade.GradeNumber = gradeNumber;
             grade.GradeForm = gradeForm;
             context.Grades.Add(grade);
             return context.SaveChanges();
         }
+
         public ICollection<Students> GetStudentsByGradeId(int gradeId)
         {
+            if (gradeId == 0)
+            {
+                throw new ArgumentException("Invalid grade id");
+            }
+
             return this.context.Grades
                 .Include(g => g.Students)
                 .FirstOrDefault(g => g.GradeId == gradeId).Students;
         }
+
         private MarkBookDBContext context;
         public GradeDAO(MarkBookDBContext context)
         {

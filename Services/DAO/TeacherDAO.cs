@@ -10,6 +10,21 @@ namespace Services.DAO
     {
         public int AddTeacher(string firstName, string lastName, int userId)
         {
+            if (firstName == null)
+            {
+                throw new ArgumentException("A first name is required");
+            }
+
+            if (lastName == null)
+            {
+                throw new ArgumentException("A last name is required");
+            }
+
+            if (userId == 0)
+            {
+                throw new ArgumentException("A valid user id is required");
+            }
+
             Teachers Teacher = new Teachers
             {
                 FirstName = firstName,
@@ -22,16 +37,43 @@ namespace Services.DAO
         }
         public int RemoveTeacherById(int teacherId)
         {
+            if (teacherId == 0)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
+            var teacher = this.context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();
+            if (teacher == null)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
             context.Remove(context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault());
             return this.context.SaveChanges();
         }
         public Teachers GetTeacherByUserID(int userID)
         {
+            if (userID == 0)
+            {
+                throw new ArgumentException("This user does not exist");
+            }
+
             return this.context.Teachers
                 .FirstOrDefault(t => t.UserId == userID);
         }
         public ICollection<Subjects> GetTeacherSubjects(int teacherId)
         {
+            if (teacherId == 0)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
+            var teacher = this.context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();
+            if (teacher == null)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
             return this.context.Teachers
                 .Include(t => t.Subjects)
                 .ThenInclude(t => t.Grade)
@@ -40,13 +82,35 @@ namespace Services.DAO
         }
         public Teachers GetTeacherById(int teacherId)
         {
+            if (teacherId == 0)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
+            var teacher = this.context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();
+            if (teacher == null)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
             return this.context.Teachers
                 .Include(t => t.Subjects)
                 .FirstOrDefault(t => t.TeacherId == teacherId);
         }
-        public ICollection<Subjects> GetSubjectsByTeacherId(int teacherID)
+        public ICollection<Subjects> GetSubjectsByTeacherId(int teacherId)
         {
-            return context.Teachers.FirstOrDefault(x => x.TeacherId == teacherID)?.Subjects;
+            if (teacherId == 0)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
+            var teacher = this.context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();
+            if (teacher == null)
+            {
+                throw new ArgumentException("This teacher does not exist");
+            }
+
+            return context.Teachers.FirstOrDefault(x => x.TeacherId == teacherId)?.Subjects;
         }
 
         private MarkBookDBContext context;
