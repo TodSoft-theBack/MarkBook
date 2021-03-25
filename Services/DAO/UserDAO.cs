@@ -10,12 +10,12 @@ namespace Services.DAO
     {
         public int AddUser(string username, string password)
         {
-            if (username == null)
+            if (string.IsNullOrWhiteSpace(username))
             {
                 throw new ArgumentException("A username is required");
             }
 
-            if (password == null)
+            if (string.IsNullOrWhiteSpace(password))
             {
                 throw new ArgumentException("A password is required");
             }
@@ -32,7 +32,7 @@ namespace Services.DAO
 
         public Users GetUser(string username)
         {
-            if (username == null)
+            if (string.IsNullOrWhiteSpace(username))
             {
                 throw new ArgumentException("This user does not exist");
             }

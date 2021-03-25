@@ -11,7 +11,8 @@ namespace Services.Tests
         [TestCase(1)]
         [TestCase(7)]
         [TestCase(11)]
-        public void AddMark_InvalidMark_ThrowsError1(int mark)
+        [TestCase(6.20)]
+        public void AddMark_InvalidMark_ThrowsError1(decimal mark)
         {
             //Arrange
             var context = new MarkBookDBContext();
@@ -21,7 +22,5 @@ namespace Services.Tests
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => markDAO.AddMark(mark, 1, 1, "asd"));
         }
-
-
     }
 }

@@ -10,7 +10,7 @@ namespace Services.DAO
     {
         public int AddMark(decimal markValue, int subjectId, int studentId, string comment)
         {
-            if (markValue < 2 || markValue > 6)
+            if (Math.Round(markValue) < 2 || Math.Round(markValue) > 6)
             {
                 throw new ArgumentOutOfRangeException("Mark must be between 2 and 6");
             }
