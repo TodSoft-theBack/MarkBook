@@ -1,4 +1,5 @@
 ﻿using Business.ViewModels;
+using Services;
 using Services.DAO;
 using Services.Models;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Business.Controllers
 {
-    class AdminController
+    public class AdminController
     {
         private AdminDAO AdminDAO { get; set; }
         public RegistrationViewModel GetAdminById(int id)
@@ -29,9 +30,9 @@ namespace Business.Controllers
             loginInfo.Username = registrationViewModel.Username;
             loginInfo.Password = registrationViewModel.Password;
         }
-        public AdminController(AdminDAO adminDAO)
+        public AdminController(MarkBookDBContext context)
         {
-            this.AdminDAO = adminDAO;
+            this.AdminDAO = new AdminDAO(context);
         }
     }
 }

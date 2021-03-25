@@ -38,6 +38,7 @@ namespace Interface
             this.labelFormText = new System.Windows.Forms.Label();
             this.subjectsHeader = new Interface.CustomControls.TableCell();
             this.marksHeader = new Interface.CustomControls.TableCell();
+            this.tableContainer = new System.Windows.Forms.Label();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@ namespace Interface
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.NavBar.Location = new System.Drawing.Point(0, 0);
             this.NavBar.Name = "NavBar";
-            this.NavBar.Size = new System.Drawing.Size(580, 40);
+            this.NavBar.Size = new System.Drawing.Size(588, 40);
             this.NavBar.TabIndex = 0;
             this.NavBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseDown);
             this.NavBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseMove);
@@ -62,7 +63,7 @@ namespace Interface
             this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
             this.minimizeButton.DisplayText = "";
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
-            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
+            this.minimizeButton.Location = new System.Drawing.Point(528, 9);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 3;
@@ -74,7 +75,7 @@ namespace Interface
             this.closeButton.BackColor = System.Drawing.Color.Transparent;
             this.closeButton.DisplayText = "";
             this.closeButton.FillColor = System.Drawing.Color.Red;
-            this.closeButton.Location = new System.Drawing.Point(548, 9);
+            this.closeButton.Location = new System.Drawing.Point(556, 9);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(20, 20);
             this.closeButton.TabIndex = 2;
@@ -84,11 +85,11 @@ namespace Interface
             // 
             this.labelFormText.AutoSize = true;
             this.labelFormText.BackColor = System.Drawing.Color.Transparent;
-            this.labelFormText.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.labelFormText.Font = new System.Drawing.Font("Segoe Print", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelFormText.ForeColor = System.Drawing.Color.White;
             this.labelFormText.Location = new System.Drawing.Point(0, 3);
             this.labelFormText.Name = "labelFormText";
-            this.labelFormText.Size = new System.Drawing.Size(422, 28);
+            this.labelFormText.Size = new System.Drawing.Size(438, 35);
             this.labelFormText.TabIndex = 1;
             this.labelFormText.Text = "MarkBook(Student) - {Name} {LastName}";
             // 
@@ -126,13 +127,25 @@ namespace Interface
             this.marksHeader.TabIndex = 1;
             this.marksHeader.TextFormat = Interface.CustomControls.TextFormats.Center;
             // 
+            // tableContainer
+            // 
+            this.tableContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableContainer.BackColor = System.Drawing.Color.Transparent;
+            this.tableContainer.Location = new System.Drawing.Point(40, 120);
+            this.tableContainer.Name = "tableContainer";
+            this.tableContainer.Size = new System.Drawing.Size(500, 745);
+            this.tableContainer.TabIndex = 5;
+            // 
             // StudentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(580, 879);
+            this.ClientSize = new System.Drawing.Size(588, 914);
+            this.Controls.Add(this.tableContainer);
             this.Controls.Add(this.marksHeader);
             this.Controls.Add(this.subjectsHeader);
             this.Controls.Add(this.NavBar);
@@ -154,5 +167,6 @@ namespace Interface
         private TableCell subjectsHeader;
         private TableCell marksHeader;
         private CircularFlatButton minimizeButton;
+        private System.Windows.Forms.Label tableContainer;
     }
 }

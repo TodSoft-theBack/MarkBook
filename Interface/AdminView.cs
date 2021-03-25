@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business.Controllers;
+using Services;
+using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +17,19 @@ namespace Interface
         {
             InitializeComponent();
         }
+        Admins admin;
+        AdminController teacherController;
+        MarkBookDBContext context;
         private void AdminView_Load(object sender, EventArgs e)
         {
+            admin = (Admins)((LogInForm)this.Owner).LogInInfo;
+            context = ((LogInForm)this.Owner).Database;
+            teacherController = new AdminController(context);
+            labelFormText.Text = string.Format($"MarkBook(Teacher) - {admin.FirstName} {admin.LastName}");
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
+            buttonAddGrade  .BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(20), buttonAddGrade.BackColor);
+            buttonAddStudent.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(20), buttonAddStudent.BackColor);
+            buttonAddSubject.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(20), buttonAddSubject.BackColor);
         }
         Point firstLocation = new Point();
         bool MouseIsDown = false;
@@ -43,5 +56,10 @@ namespace Interface
             (this.WindowState == FormWindowState.Maximized) ?
             FormWindowState.Normal :
             FormWindowState.Maximized;
+
+        private void listBoxGrades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

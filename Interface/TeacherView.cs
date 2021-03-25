@@ -37,19 +37,10 @@ namespace Interface
             foreach (var subject in this.Subjects.Select(s => SubjectToString(s)))
                 comboBoxGrade.Items.Add(subject);
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
-            studentsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), studentsHeader.BackColor);
-            marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
+            studentsHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), studentsHeader.FillColor);
+            marksHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.FillColor);
             tableCellSubject.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), tableCellSubject.FillColor);
             DrawingFunctions.SetHover(minimizeButton, closeButton);
-            if (comboBoxGrade.SelectedIndex >= 0)
-            {
-                DrawingFunctions.DrawTable(
-                    this,
-                    teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId),
-                    studentsHeader,
-                    marksHeader
-                    );
-            }
         }
 
         Point firstLocation = new Point();
@@ -71,11 +62,10 @@ namespace Interface
 
         private void comboBoxGrade_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DrawingFunctions.DisposeTable(this, studentsHeader);
-            DrawingFunctions.DisposeTable(this, marksHeader);
-            if (comboBoxGrade.SelectedIndex >= 0)
+            DrawingFunctions.DisposeTable(tableContainer);
+            if (comboBoxGrade.SelectedIndex >= 0 && comboBoxGrade.SelectedIndex < this.Subjects.Count) 
             {
-                DrawingFunctions.DrawTable(this, teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId), studentsHeader, marksHeader);
+                DrawingFunctions.DrawTable(tableContainer, teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId), studentsHeader, marksHeader);
             }
         }
 

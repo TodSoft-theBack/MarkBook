@@ -12,11 +12,11 @@ namespace Interface
     class DrawingFunctions
     {
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
-        private static void DrawCell(Control parent, TableCell cell, Control header, int index)
+        private static void DrawCell(Control container, TableCell cell, Control header, int index)
         {
             int offset = (int)cell.BorderThickness;
             cell.Size = header.Size;
-            cell.Location = new Point(header.Location.X, (header.Location.Y + offset) + index * (header.Height - offset));
+            cell.Location = new Point(header.Location.X -40,  (index -1)* (header.Height - offset));
             cell.Name = header.Name + "_" + index;
             SetHover(cell);
             if (!cell.ShowText)
@@ -42,7 +42,7 @@ namespace Interface
                     cell.Controls.Add(mark);
                 }
             }
-            parent.Controls.Add(cell);
+            container.Controls.Add(cell);
         }
         public static List<decimal> GetMarks(ICollection<Marks> Marks)
         {
@@ -53,7 +53,7 @@ namespace Interface
             }
             return output;
         }
-        public static void DrawTable(Control parent, StudentViewModel student, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
+        public static void DrawTable(Control container, StudentViewModel student, Control SubjectHeader, Control MarkHeader)
         {
             TableCell[,] table = new TableCell[student.Data.Count, 2];
             for (int i = 0; i < student.Data.Count; i++)
@@ -71,11 +71,11 @@ namespace Interface
                     Color.Transparent, 3,
                     string.Join(" ", GetMarks(item.Value)));
                 table[i, 1].ShowText = false;
-                DrawCell(parent, table[i, 0], SubjectHeader, i + 1);
-                DrawCell(parent, table[i, 1], MarkHeader, i + 1);
+                DrawCell(container, table[i, 0], SubjectHeader, i + 1);
+                DrawCell(container, table[i, 1], MarkHeader, i + 1);
             }
         }
-        public static void DrawTable(Control parent, TeacherViewModel teacherView, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
+        public static void DrawTable(Control parent, TeacherViewModel teacherView, Control SubjectHeader, Control MarkHeader)
         {
             TableCell[,] table = new TableCell[teacherView.Data.Count, 2];
             for (int i = 0; i < teacherView.Data.Count; i++)
@@ -94,12 +94,10 @@ namespace Interface
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }
         }
-        public static void DisposeTable(System.Windows.Forms.Control owner, System.Windows.Forms.Control header)
+        public static void DisposeTable(Control container)
         {
-            for (int i = 0; i < owner.Controls.Count; i++)
-            {
-                if (owner.Controls[i].Name.Contains(header.Name) && owner.Controls[i].Name != header.Name) owner.Controls.RemoveAt(i);
-            }
+            while (container.Controls.Count > 0)
+                container.Controls.RemoveAt(0);
         }
         public static void SetHover(params Control[] hoverable)
         {

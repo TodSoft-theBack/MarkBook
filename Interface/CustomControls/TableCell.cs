@@ -9,10 +9,16 @@ namespace Interface.CustomControls
     public enum TextFormats
     {
         Center,
-        Left,
-        Right
+        LeftMid,
+        RightMid,
+        TopLeft,
+        TopCenter,
+        TopRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight
     }
-    class TableCell : Panel
+    class TableCell : Label
     {
         private readonly Pen border;
         public bool ShowText { get; set; }
@@ -108,10 +114,10 @@ namespace Interface.CustomControls
                 case TextFormats.Center:
                     flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
                     break;
-                case TextFormats.Right:
+                case TextFormats.RightMid:
                     flags = TextFormatFlags.Right | TextFormatFlags.VerticalCenter;
                     break;
-                case TextFormats.Left:
+                case TextFormats.LeftMid:
                     flags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter;
                     break;
             }

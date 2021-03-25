@@ -27,9 +27,9 @@ namespace Interface
             this.StudentController = new StudentController(((LogInForm)this.Owner).Database);
             labelFormText.Text = string.Format($"MarkBook(Student) - {student.FirstName} {student.LastName}");
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
-            subjectsHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), subjectsHeader.BackColor);
-            marksHeader.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.BackColor);
-            DrawingFunctions.DrawTable(this,StudentController.GetStudentData(student.StudentId), subjectsHeader, marksHeader);
+            subjectsHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), subjectsHeader.FillColor);
+            marksHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.FillColor);
+            DrawingFunctions.DrawTable(tableContainer,StudentController.GetStudentData(student.StudentId), subjectsHeader, marksHeader);
             DrawingFunctions.SetHover(closeButton, minimizeButton);
         }
         private void CloseButton_Click(object sender, EventArgs e)
