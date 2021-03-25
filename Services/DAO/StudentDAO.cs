@@ -12,12 +12,12 @@ namespace Services.DAO
         private MarkBookDBContext context { get; set; }
         public int AddStudent(string firstName, string lastName, int userId, int gradeId)
         {
-            if (firstName == null)
+            if (string.IsNullOrWhiteSpace(firstName))
             {
                 throw new ArgumentException("A valid first name is required");
             }
 
-            if (lastName == null)
+            if (string.IsNullOrWhiteSpace(lastName))
             {
                 throw new ArgumentException("A valid last name is required");
             }

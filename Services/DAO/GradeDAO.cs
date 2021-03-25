@@ -35,7 +35,7 @@ namespace Services.DAO
                 throw new ArgumentException("Invalid number for a grade, grades can only have a number between 1 and 12");
             }
 
-            if (gradeForm == null)
+            if (string.IsNullOrWhiteSpace(gradeForm))
             {
                 throw new ArgumentException("Invalid grade form");
             }

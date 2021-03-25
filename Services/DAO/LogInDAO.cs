@@ -10,12 +10,12 @@ namespace Services.DAO
     {
         public Users LogIn(string username, string password)
         {
-            if (username == null)
+            if (string.IsNullOrWhiteSpace(username))
             {
                 throw new ArgumentException("Invalid username");
             }
 
-            if (password == null)
+            if (string.IsNullOrWhiteSpace(password))
             {
                 throw new ArgumentException("Invalid password");
             }

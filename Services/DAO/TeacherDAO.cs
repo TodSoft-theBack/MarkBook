@@ -10,12 +10,12 @@ namespace Services.DAO
     {
         public int AddTeacher(string firstName, string lastName, int userId)
         {
-            if (firstName == null)
+            if (string.IsNullOrWhiteSpace(firstName))
             {
                 throw new ArgumentException("A first name is required");
             }
 
-            if (lastName == null)
+            if (string.IsNullOrWhiteSpace(lastName))
             {
                 throw new ArgumentException("A last name is required");
             }
