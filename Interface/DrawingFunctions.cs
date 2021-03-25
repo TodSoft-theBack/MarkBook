@@ -12,7 +12,7 @@ namespace Interface
     class DrawingFunctions
     {
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
-        private static void DrawCell(Form parent, TableCell cell, Control header, int index)
+        private static void DrawCell(Control parent, TableCell cell, Control header, int index)
         {
             int offset = (int)cell.BorderThickness;
             cell.Size = header.Size;
@@ -53,7 +53,7 @@ namespace Interface
             }
             return output;
         }
-        public static void DrawTable(Form parent, StudentViewModel student, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
+        public static void DrawTable(Control parent, StudentViewModel student, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
         {
             TableCell[,] table = new TableCell[student.Data.Count, 2];
             for (int i = 0; i < student.Data.Count; i++)
@@ -75,7 +75,7 @@ namespace Interface
                 DrawCell(parent, table[i, 1], MarkHeader, i + 1);
             }
         }
-        public static void DrawTable(Form parent, TeacherViewModel teacherView, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
+        public static void DrawTable(Control parent, TeacherViewModel teacherView, System.Windows.Forms.Control SubjectHeader, System.Windows.Forms.Control MarkHeader)
         {
             TableCell[,] table = new TableCell[teacherView.Data.Count, 2];
             for (int i = 0; i < teacherView.Data.Count; i++)
