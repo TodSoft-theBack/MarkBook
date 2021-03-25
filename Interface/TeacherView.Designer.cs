@@ -42,6 +42,7 @@ namespace Interface
             this.buttonAddMark = new Interface.CustomControls.CircularFlatButton();
             this.tableCellSubject = new Interface.CustomControls.TableCell();
             this.comboBoxGrade = new System.Windows.Forms.ComboBox();
+            this.tableContainer = new System.Windows.Forms.Label();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,17 +89,17 @@ namespace Interface
             // 
             this.labelFormText.AutoSize = true;
             this.labelFormText.BackColor = System.Drawing.Color.Transparent;
-            this.labelFormText.Font = new System.Drawing.Font("Script MT Bold", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.labelFormText.Font = new System.Drawing.Font("Segoe Print", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelFormText.ForeColor = System.Drawing.Color.White;
             this.labelFormText.Location = new System.Drawing.Point(0, 3);
             this.labelFormText.Name = "labelFormText";
-            this.labelFormText.Size = new System.Drawing.Size(425, 28);
+            this.labelFormText.Size = new System.Drawing.Size(436, 35);
             this.labelFormText.TabIndex = 1;
             this.labelFormText.Text = "MarkBook(Teacher) - {Name} {LastName}";
             // 
             // studentsHeader
             // 
-            this.studentsHeader.BackColor = System.Drawing.Color.Black;
+            this.studentsHeader.BackColor = System.Drawing.Color.Transparent;
             this.studentsHeader.BorderColor = System.Drawing.Color.Black;
             this.studentsHeader.BorderThickness = 3F;
             this.studentsHeader.DisplayText = "Students";
@@ -106,7 +107,7 @@ namespace Interface
             this.studentsHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.studentsHeader.ForeColor = System.Drawing.Color.White;
             this.studentsHeader.HasBorder = false;
-            this.studentsHeader.Location = new System.Drawing.Point(40, 116);
+            this.studentsHeader.Location = new System.Drawing.Point(40, 110);
             this.studentsHeader.Name = "studentsHeader";
             this.studentsHeader.ShowText = true;
             this.studentsHeader.Size = new System.Drawing.Size(230, 50);
@@ -115,7 +116,7 @@ namespace Interface
             // 
             // marksHeader
             // 
-            this.marksHeader.BackColor = System.Drawing.Color.Black;
+            this.marksHeader.BackColor = System.Drawing.Color.Transparent;
             this.marksHeader.BorderColor = System.Drawing.Color.Black;
             this.marksHeader.BorderThickness = 3F;
             this.marksHeader.DisplayText = "Marks";
@@ -123,7 +124,7 @@ namespace Interface
             this.marksHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.marksHeader.ForeColor = System.Drawing.Color.White;
             this.marksHeader.HasBorder = false;
-            this.marksHeader.Location = new System.Drawing.Point(270, 116);
+            this.marksHeader.Location = new System.Drawing.Point(270, 110);
             this.marksHeader.Name = "marksHeader";
             this.marksHeader.ShowText = true;
             this.marksHeader.Size = new System.Drawing.Size(270, 50);
@@ -158,7 +159,7 @@ namespace Interface
             this.tableCellSubject.ShowText = true;
             this.tableCellSubject.Size = new System.Drawing.Size(187, 39);
             this.tableCellSubject.TabIndex = 1;
-            this.tableCellSubject.TextFormat = Interface.CustomControls.TextFormats.Right;
+            this.tableCellSubject.TextFormat = Interface.CustomControls.TextFormats.RightMid;
             // 
             // comboBoxGrade
             // 
@@ -172,6 +173,14 @@ namespace Interface
             this.comboBoxGrade.Text = "Grade";
             this.comboBoxGrade.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrade_SelectedIndexChanged);
             // 
+            // tableContainer
+            // 
+            this.tableContainer.BackColor = System.Drawing.Color.Transparent;
+            this.tableContainer.Location = new System.Drawing.Point(40, 160);
+            this.tableContainer.Name = "tableContainer";
+            this.tableContainer.Size = new System.Drawing.Size(500, 558);
+            this.tableContainer.TabIndex = 4;
+            // 
             // TeacherView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -179,6 +188,7 @@ namespace Interface
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 879);
+            this.Controls.Add(this.tableContainer);
             this.Controls.Add(this.tableCellSubject);
             this.Controls.Add(this.comboBoxGrade);
             this.Controls.Add(this.buttonAddMark);
@@ -205,5 +215,6 @@ namespace Interface
         private TableCell tableCellSubject;
         private System.Windows.Forms.ComboBox comboBoxGrade;
         private CircularFlatButton minimizeButton;
+        private System.Windows.Forms.Label tableContainer;
     }
 }
