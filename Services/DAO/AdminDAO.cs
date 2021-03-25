@@ -73,7 +73,7 @@ namespace Services.DAO
             var admin = this.context.Admins.Where(a => a.AdminId == adminId).FirstOrDefault();
             if (admin == null)
             {
-                throw new ArgumentException("This admin does not exist");
+                return null;
             }
 
             return this.context.Admins.FirstOrDefault(t => t.AdminId.Equals(adminId));
@@ -88,7 +88,7 @@ namespace Services.DAO
             var admin = this.context.Admins.Where(a => a.UserId == userId).FirstOrDefault();
             if (admin == null)
             {
-                throw new ArgumentException("This admin does not exist");
+                return null;
             }
 
             return this.context.Admins.FirstOrDefault(t => t.UserId == userId);

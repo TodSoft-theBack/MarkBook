@@ -21,19 +21,19 @@ namespace Services.Tests
             Assert.Throws<ArgumentException>(() => studentDAO.AddStudent(firstName, lastName, userId, gradeId));
         }
 
-        [Test]
-        [TestCase(0)]
-        [TestCase(69)]
-        public void GetStudentById_InvalidId_ThrowsError(int studentId)
-        {
-            //Arrange
-            var context = new MarkBookDBContext();
-            var studentDAO = new StudentDAO(context);
-            //Act
+        //[Test]
+        //[TestCase(0)]
+        //[TestCase(69)]
+        //public void GetStudentById_InvalidId_ThrowsError(int studentId)
+        //{
+        //    //Arrange
+        //    var context = new MarkBookDBContext();
+        //    var studentDAO = new StudentDAO(context);
+        //    //Act
 
-            //Assert
-            Assert.Throws<ArgumentException>(() => studentDAO.GetStudentById(studentId));
-        }
+        //    //Assert
+        //    Assert.Throws<ArgumentException>(() => studentDAO.GetStudentById(studentId));
+        //}
 
         [Test]
         [TestCase(0)]
@@ -63,16 +63,16 @@ namespace Services.Tests
             Assert.Throws<ArgumentException>(() => studentDAO.AllStudentsFromGrade(gradeId));
         }
 
-        [Test]
-        [TestCase(0)]
-        [TestCase(69)]
-        public void GetStudentByUserID_InvalidId_ThrowsError(int userId)
-        {
-            var context = new MarkBookDBContext();
-            var studentDAO = new StudentDAO(context);
+        //[Test]
+        //[TestCase(0)]
+        //[TestCase(69)]
+        //public void GetStudentByUserID_InvalidId_ThrowsError(int userId)
+        //{
+        //    var context = new MarkBookDBContext();
+        //    var studentDAO = new StudentDAO(context);
 
-            Assert.Throws<ArgumentException>(() => studentDAO.GetStudentByUserID(userId));
-        }
+        //    Assert.Throws<ArgumentException>(() => studentDAO.GetStudentByUserID(userId));
+        //}
 
         [Test]
         [TestCase(0)]

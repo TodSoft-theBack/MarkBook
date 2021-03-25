@@ -66,7 +66,7 @@ namespace Services.DAO
         {
             if (userID == 0)
             {
-                throw new ArgumentException("This user does not exist");
+                return null;
             }
 
             return this.context.Teachers
@@ -95,7 +95,7 @@ namespace Services.DAO
         {
             if (teacherId == 0)
             {
-                throw new ArgumentException("This teacher does not exist");
+                return null;
             }
 
             var teacher = this.context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();

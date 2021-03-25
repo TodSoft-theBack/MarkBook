@@ -32,32 +32,32 @@ namespace Services.Tests
             Assert.Throws<ArgumentException>(() => teacherDAO.RemoveTeacherById(teacherId));
         }
 
-        [Test]
-        [TestCase(0)]
-        [TestCase(69)]
-        public void GetteacherById_InvalidId_ThrowsError(int teacherId)
-        {
-            //Arrange
-            var context = new MarkBookDBContext();
-            var teacherDAO = new TeacherDAO(context);
-            //Act
+        //[Test]
+        //[TestCase(0)]
+        //[TestCase(69)]
+        //public void GetteacherById_InvalidId_ThrowsError(int teacherId)
+        //{
+        //    //Arrange
+        //    var context = new MarkBookDBContext();
+        //    var teacherDAO = new TeacherDAO(context);
+        //    //Act
 
-            //Assert
-            Assert.Throws<ArgumentException>(() => teacherDAO.GetTeacherById(teacherId));
-        }
+        //    //Assert
+        //    Assert.Throws<ArgumentException>(() => teacherDAO.GetTeacherById(teacherId));
+        //}
 
-        [Test]
-        [TestCase(0)]
-        [TestCase(69)]
-        public void GetTeacherById_InvalidId_ThrowsError(int teacherId)
-        {
-            //Arrange
-            var context = new MarkBookDBContext();
-            var teacherDAO = new TeacherDAO(context);
-            //Act
+    //    [Test]
+    //    [TestCase(0)]
+    //    [TestCase(69)]
+    //    public void GetTeacherById_InvalidId_ThrowsError(int teacherId)
+    //    {
+    //        //Arrange
+    //        var context = new MarkBookDBContext();
+    //        var teacherDAO = new TeacherDAO(context);
+    //        //Act
 
-            //Assert
-            Assert.Throws<ArgumentException>(() => teacherDAO.GetTeacherById(teacherId));
-        }
+    //        //Assert
+    //        Assert.Throws<ArgumentException>(() => teacherDAO.GetTeacherById(teacherId));
+    //    }
     }
 }

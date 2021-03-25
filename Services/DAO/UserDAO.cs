@@ -39,7 +39,7 @@ namespace Services.DAO
         {
             if (string.IsNullOrWhiteSpace(username))
             {
-                throw new ArgumentException("This user does not exist");
+                return null;
             }
 
             var user = this.context.Users.FirstOrDefault(x => x.Username == username);
