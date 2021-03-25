@@ -27,6 +27,11 @@ namespace Services.DAO
                 throw new ArgumentException("This teacher does not exist");
             }
 
+            if (this.context.Subjects.Contains(this.context.Subjects.Where(s => s.SubjectTitle == title && s.TeacherId == teacherId).FirstOrDefault()))
+            {
+                throw new ArgumentException("This subject with this teacher already exists");
+            }
+
             Subjects subject = new Subjects();
             subject.SubjectTitle = title;
             subject.TeacherId = teacherId;

@@ -27,7 +27,7 @@ namespace Business.Controllers
             Grades grade = this.GradeDAO.GetGrade(this.StudentDAO.GetStudentById(studentID).GradeId);
             foreach (var subject in grade.Subjects)
             {
-                studentData.Add(subject, this.MarkDAO.GetMarksForGivenSubjectById(subject.SubjectId, studentID));
+                studentData.Add(subject, this.MarkDAO.GetMarksOfStudentForGivenSubjectById(subject.SubjectId, studentID));
             }
             return new StudentViewModel()
             {

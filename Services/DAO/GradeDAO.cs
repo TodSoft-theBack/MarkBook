@@ -40,6 +40,11 @@ namespace Services.DAO
                 throw new ArgumentException("Invalid grade form");
             }
 
+            if (this.context.Grades.Contains(this.context.Grades.Where(g => g.GradeNumber == gradeNumber && g.GradeForm == gradeForm).FirstOrDefault()))
+            {
+                throw new ArgumentException("This grade already exists");
+            }
+
             var grade = new Grades();
             grade.GradeNumber = gradeNumber;
             grade.GradeForm = gradeForm;
@@ -52,6 +57,12 @@ namespace Services.DAO
             if (gradeId == 0)
             {
                 throw new ArgumentException("Invalid grade id");
+            }
+
+            var grade = this.context.Grades.Where(g => g.GradeId == gradeId).FirstOrDefault();
+            if (grade == null)
+            {
+                throw new ArgumentException("Invalid grade");
             }
 
             return this.context.Grades

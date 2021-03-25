@@ -34,7 +34,7 @@ namespace Business.Controllers
             Subjects subject = this.GetSubjects(teacherID).FirstOrDefault(s => s.SubjectId == subjectId);
             foreach (var student in this.studentDAO.AllStudentsFromGrade(subject.GradeId))
             {
-                teacherData.Add(student, this.markDAO.GetMarksForGivenSubjectById(subjectId, student.StudentId));
+                teacherData.Add(student, this.markDAO.GetMarksOfStudentForGivenSubjectById(subjectId, student.StudentId));
             }
             return new TeacherViewModel()
             {
