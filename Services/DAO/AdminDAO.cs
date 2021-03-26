@@ -9,11 +9,11 @@ namespace Services.DAO
     {
         public int AddAdmin(string firstName, string lastName, int userId)
         {
-            if (firstName == null)
+            if (string.IsNullOrWhiteSpace(firstName) || firstName.Contains(" "))
             {
                 throw new ArgumentException("Invalid first name");
             }
-            if (lastName == null)
+            if (string.IsNullOrWhiteSpace(lastName) || lastName.Contains(" "))
             {
                 throw new ArgumentException("Invalid last name");
             }
@@ -22,10 +22,23 @@ namespace Services.DAO
                 throw new ArgumentException("Invalid user id");
             }
 
+            var user = context.Users.Where(u => u.UserId == userId).FirstOrDefault();
+            if (user == null)
+            {
+                throw new ArgumentException("Invalid user");
+            }
+
+            if (context.Admins.Contains(context.Admins.Where(a => a.UserId == userId).FirstOrDefault()))
+            {
+                throw new ArgumentException("This admin already exists");
+            }
+
             Admins Admin = new Admins();
             Admin.FirstName = firstName;
             Admin.LastName = lastName;
             Admin.UserId = userId;
+
+
 
             this.context.Admins.Add(Admin);
             return this.context.SaveChanges();
@@ -60,7 +73,7 @@ namespace Services.DAO
             var admin = this.context.Admins.Where(a => a.AdminId == adminId).FirstOrDefault();
             if (admin == null)
             {
-                throw new ArgumentException("This admin does not exist");
+                return null;
             }
 
             return this.context.Admins.FirstOrDefault(t => t.AdminId.Equals(adminId));
@@ -75,7 +88,7 @@ namespace Services.DAO
             var admin = this.context.Admins.Where(a => a.UserId == userId).FirstOrDefault();
             if (admin == null)
             {
-                throw new ArgumentException("This admin does not exist");
+                return null;
             }
 
             return this.context.Admins.FirstOrDefault(t => t.UserId == userId);

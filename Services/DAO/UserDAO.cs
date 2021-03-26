@@ -10,14 +10,19 @@ namespace Services.DAO
     {
         public int AddUser(string username, string password)
         {
-            if (string.IsNullOrWhiteSpace(username))
+            if (string.IsNullOrWhiteSpace(username) || username.Contains(" "))
             {
-                throw new ArgumentException("A username is required");
+                throw new ArgumentException("A username cannot contain empty spaces");
             }
 
             if (string.IsNullOrWhiteSpace(password))
             {
                 throw new ArgumentException("A password is required");
+            }
+
+            if (this.context.Users.Contains(this.context.Users.Where(u => u.Username == username).FirstOrDefault()))
+            {
+                throw new ArgumentException("This user already exists");
             }
 
             Users userToAdd = new Users
@@ -34,7 +39,7 @@ namespace Services.DAO
         {
             if (string.IsNullOrWhiteSpace(username))
             {
-                throw new ArgumentException("This user does not exist");
+                return null;
             }
 
             var user = this.context.Users.FirstOrDefault(x => x.Username == username);

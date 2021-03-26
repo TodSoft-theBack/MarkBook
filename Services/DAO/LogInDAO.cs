@@ -10,7 +10,7 @@ namespace Services.DAO
     {
         public Users LogIn(string username, string password)
         {
-            if (string.IsNullOrWhiteSpace(username))
+            if (string.IsNullOrWhiteSpace(username) || username.Contains(" "))
             {
                 throw new ArgumentException("Invalid username");
             }

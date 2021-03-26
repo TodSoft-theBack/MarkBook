@@ -34,6 +34,11 @@ namespace Services.DAO
                 throw new ArgumentException("This user does not exist");
             }
 
+            if (this.context.Students.Contains(this.context.Students.Where(st => st.UserId == userId).FirstOrDefault()))
+            {
+                throw new ArgumentException("This student already exists");
+            }
+
             if (gradeId == 0)
             {
                 throw new ArgumentException("A grade is required");
@@ -63,6 +68,12 @@ namespace Services.DAO
                 throw new ArgumentException("A valid student id is required");
             }
 
+            var student = this.context.Students.Where(student => student.StudentId == id).FirstOrDefault();
+            if (student == null)
+            {
+                throw new ArgumentException("This student does not exist");
+            }
+
             return context.Students
                 .Include(s => s.Marks)
                 .Where(st => st.StudentId == id)
@@ -75,6 +86,12 @@ namespace Services.DAO
                 throw new ArgumentException("A valid id is required");
             }
 
+            var student = this.context.Students.Where(student => student.StudentId == id).FirstOrDefault();
+            if (student == null)
+            {
+                throw new ArgumentException("This student does not exist");
+            }
+
             int? userNum = context.Students.Where(t => t.StudentId == id).FirstOrDefault().UserId;
             context.Remove(context.Students.Where(t => t.StudentId == id).FirstOrDefault());
             context.Remove(context.Users.Where(u => u.UserId == userNum).FirstOrDefault());
@@ -85,6 +102,12 @@ namespace Services.DAO
             if (gradeId == 0)
             {
                 throw new ArgumentException("A valid id is required");
+            }
+
+            var grade = this.context.Grades.Where(g => g.GradeId == gradeId).FirstOrDefault();
+            if (grade == null)
+            {
+                throw new ArgumentException("This grade does not exist");
             }
 
             var students = this.context.Students
@@ -101,6 +124,12 @@ namespace Services.DAO
                 throw new ArgumentException("A valid id is required");
             }
 
+            var student = this.context.Students.Where(st => st.UserId == userID).FirstOrDefault();
+            if (student == null)
+            {
+                throw new ArgumentException("This student does not exist");
+            }
+
             return this.context.Students
                 .Include(s => s.User)
                 .Where(st => st.UserId == userID)
@@ -112,6 +141,13 @@ namespace Services.DAO
             {
                 throw new ArgumentException("A valid student id is required");
             }
+
+            var student = this.context.Students.Where(st => st.StudentId == studentId).FirstOrDefault();
+            if (student == null)
+            {
+                throw new ArgumentException("This student does not exist");
+            }
+
             List<Marks> marks = context.Marks
                 .Where(m => m.StudentId == studentId)
                 .ToList();

@@ -10,7 +10,8 @@ namespace Services.DAO
     {
         public int AddMark(decimal markValue, int subjectId, int studentId, string comment)
         {
-            if (Math.Round(markValue) < 2 || Math.Round(markValue) > 6)
+            decimal markValueToCompare = (decimal) Math.Round(markValue);
+            if (markValueToCompare < 2 || markValueToCompare > 6)
             {
                 throw new ArgumentOutOfRangeException("Mark must be between 2 and 6");
             }
@@ -81,7 +82,7 @@ namespace Services.DAO
                 throw new ArgumentException("This student does not exist");
             }
 
-            var student = this.context.Students.Where(st => st.StudentId == studentId);
+            var student = this.context.Students.Where(st => st.StudentId == studentId).FirstOrDefault();
 
             if (student == null)
             {
@@ -92,14 +93,14 @@ namespace Services.DAO
                 .Where(st => st.StudentId == studentId)
                 .ToList();
 
-            if (marks == null)
+            if (!marks.Any())
             {
                 throw new ArgumentException("This student does not have any marks");
             }
 
             return marks;
         }
-        public List<Marks> GetMarksForGivenSubjectById(int subjectId, int studentId)
+        public List<Marks> GetMarksOfStudentForGivenSubjectById(int subjectId, int studentId)
         {
             if (subjectId == 0)
             {
@@ -110,6 +111,17 @@ namespace Services.DAO
             if (subject == null)
             {
                 throw new ArgumentException("This subject does not exist");
+            }
+
+            if (studentId == 0)
+            {
+                throw new ArgumentException("This student does not exist");
+            }
+            var student = this.context.Students.Where(st => st.StudentId == studentId).FirstOrDefault();
+
+            if (student == null)
+            {
+                throw new ArgumentException("This student does not exist");
             }
 
             return this.context.Marks
