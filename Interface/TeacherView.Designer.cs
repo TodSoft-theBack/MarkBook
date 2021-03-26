@@ -135,11 +135,13 @@ namespace Interface
             // 
             this.buttonAddMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddMark.BackColor = System.Drawing.Color.Transparent;
-            this.buttonAddMark.DisplayText = "Добави oценка";
+            this.buttonAddMark.DisplayText = "";
+            this.buttonAddMark.Enabled = false;
             this.buttonAddMark.FillColor = System.Drawing.Color.Lime;
-            this.buttonAddMark.Location = new System.Drawing.Point(247, 718);
+            this.buttonAddMark.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonAddMark.Location = new System.Drawing.Point(246, 718);
             this.buttonAddMark.Name = "buttonAddMark";
-            this.buttonAddMark.Size = new System.Drawing.Size(132, 134);
+            this.buttonAddMark.Size = new System.Drawing.Size(135, 134);
             this.buttonAddMark.TabIndex = 2;
             this.buttonAddMark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
