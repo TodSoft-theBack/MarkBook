@@ -25,7 +25,7 @@ namespace Interface
             admin = (Admins)((LogInForm)this.Owner).LogInInfo;
             context = ((LogInForm)this.Owner).Database;
             teacherController = new AdminController(context);
-            labelFormText.Text = string.Format($"MarkBook(Teacher) - {admin.FirstName} {admin.LastName}");
+            labelFormText.Text = string.Format($"MarkBook(Admin) - {admin.FirstName} {admin.LastName}");
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             buttonAddGrade  .BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(20), buttonAddGrade.BackColor);
             buttonAddStudent.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(20), buttonAddStudent.BackColor);
