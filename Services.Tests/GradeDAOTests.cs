@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Services.DAO;
 using System;
+using System.Linq;
 
 namespace Services.Tests
 {
@@ -19,6 +20,17 @@ namespace Services.Tests
 
             //Assert
             Assert.Throws<ArgumentException>(() => gradeDAO.GetGrade(gradeId));
+        }
+        [Test]
+        [TestCase(2, 11, "a")]
+        [TestCase(3, 12, "g")]
+        public void GetGRade_ValidId_ReturnsGrade(int gradeId, int gradeNumber, string gradeForm)
+        {
+            var context = new MarkBookDBContext();
+            var gradeDAO = new GradeDAO(context);
+
+            Assert.AreEqual(gradeNumber, context.Grades.Where(g => g.GradeId == gradeId).FirstOrDefault().GradeNumber);
+            Assert.AreEqual(gradeForm, context.Grades.Where(g => g.GradeId == gradeId).FirstOrDefault().GradeForm);
         }
 
         [Test]
