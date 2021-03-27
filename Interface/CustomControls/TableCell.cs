@@ -6,18 +6,7 @@ using System.Windows.Forms;
 
 namespace Interface.CustomControls
 {
-    public enum TextFormats
-    {
-        Center,
-        LeftMid,
-        RightMid,
-        TopLeft,
-        TopCenter,
-        TopRight,
-        BottomLeft,
-        BottomCenter,
-        BottomRight
-    }
+
     class TableCell : Label
     {
         private readonly Pen border;
@@ -25,9 +14,8 @@ namespace Interface.CustomControls
         public Color FillColor { get; set; }
         public Color BorderColor { get { return this.border.Color; } set { this.border.Color = value; } }
         public float BorderThickness { get { return this.border.Width; } set { this.border.Width = value; } }
-        public string DisplayText { get; set; }
         public bool HasBorder { get; set; } = true;
-        public TextFormats TextFormat { get; set; }
+        public string DisplayText { get; set; }
         public TableCell() : base()
         {
             this.DisplayText = this.Name;
@@ -35,7 +23,7 @@ namespace Interface.CustomControls
             this.FillColor = Color.Transparent;
             this.BackColor = Color.Transparent;
             this.border = new Pen(Color.Black, 3);
-            this.TextFormat = TextFormats.Center;
+            this.TextAlign = ContentAlignment.MiddleCenter;
             this.Paint += Border_Paint;
         }
         public TableCell(Color borderColor, int thickness) : base()
@@ -45,7 +33,7 @@ namespace Interface.CustomControls
             this.FillColor = Color.Transparent;
             this.BackColor = Color.Transparent;
             this.border = new Pen(borderColor, thickness);
-            this.TextFormat = TextFormats.Center;
+            this.TextAlign = ContentAlignment.MiddleCenter;
             this.Paint += Border_Paint;
         }
         public TableCell(Color borderColor, Color fillColor, int thickness) : base()
@@ -55,7 +43,7 @@ namespace Interface.CustomControls
             this.FillColor = fillColor;
             this.BackColor = Color.Transparent;
             this.border = new Pen(borderColor, thickness);
-            this.TextFormat = TextFormats.Center;
+            this.TextAlign = ContentAlignment.MiddleCenter;
             this.Paint += Border_Paint;
         }
         public TableCell(Color borderColor, Color fillColor, int thickness, string text) : base()
@@ -65,7 +53,7 @@ namespace Interface.CustomControls
             this.FillColor = fillColor;
             this.BackColor = Color.Transparent;
             this.border = new Pen(borderColor, thickness);
-            this.TextFormat = TextFormats.Center;
+            this.TextAlign = ContentAlignment.MiddleCenter;
             this.Paint += Border_Paint;
         }
         private void Border_Paint(object sender, PaintEventArgs e)
@@ -95,33 +83,16 @@ namespace Interface.CustomControls
             if (this.ShowText)
             {
                 TextRenderer.DrawText
-                    (
-                        e.Graphics,
-                        this.DisplayText,
-                        this.Font,
-                        this.ClientRectangle,
-                        this.ForeColor,
-                        Color.Transparent,
-                        GetFlags()
-                    );
+                (
+                    e.Graphics,
+                    this.DisplayText,
+                    this.Font,
+                    this.ClientRectangle,
+                    this.ForeColor,
+                    Color.Transparent,
+                    ControlFunctions.GetFlags(this.TextAlign)
+                );
             }
-        }
-        private TextFormatFlags GetFlags()
-        {
-            TextFormatFlags flags = TextFormatFlags.Default;
-            switch (this.TextFormat)
-            {
-                case TextFormats.Center:
-                    flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
-                    break;
-                case TextFormats.RightMid:
-                    flags = TextFormatFlags.Right | TextFormatFlags.VerticalCenter;
-                    break;
-                case TextFormats.LeftMid:
-                    flags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter;
-                    break;
-            }
-            return flags;
         }
     }
 }

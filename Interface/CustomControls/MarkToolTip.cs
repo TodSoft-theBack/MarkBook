@@ -7,7 +7,8 @@ using System.Drawing.Drawing2D;
 
 namespace Interface.CustomControls
 {
-    public class MarkToolTip:Panel
+
+    public class MarkToolTip:Label
     {
         private float thickness;
         private int radius;
@@ -33,8 +34,6 @@ namespace Interface.CustomControls
         public bool CssMode { get; set; }
         public Color FillColor { get; set; }
         public Color BorderColor { get; set; }
-        public string DisplayText { get; set; }
-
         public MarkToolTip() : base()
         {
             this.Paint += ToolTip_Paint;
@@ -43,7 +42,7 @@ namespace Interface.CustomControls
             this.BorderColor = Color.DarkBlue;
             this.BorderRadius = 50;
             this.BorderThickness = 3;
-            this.DisplayText = this.Name;
+            this.Text = this.Name;
         }
         private void ToolTip_Paint(object sender, PaintEventArgs e)
         {
@@ -53,8 +52,8 @@ namespace Interface.CustomControls
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.FillPath(new SolidBrush(this.FillColor), graphicsPath);
             g.DrawPath(new Pen(this.BorderColor, this.BorderThickness), graphicsPath);
-            if (!string.IsNullOrEmpty(this.DisplayText))
-                TextRenderer.DrawText(g, this.DisplayText, this.Font, this.ClientRectangle, this.ForeColor);
+            if (!string.IsNullOrEmpty(this.Text))
+                TextRenderer.DrawText(g, this.Text, this.Font, this.ClientRectangle, this.ForeColor, ControlFunctions.GetFlags(this.TextAlign));
         }
 
         private GraphicsPath GetPath(Rectangle rectangle)

@@ -1,4 +1,4 @@
-﻿
+﻿using System.Drawing;
 using Interface.CustomControls;
 using System;
 
@@ -40,7 +40,7 @@ namespace Interface
             this.studentsHeader = new Interface.CustomControls.TableCell();
             this.marksHeader = new Interface.CustomControls.TableCell();
             this.buttonAddMark = new Interface.CustomControls.CircularFlatButton();
-            this.tableCellSubject = new Interface.CustomControls.TableCell();
+            this.gradeHeader = new Interface.CustomControls.TableCell();
             this.comboBoxGrade = new System.Windows.Forms.ComboBox();
             this.tableContainer = new System.Windows.Forms.Label();
             this.NavBar.SuspendLayout();
@@ -69,6 +69,7 @@ namespace Interface
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
             this.minimizeButton.Location = new System.Drawing.Point(520, 9);
             this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Padding = new System.Windows.Forms.Padding(1);
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 3;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
@@ -81,6 +82,7 @@ namespace Interface
             this.closeButton.FillColor = System.Drawing.Color.Red;
             this.closeButton.Location = new System.Drawing.Point(548, 9);
             this.closeButton.Name = "closeButton";
+            this.closeButton.Padding = new System.Windows.Forms.Padding(1);
             this.closeButton.Size = new System.Drawing.Size(20, 20);
             this.closeButton.TabIndex = 2;
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -112,7 +114,7 @@ namespace Interface
             this.studentsHeader.ShowText = true;
             this.studentsHeader.Size = new System.Drawing.Size(230, 50);
             this.studentsHeader.TabIndex = 1;
-            this.studentsHeader.TextFormat = Interface.CustomControls.TextFormats.Center;
+            this.studentsHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // marksHeader
             // 
@@ -129,7 +131,7 @@ namespace Interface
             this.marksHeader.ShowText = true;
             this.marksHeader.Size = new System.Drawing.Size(270, 50);
             this.marksHeader.TabIndex = 1;
-            this.marksHeader.TextFormat = Interface.CustomControls.TextFormats.Center;
+            this.marksHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonAddMark
             // 
@@ -141,27 +143,29 @@ namespace Interface
             this.buttonAddMark.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonAddMark.Location = new System.Drawing.Point(246, 718);
             this.buttonAddMark.Name = "buttonAddMark";
+            this.buttonAddMark.Padding = new System.Windows.Forms.Padding(1);
             this.buttonAddMark.Size = new System.Drawing.Size(135, 134);
             this.buttonAddMark.TabIndex = 2;
             this.buttonAddMark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
             // 
-            // tableCellSubject
+            // gradeHeader
             // 
-            this.tableCellSubject.BackColor = System.Drawing.Color.Transparent;
-            this.tableCellSubject.BorderColor = System.Drawing.Color.Black;
-            this.tableCellSubject.BorderThickness = 3F;
-            this.tableCellSubject.DisplayText = "Subject:";
-            this.tableCellSubject.FillColor = System.Drawing.Color.Black;
-            this.tableCellSubject.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tableCellSubject.ForeColor = System.Drawing.Color.White;
-            this.tableCellSubject.HasBorder = false;
-            this.tableCellSubject.Location = new System.Drawing.Point(40, 61);
-            this.tableCellSubject.Name = "tableCellSubject";
-            this.tableCellSubject.ShowText = true;
-            this.tableCellSubject.Size = new System.Drawing.Size(187, 39);
-            this.tableCellSubject.TabIndex = 1;
-            this.tableCellSubject.TextFormat = Interface.CustomControls.TextFormats.RightMid;
+            this.gradeHeader.BackColor = System.Drawing.Color.Transparent;
+            this.gradeHeader.BorderColor = System.Drawing.Color.Black;
+            this.gradeHeader.BorderThickness = 3F;
+            this.gradeHeader.DisplayText = "";
+            this.gradeHeader.FillColor = System.Drawing.Color.Black;
+            this.gradeHeader.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.gradeHeader.ForeColor = System.Drawing.Color.White;
+            this.gradeHeader.HasBorder = false;
+            this.gradeHeader.Location = new System.Drawing.Point(40, 61);
+            this.gradeHeader.Name = "gradeHeader";
+            this.gradeHeader.ShowText = true;
+            this.gradeHeader.Size = new System.Drawing.Size(187, 39);
+            this.gradeHeader.TabIndex = 1;
+            this.gradeHeader.DisplayText = "Subject:";
+            this.gradeHeader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // comboBoxGrade
             // 
@@ -192,7 +196,7 @@ namespace Interface
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 879);
             this.Controls.Add(this.tableContainer);
-            this.Controls.Add(this.tableCellSubject);
+            this.Controls.Add(this.gradeHeader);
             this.Controls.Add(this.comboBoxGrade);
             this.Controls.Add(this.buttonAddMark);
             this.Controls.Add(this.marksHeader);
@@ -215,7 +219,7 @@ namespace Interface
         private TableCell marksHeader;
         #endregion
         private CircularFlatButton buttonAddMark;
-        private TableCell tableCellSubject;
+        private TableCell gradeHeader;
         private System.Windows.Forms.ComboBox comboBoxGrade;
         private CircularFlatButton minimizeButton;
         private System.Windows.Forms.Label tableContainer;

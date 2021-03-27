@@ -16,7 +16,7 @@ namespace Interface
         {
             int offset = (int)cell.BorderThickness;
             cell.Size = header.Size;
-            cell.Location = new Point(header.Location.X -40,  (index -1)* (header.Height - offset));
+            cell.Location = new Point(header.Location.X - 40, (index) * (header.Height - offset));
             cell.Name = header.Name + "_" + index;
             SetHover(cell);
             if (!cell.ShowText)
@@ -27,17 +27,16 @@ namespace Interface
                     marks = cell.DisplayText.Split().Select(decimal.Parse).ToArray();
                 }
                 catch { }
-                int space = 10;
                 for (int i = 0; i < marks.Length; i++)
                 {
-                    ContainerCircularFlatButton mark = new ContainerCircularFlatButton
+                    CircularFlatButton mark = new CircularFlatButton()
                     {
                         FillColor = Color.Lime,
                         ForeColor = Color.Black,
                         Size = new Size(30, 30)
                     };
                     SetHover(mark);
-                    mark.Location = GetLocation(cell, mark, space, i);
+                    mark.Location = GetLocation(cell, mark, 10, i);
                     mark.DisplayText = Math.Round(marks[i]).ToString();
                     cell.Controls.Add(mark);
                 }
@@ -53,29 +52,29 @@ namespace Interface
             }
             return output;
         }
-        public static void DrawTable(Control container, StudentViewModel student, Control SubjectHeader, Control MarkHeader)
+        public static void DrawTable(Control container, IViewModel student, Control SubjectHeader, Control MarkHeader)
         {
-            TableCell[,] table = new TableCell[student.Data.Count, 2];
-            for (int i = 0; i < student.Data.Count; i++)
+            TableCell[,] table = new TableCell[student.Count, 2];
+            for (int i = 0; i < student.Count; i++)
             {
-                var item = student.Data.ElementAt(i);
                 table[i, 0] = new TableCell
                 (
                     Color.Black,
                     Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue), 3,
-                    item.Key.SubjectTitle
+                    student.Title[i]
                 );
                 table[i, 1] = new TableCell
                 (
-                    Color.Black, 
+                    Color.Black,
                     Color.Transparent, 3,
-                    string.Join(" ", GetMarks(item.Value)));
+                    (i >= 0 && i < student.Marks.Count) ? string.Join(" ", student.Marks[i]) : string.Empty
+                );
                 table[i, 1].ShowText = false;
-                DrawCell(container, table[i, 0], SubjectHeader, i + 1);
-                DrawCell(container, table[i, 1], MarkHeader, i + 1);
+                DrawCell(container, table[i, 0], SubjectHeader, i);
+                DrawCell(container, table[i, 1], MarkHeader, i);
             }
         }
-        public static void DrawTable(Control parent, TeacherViewModel teacherView, Control SubjectHeader, Control MarkHeader)
+        public static void DrawTable(Control container, TeacherViewModel teacherView, Control SubjectHeader, Control MarkHeader)
         {
             TableCell[,] table = new TableCell[teacherView.Data.Count, 2];
             for (int i = 0; i < teacherView.Data.Count; i++)
@@ -84,14 +83,14 @@ namespace Interface
                 table[i, 0] = new TableCell
                 (
                     Color.Black,
-                    Color.FromArgb(GetAlphaFromPercent(20),Color.SkyBlue),
+                    Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue),
                     3,
                     string.Format($"{item.Key.FirstName} {item.Key.LastName}")
                 );
                 table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", GetMarks(item.Value)));
                 table[i, 1].ShowText = false;
-                DrawCell(parent, table[i, 0], SubjectHeader, i + 1);
-                DrawCell(parent, table[i, 1], MarkHeader, i + 1);
+                DrawCell(container, table[i, 0], SubjectHeader, i + 1);
+                DrawCell(container, table[i, 1], MarkHeader, i + 1);
             }
         }
         public static void DisposeTable(Control container)
@@ -116,7 +115,7 @@ namespace Interface
             catch { }
             try
             {
-
+                ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(0), ((TableCell)sender).FillColor);
             }
             catch { }
             ((Control)sender).Invalidate();
@@ -131,12 +130,12 @@ namespace Interface
             catch { }
             try
             {
-
+                ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((TableCell)sender).FillColor);
             }
             catch { }
             ((Control)sender).Invalidate();
         }
-        private static Point GetLocation(TableCell parent, CustomControls.CircularFlatButton button, int space, int index)
-                => new Point(space + index * (button.Width + space), parent.Height / 2 - button.Height / 2);
+        private static Point GetLocation(TableCell parent, CircularFlatButton button, int offset, int index)
+                => new Point(offset + index * (button.Width + offset), parent.Height / 2 - button.Height / 2);
     }
 }
