@@ -143,6 +143,7 @@ namespace Interface
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            //this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.Background")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(588, 914);
             this.Controls.Add(this.tableContainer);

@@ -20,13 +20,19 @@ namespace Services.DAO
                 throw new ArgumentException("Invalid password");
             }
             var user = this.context.Users
-                .Where(u => u.Username == username && u.Password == password)
+                .Where(u => u.Username == username)
                 .FirstOrDefault();
 
             if (user == null)
             {
-                throw new ArgumentException("This user does not exist or you have entered a wrong password");
+                throw new ArgumentException("This user does not exist");
             }
+
+            if (this.context.Users.Contains(this.context.Users.Where(u => u.Username == username && u.Password != password).FirstOrDefault()))
+            {
+                throw new ArgumentException("Wrong password");
+            }
+
             return user;
         }
         public void RegisterUser(Users userInfo)

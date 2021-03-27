@@ -39,7 +39,7 @@ namespace Services.DAO
         {
             if (string.IsNullOrWhiteSpace(username))
             {
-                return null;
+                throw new ArgumentException("Invalid username");
             }
 
             var user = this.context.Users.FirstOrDefault(x => x.Username == username);
@@ -53,7 +53,7 @@ namespace Services.DAO
 
         public int RemoveUserById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
                 throw new ArgumentException("This user does not exist");
             }
