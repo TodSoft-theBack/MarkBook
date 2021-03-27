@@ -67,13 +67,6 @@ namespace Services.DAO
             {
                 throw new ArgumentException("A valid student id is required");
             }
-
-            var student = this.context.Students.Where(student => student.StudentId == id).FirstOrDefault();
-            if (student == null)
-            {
-                return null;
-            }
-
             return context.Students
                 .Include(s => s.Marks)
                 .Where(st => st.StudentId == id)

@@ -51,6 +51,16 @@ namespace Services.DAO
             return this.context.Users.FirstOrDefault(x => x.Username == username);
         }
 
+        public Users GetUserById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("Invalid id");
+            }
+
+            return this.context.Users.FirstOrDefault(x => x.UserId == id);
+        }
+
         public int RemoveUserById(int id)
         {
             if (id <= 0)
