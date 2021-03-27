@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Business.ViewModels
 {
-    interface IViewModel
+    public interface IViewModel
     {
-        public string NameTitle { get; set; }
-        public string Marks { get; set; }
+        public List<string> Title { get;}
+        public List<List<string>> Marks { get;}
+        public int Count { get; }
     }
 }

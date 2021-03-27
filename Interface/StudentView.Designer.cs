@@ -1,4 +1,4 @@
-﻿
+﻿using System.Drawing;
 using Interface.CustomControls;
 
 namespace Interface
@@ -65,6 +65,7 @@ namespace Interface
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
             this.minimizeButton.Location = new System.Drawing.Point(528, 9);
             this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Padding = new System.Windows.Forms.Padding(1);
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 3;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
@@ -77,6 +78,7 @@ namespace Interface
             this.closeButton.FillColor = System.Drawing.Color.Red;
             this.closeButton.Location = new System.Drawing.Point(556, 9);
             this.closeButton.Name = "closeButton";
+            this.closeButton.Padding = new System.Windows.Forms.Padding(1);
             this.closeButton.Size = new System.Drawing.Size(20, 20);
             this.closeButton.TabIndex = 2;
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -108,7 +110,7 @@ namespace Interface
             this.subjectsHeader.ShowText = true;
             this.subjectsHeader.Size = new System.Drawing.Size(230, 50);
             this.subjectsHeader.TabIndex = 1;
-            this.subjectsHeader.TextFormat = Interface.CustomControls.TextFormats.Center;
+            this.subjectsHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // marksHeader
             // 
@@ -125,7 +127,7 @@ namespace Interface
             this.marksHeader.ShowText = true;
             this.marksHeader.Size = new System.Drawing.Size(270, 50);
             this.marksHeader.TabIndex = 1;
-            this.marksHeader.TextFormat = Interface.CustomControls.TextFormats.Center;
+            this.marksHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableContainer
             // 

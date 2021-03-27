@@ -20,6 +20,7 @@ namespace Interface.CustomControls
             this.Paint += Button_Paint;
             this.ResizeRedraw = true;
             this.Padding = new Padding(1);
+            this.TextAlign = ContentAlignment.MiddleCenter;
         }
         public CircularFlatButton(Color fillColor, int width, Point location) : this()
         {
@@ -27,6 +28,7 @@ namespace Interface.CustomControls
             this.Location = location;
             this.Size = new Size(width, width);
             this.Padding = new Padding(1);
+            this.TextAlign = ContentAlignment.MiddleCenter;
         }
         public void Button_Paint(object sender, PaintEventArgs e)
         {
@@ -57,7 +59,8 @@ namespace Interface.CustomControls
                         this.DisplayText,
                         this.Font,
                         this.ClientRectangle,
-                        this.ForeColor
+                        this.ForeColor,
+                        ControlFunctions.GetFlags(this.TextAlign)
                     ); 
             }
         }
