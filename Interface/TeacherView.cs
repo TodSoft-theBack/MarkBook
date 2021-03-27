@@ -9,6 +9,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Linq;
+using Business.ViewModels;
+using Interface.AddDialogs;
+using Interface.CustomControls;
 
 namespace Interface
 {
@@ -19,18 +22,21 @@ namespace Interface
             InitializeComponent();
         }
         Teachers teacher;
-        TeacherController teacherController;
-        public ICollection<Subjects> Subjects;
-        MarkBookDBContext context;
+        public TeacherController teacherController;
+        ICollection<Subjects> Subjects;
+        TeacherViewModel teacherData = new TeacherViewModel();
+        MarkBookDBContext Database;
         private void CloseButton_Click(object sender, EventArgs e)
             => this.Close();
+        private void minimizeButton_Click(object sender, EventArgs e)
+         => this.WindowState = FormWindowState.Minimized;
         public static string SubjectToString(Subjects subject)
             => string.Format($"{subject.SubjectTitle} (Grade: {subject.Grade.GradeNumber}{subject.Grade.GradeForm})");
         private void TeacherView_Load(object sender, EventArgs e)
         {
             teacher = (Teachers)((LogInForm)this.Owner).LogInInfo;
-            context = ((LogInForm)this.Owner).Database;
-            teacherController = new TeacherController(context);
+            Database = ((LogInForm)this.Owner).Database;
+            teacherController = new TeacherController(Database);
             labelFormText.Text = string.Format($"MarkBook(Teacher) - {teacher.FirstName} {teacher.LastName}");
             comboBoxGrade.Items.Clear();
             this.Subjects = teacherController.GetSubjects(teacher.TeacherId);
@@ -40,7 +46,7 @@ namespace Interface
             studentsHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), studentsHeader.FillColor);
             marksHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.FillColor);
             gradeHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), gradeHeader.FillColor);
-            DrawingFunctions.SetHover(minimizeButton, closeButton);
+            DrawingFunctions.SetHover(minimizeButton, closeButton, buttonAddMark);
         }
 
         Point firstLocation = new Point();
@@ -65,16 +71,43 @@ namespace Interface
             DrawingFunctions.DisposeTable(tableContainer);
             if (comboBoxGrade.SelectedIndex >= 0 && comboBoxGrade.SelectedIndex < this.Subjects.Count) 
             {
-                DrawingFunctions.DrawTable(tableContainer, teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId), studentsHeader, marksHeader);
+                teacherData = teacherController.GetTeacherData(teacher.TeacherId, Subjects.ElementAt(comboBoxGrade.SelectedIndex).SubjectId);
+                DrawingFunctions.DrawTable(tableContainer,teacherData , studentsHeader, marksHeader);
             }
         }
-
+        public static List<TableCell> GetConvinientCollection(Control.ControlCollection list)
+        {
+            List<TableCell> output = new List<TableCell>();
+            foreach (var item in list)
+                output.Add((TableCell)item);
+            return output;
+        }
         private void buttonAddMark_Click(object sender, EventArgs e)
         {
+            var selectedStudents = GetConvinientCollection(tableContainer.Controls).Where(p => ((IHoverDataContainer)p).Selected).ToList();
+            if (selectedStudents.Count < 1)
+            {
+                MessageBox.Show("You have not selected anything!\nPlease, select studets to assign a mark to!", "Empty selection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            List<Students> students = new List<Students>();
+            foreach (var selectedStudent in selectedStudents)
+            {
+                students.Add(teacherData.Data.ElementAt(selectedStudent.Key[0]).Key);
+            }
+            using(AddMarkDialog addDialog = new AddMarkDialog())
+            {
+                this.Hide();
+                addDialog.Owner = this;
+                addDialog.subject = Subjects.ElementAt(comboBoxGrade.SelectedIndex);
+                addDialog.students = students;
+                addDialog.ShowDialog();
+                this.Show();
+            }
+            comboBoxGrade_SelectedIndexChanged(new object(), new EventArgs());
 
         }
 
-        private void minimizeButton_Click(object sender, EventArgs e)
-         => this.WindowState = FormWindowState.Minimized;
+        
     }
 }

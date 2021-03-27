@@ -55,7 +55,7 @@ namespace Interface
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.NavBar.Location = new System.Drawing.Point(0, 0);
             this.NavBar.Name = "NavBar";
-            this.NavBar.Size = new System.Drawing.Size(580, 40);
+            this.NavBar.Size = new System.Drawing.Size(581, 40);
             this.NavBar.TabIndex = 0;
             this.NavBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseDown);
             this.NavBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NavBar_MouseMove);
@@ -65,11 +65,14 @@ namespace Interface
             // 
             this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeButton.ContainsDataInfo = false;
             this.minimizeButton.DisplayText = "";
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
-            this.minimizeButton.Location = new System.Drawing.Point(520, 9);
+            this.minimizeButton.Key = new int[0];
+            this.minimizeButton.Location = new System.Drawing.Point(521, 9);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Padding = new System.Windows.Forms.Padding(1);
+            this.minimizeButton.Selected = false;
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 3;
             this.minimizeButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,11 +82,14 @@ namespace Interface
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeButton.BackColor = System.Drawing.Color.Transparent;
+            this.closeButton.ContainsDataInfo = false;
             this.closeButton.DisplayText = "";
             this.closeButton.FillColor = System.Drawing.Color.Red;
-            this.closeButton.Location = new System.Drawing.Point(548, 9);
+            this.closeButton.Key = new int[0];
+            this.closeButton.Location = new System.Drawing.Point(549, 9);
             this.closeButton.Name = "closeButton";
             this.closeButton.Padding = new System.Windows.Forms.Padding(1);
+            this.closeButton.Selected = false;
             this.closeButton.Size = new System.Drawing.Size(20, 20);
             this.closeButton.TabIndex = 2;
             this.closeButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -106,13 +112,16 @@ namespace Interface
             this.studentsHeader.BackColor = System.Drawing.Color.Transparent;
             this.studentsHeader.BorderColor = System.Drawing.Color.Black;
             this.studentsHeader.BorderThickness = 3F;
+            this.studentsHeader.ContainsDataInfo = false;
             this.studentsHeader.DisplayText = "Students";
             this.studentsHeader.FillColor = System.Drawing.Color.Black;
             this.studentsHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.studentsHeader.ForeColor = System.Drawing.Color.White;
             this.studentsHeader.HasBorder = false;
+            this.studentsHeader.Key = new int[0];
             this.studentsHeader.Location = new System.Drawing.Point(40, 110);
             this.studentsHeader.Name = "studentsHeader";
+            this.studentsHeader.Selected = false;
             this.studentsHeader.ShowText = true;
             this.studentsHeader.Size = new System.Drawing.Size(230, 50);
             this.studentsHeader.TabIndex = 1;
@@ -123,13 +132,16 @@ namespace Interface
             this.marksHeader.BackColor = System.Drawing.Color.Transparent;
             this.marksHeader.BorderColor = System.Drawing.Color.Black;
             this.marksHeader.BorderThickness = 3F;
+            this.marksHeader.ContainsDataInfo = false;
             this.marksHeader.DisplayText = "Marks";
             this.marksHeader.FillColor = System.Drawing.Color.Black;
             this.marksHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.marksHeader.ForeColor = System.Drawing.Color.White;
             this.marksHeader.HasBorder = false;
+            this.marksHeader.Key = new int[0];
             this.marksHeader.Location = new System.Drawing.Point(270, 110);
             this.marksHeader.Name = "marksHeader";
+            this.marksHeader.Selected = false;
             this.marksHeader.ShowText = true;
             this.marksHeader.Size = new System.Drawing.Size(270, 50);
             this.marksHeader.TabIndex = 1;
@@ -139,13 +151,15 @@ namespace Interface
             // 
             this.buttonAddMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddMark.BackColor = System.Drawing.Color.Transparent;
+            this.buttonAddMark.ContainsDataInfo = false;
             this.buttonAddMark.DisplayText = "Add mark\nto selected";
-            this.buttonAddMark.Enabled = false;
             this.buttonAddMark.FillColor = System.Drawing.Color.Lime;
             this.buttonAddMark.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonAddMark.Location = new System.Drawing.Point(246, 718);
+            this.buttonAddMark.Key = new int[0];
+            this.buttonAddMark.Location = new System.Drawing.Point(247, 718);
             this.buttonAddMark.Name = "buttonAddMark";
             this.buttonAddMark.Padding = new System.Windows.Forms.Padding(1);
+            this.buttonAddMark.Selected = false;
             this.buttonAddMark.Size = new System.Drawing.Size(135, 134);
             this.buttonAddMark.TabIndex = 2;
             this.buttonAddMark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -156,13 +170,16 @@ namespace Interface
             this.gradeHeader.BackColor = System.Drawing.Color.Transparent;
             this.gradeHeader.BorderColor = System.Drawing.Color.Black;
             this.gradeHeader.BorderThickness = 3F;
+            this.gradeHeader.ContainsDataInfo = false;
             this.gradeHeader.DisplayText = "Subject:";
             this.gradeHeader.FillColor = System.Drawing.Color.Black;
             this.gradeHeader.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.gradeHeader.ForeColor = System.Drawing.Color.White;
             this.gradeHeader.HasBorder = false;
+            this.gradeHeader.Key = new int[0];
             this.gradeHeader.Location = new System.Drawing.Point(40, 61);
             this.gradeHeader.Name = "gradeHeader";
+            this.gradeHeader.Selected = false;
             this.gradeHeader.ShowText = true;
             this.gradeHeader.Size = new System.Drawing.Size(187, 39);
             this.gradeHeader.TabIndex = 1;
@@ -194,7 +211,7 @@ namespace Interface
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(580, 879);
+            this.ClientSize = new System.Drawing.Size(581, 879);
             this.Controls.Add(this.tableContainer);
             this.Controls.Add(this.gradeHeader);
             this.Controls.Add(this.comboBoxGrade);

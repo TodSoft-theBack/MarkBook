@@ -11,7 +11,7 @@ namespace Interface
 {
     class DrawingFunctions
     {
-        public static bool ReadOnly { get; set; }
+        public static bool ReadOnly = false;
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
         private static void DrawCell(Control container, TableCell cell, Control header, int index, bool setHover)
         {
@@ -19,7 +19,7 @@ namespace Interface
             cell.Size = header.Size;
             cell.Location = new Point(header.Location.X - 40, (index) * (header.Height - offset));
             cell.Name = header.Name + "_" + index;
-            if(setHover) SetHover(cell);
+            if (setHover) SetHover(cell);
             if (!cell.ShowText)
             {
                 decimal[] marks = new decimal[0];
@@ -36,6 +36,7 @@ namespace Interface
                         ForeColor = Color.Black,
                         Size = new Size(30, 30)
                     };
+                    mark.ContainsDataInfo = true;
                     mark.Key = new int[]
                     {
                         (cell.Key.Length > 0)?cell.Key[0]:-1,
@@ -70,15 +71,17 @@ namespace Interface
                     student.Title[i]
                 );
                 table[i, 0].Key = new int[] { i, 0 };
+                table[i, 0].ContainsDataInfo = true;
                 table[i, 1] = new TableCell
                 (
                     Color.Black,
                     Color.Transparent, 3,
                     (i >= 0 && i < student.Marks.Count) ? string.Join(" ", student.Marks[i]) : string.Empty
                 );
-                table[i, 0].Key = new int[] { i, 1};
+                table[i, 1].Key = new int[] { i, 1 };
+                table[i, 1].ContainsDataInfo = true;
                 table[i, 1].ShowText = false;
-                DrawCell(container, table[i, 0], SubjectHeader, i,true);
+                DrawCell(container, table[i, 0], SubjectHeader, i, true);
                 DrawCell(container, table[i, 1], MarkHeader, i, false);
             }
         }
@@ -112,16 +115,58 @@ namespace Interface
 
         private static void SelectedControl_MouseLeave(object sender, EventArgs e)
         {
-            try
+            if (ReadOnly)
             {
-                if (!((CircularFlatButton)sender).Selected && !ReadOnly) ((CircularFlatButton)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(0), ((CircularFlatButton)sender).FillColor);
+                try
+                {
+                    ((CircularFlatButton)sender).FillColor =
+                    Color.FromArgb
+                    (
+                        GetAlphaFromPercent(0),
+                        ((CircularFlatButton)sender).FillColor
+                    );
+                }
+                catch { }
+                try
+                {
+                    ((TableCell)sender).FillColor =
+                    Color.FromArgb
+                    (
+                        GetAlphaFromPercent(30),
+                        ((TableCell)sender).FillColor
+                    );
+                }
+                catch { }
             }
-            catch { }
-            try
+            else
             {
-                if(!((TableCell)sender).Selected && !ReadOnly) ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((TableCell)sender).FillColor);
+                try
+                {
+                    if (!((CircularFlatButton)sender).Selected)
+                    {
+                        ((CircularFlatButton)sender).FillColor =
+                        Color.FromArgb
+                        (
+                            GetAlphaFromPercent(0),
+                            ((CircularFlatButton)sender).FillColor
+                        );
+                    }
+                }
+                catch { }
+                try
+                {
+                    if (!((TableCell)sender).Selected)
+                    {
+                        ((TableCell)sender).FillColor =
+                        Color.FromArgb
+                        (
+                            GetAlphaFromPercent(30),
+                            ((TableCell)sender).FillColor
+                        );
+                    }
+                }
+                catch { }
             }
-            catch { }
             ((Control)sender).Invalidate();
         }
         private static Point GetLocation(TableCell parent, CircularFlatButton button, int offset, int index)

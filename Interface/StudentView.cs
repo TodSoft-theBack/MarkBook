@@ -29,6 +29,7 @@ namespace Interface
             NavBar.BackColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), NavBar.BackColor);
             subjectsHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), subjectsHeader.FillColor);
             marksHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.FillColor);
+            DrawingFunctions.ReadOnly = true;
             DrawingFunctions.DrawTable(tableContainer,StudentController.GetStudentData(student.StudentId), subjectsHeader, marksHeader);
             DrawingFunctions.SetHover(closeButton, minimizeButton);
         }

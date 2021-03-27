@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Interface.CustomControls
 { 
-    class TableCell : Label, IHoverDataContainer
+    public class TableCell : Label, IHoverDataContainer
     {
         private readonly Pen border;
         public bool ShowText { get; set; }
@@ -17,8 +17,12 @@ namespace Interface.CustomControls
         public int[] Key { get; set; }
         public Color BorderColor { get { return this.border.Color; } set { this.border.Color = value; } }
         public float BorderThickness { get { return this.border.Width; } set { this.border.Width = value; } }
+
+        public bool ContainsDataInfo { get; set; }
+
         public TableCell() : base()
         {
+            this.ContainsDataInfo = false;
             this.DisplayText = this.Name;
             this.ShowText = true;
             this.HasBorder = true;

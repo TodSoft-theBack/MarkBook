@@ -13,8 +13,11 @@ namespace Interface.CustomControls
         public string DisplayText { get; set; }
         public bool Selected { get; set; }
         public int[] Key { get; set; }
+        public bool ContainsDataInfo { get; set; }
+
         public CircularFlatButton() : base()
         {
+            this.ContainsDataInfo = false;
             this.BackColor = Color.Transparent;
             this.DisplayText = string.Empty;
             this.AutoSize = false;
@@ -71,8 +74,6 @@ namespace Interface.CustomControls
         }
 
         public void Object_Click(object sender, EventArgs e)
-        {
-            this.Selected = !this.Selected;
-        }
+            =>this.Selected = !this.Selected;
     }
 }
