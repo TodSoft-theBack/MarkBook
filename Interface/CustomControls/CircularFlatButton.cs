@@ -19,12 +19,14 @@ namespace Interface.CustomControls
             this.FillColor = Color.Red;
             this.Paint += Button_Paint;
             this.ResizeRedraw = true;
+            this.Padding = new Padding(1);
         }
         public CircularFlatButton(Color fillColor, int width, Point location) : this()
         {
             this.FillColor = fillColor;
             this.Location = location;
             this.Size = new Size(width, width);
+            this.Padding = new Padding(1);
         }
         public void Button_Paint(object sender, PaintEventArgs e)
         {
@@ -33,7 +35,19 @@ namespace Interface.CustomControls
             e.Graphics.FillEllipse
             (
                 new SolidBrush(this.FillColor),
-                this.ClientRectangle
+                new Rectangle
+                (
+                    new Point
+                    (
+                        this.Padding.Left,
+                        this.Padding.Top
+                    ),
+                    new Size
+                    (
+                        this.Width - 2*this.Padding.Right,
+                        this.Height - 2*this.Padding.Bottom
+                    )
+                )
             );
             if (!string.IsNullOrEmpty(this.DisplayText))
             {

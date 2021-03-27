@@ -56,10 +56,5 @@ namespace Interface
             (this.WindowState == FormWindowState.Maximized) ?
             FormWindowState.Normal :
             FormWindowState.Maximized;
-
-        private void listBoxGrades_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
