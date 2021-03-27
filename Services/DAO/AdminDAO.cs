@@ -80,17 +80,12 @@ namespace Services.DAO
         }
         public Admins GetAdminByUserID(int userId)
         {
-            if (userId == 0)
+            if (userId <= 0)
             {
                 throw new ArgumentException("Invalid user id");
             }
 
             var admin = this.context.Admins.Where(a => a.UserId == userId).FirstOrDefault();
-            if (admin == null)
-            {
-                return null;
-            }
-
             return this.context.Admins.FirstOrDefault(t => t.UserId == userId);
         }
         private MarkBookDBContext context;

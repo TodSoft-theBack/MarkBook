@@ -64,9 +64,9 @@ namespace Services.DAO
         }
         public Teachers GetTeacherByUserID(int userID)
         {
-            if (userID == 0)
+            if (userID <= 0)
             {
-                return null;
+                throw new ArgumentException("Id must be greater than 0");
             }
 
             return this.context.Teachers
@@ -93,17 +93,12 @@ namespace Services.DAO
         }
         public Teachers GetTeacherById(int teacherId)
         {
-            if (teacherId == 0)
+            if (teacherId <= 0)
             {
-                return null;
+                throw new ArgumentException("Id must be greater than 0");
             }
 
             var teacher = this.context.Teachers.Where(t => t.TeacherId == teacherId).FirstOrDefault();
-            if (teacher == null)
-            {
-                throw new ArgumentException("This teacher does not exist");
-            }
-
             return this.context.Teachers
                 .Include(t => t.Subjects)
                 .FirstOrDefault(t => t.TeacherId == teacherId);
