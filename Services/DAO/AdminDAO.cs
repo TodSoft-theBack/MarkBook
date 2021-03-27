@@ -69,13 +69,6 @@ namespace Services.DAO
             {
                 throw new Exception("Invalid admin id");
             }
-
-            var admin = this.context.Admins.Where(a => a.AdminId == adminId).FirstOrDefault();
-            if (admin == null)
-            {
-                return null;
-            }
-
             return this.context.Admins.FirstOrDefault(t => t.AdminId.Equals(adminId));
         }
         public Admins GetAdminByUserID(int userId)
