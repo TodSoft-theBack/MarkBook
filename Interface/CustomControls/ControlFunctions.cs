@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Interface.CustomControls
 {
-    public class ControlFunctions
+    class ControlFunctions
     {
         public static TextFormatFlags GetFlags(ContentAlignment alignment)
         {

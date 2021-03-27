@@ -7,17 +7,22 @@ using System.Drawing.Drawing2D;
 
 namespace Interface.CustomControls
 {
-    class CircularFlatButton : Label
+    class CircularFlatButton : Label, IHoverDataContainer
     {
         public Color FillColor { get; set; }
         public string DisplayText { get; set; }
+        public bool Selected { get; set; }
+        public int[] Key { get; set; }
         public CircularFlatButton() : base()
         {
             this.BackColor = Color.Transparent;
             this.DisplayText = string.Empty;
             this.AutoSize = false;
+            this.Selected = false;
+            this.Key = new int[0];
             this.FillColor = Color.Red;
             this.Paint += Button_Paint;
+            this.Click += Object_Click;
             this.ResizeRedraw = true;
             this.Padding = new Padding(1);
             this.TextAlign = ContentAlignment.MiddleCenter;
@@ -46,24 +51,28 @@ namespace Interface.CustomControls
                     ),
                     new Size
                     (
-                        this.Width - 2*this.Padding.Right,
-                        this.Height - 2*this.Padding.Bottom
+                        this.Width - (this.Padding.Left + this.Padding.Right),
+                        this.Height - (this.Padding.Top + this.Padding.Bottom)
                     )
                 )
             );
             if (!string.IsNullOrEmpty(this.DisplayText))
             {
                 TextRenderer.DrawText
-                    (
-                        e.Graphics,
-                        this.DisplayText,
-                        this.Font,
-                        this.ClientRectangle,
-                        this.ForeColor,
-                        ControlFunctions.GetFlags(this.TextAlign)
-                    ); 
+                (
+                    e.Graphics,
+                    this.DisplayText,
+                    this.Font,
+                    this.ClientRectangle,
+                    this.ForeColor,
+                    ControlFunctions.GetFlags(this.TextAlign)
+                ); 
             }
         }
-        
+
+        public void Object_Click(object sender, EventArgs e)
+        {
+            this.Selected = !this.Selected;
+        }
     }
 }

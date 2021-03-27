@@ -11,14 +11,15 @@ namespace Interface
 {
     class DrawingFunctions
     {
+        public static bool ReadOnly { get; set; }
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
-        private static void DrawCell(Control container, TableCell cell, Control header, int index)
+        private static void DrawCell(Control container, TableCell cell, Control header, int index, bool setHover)
         {
             int offset = (int)cell.BorderThickness;
             cell.Size = header.Size;
             cell.Location = new Point(header.Location.X - 40, (index) * (header.Height - offset));
             cell.Name = header.Name + "_" + index;
-            SetHover(cell);
+            if(setHover) SetHover(cell);
             if (!cell.ShowText)
             {
                 decimal[] marks = new decimal[0];
@@ -34,6 +35,11 @@ namespace Interface
                         FillColor = Color.Lime,
                         ForeColor = Color.Black,
                         Size = new Size(30, 30)
+                    };
+                    mark.Key = new int[]
+                    {
+                        (cell.Key.Length > 0)?cell.Key[0]:-1,
+                        i
                     };
                     SetHover(mark);
                     mark.Location = GetLocation(cell, mark, 10, i);
@@ -63,34 +69,17 @@ namespace Interface
                     Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue), 3,
                     student.Title[i]
                 );
+                table[i, 0].Key = new int[] { i, 0 };
                 table[i, 1] = new TableCell
                 (
                     Color.Black,
                     Color.Transparent, 3,
                     (i >= 0 && i < student.Marks.Count) ? string.Join(" ", student.Marks[i]) : string.Empty
                 );
+                table[i, 0].Key = new int[] { i, 1};
                 table[i, 1].ShowText = false;
-                DrawCell(container, table[i, 0], SubjectHeader, i);
-                DrawCell(container, table[i, 1], MarkHeader, i);
-            }
-        }
-        public static void DrawTable(Control container, TeacherViewModel teacherView, Control SubjectHeader, Control MarkHeader)
-        {
-            TableCell[,] table = new TableCell[teacherView.Data.Count, 2];
-            for (int i = 0; i < teacherView.Data.Count; i++)
-            {
-                var item = teacherView.Data.ElementAt(i);
-                table[i, 0] = new TableCell
-                (
-                    Color.Black,
-                    Color.FromArgb(GetAlphaFromPercent(20), Color.SkyBlue),
-                    3,
-                    string.Format($"{item.Key.FirstName} {item.Key.LastName}")
-                );
-                table[i, 1] = new TableCell(Color.Black, Color.Transparent, 3, string.Join(" ", GetMarks(item.Value)));
-                table[i, 1].ShowText = false;
-                DrawCell(container, table[i, 0], SubjectHeader, i + 1);
-                DrawCell(container, table[i, 1], MarkHeader, i + 1);
+                DrawCell(container, table[i, 0], SubjectHeader, i,true);
+                DrawCell(container, table[i, 1], MarkHeader, i, false);
             }
         }
         public static void DisposeTable(Control container)
@@ -125,12 +114,12 @@ namespace Interface
         {
             try
             {
-                ((CircularFlatButton)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(0), ((CircularFlatButton)sender).FillColor);
+                if (!((CircularFlatButton)sender).Selected && !ReadOnly) ((CircularFlatButton)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(0), ((CircularFlatButton)sender).FillColor);
             }
             catch { }
             try
             {
-                ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((TableCell)sender).FillColor);
+                if(!((TableCell)sender).Selected && !ReadOnly) ((TableCell)sender).FillColor = Color.FromArgb(GetAlphaFromPercent(30), ((TableCell)sender).FillColor);
             }
             catch { }
             ((Control)sender).Invalidate();

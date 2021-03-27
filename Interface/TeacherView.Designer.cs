@@ -72,6 +72,7 @@ namespace Interface
             this.minimizeButton.Padding = new System.Windows.Forms.Padding(1);
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 3;
+            this.minimizeButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // closeButton
@@ -85,6 +86,7 @@ namespace Interface
             this.closeButton.Padding = new System.Windows.Forms.Padding(1);
             this.closeButton.Size = new System.Drawing.Size(20, 20);
             this.closeButton.TabIndex = 2;
+            this.closeButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // labelFormText
@@ -137,7 +139,7 @@ namespace Interface
             // 
             this.buttonAddMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddMark.BackColor = System.Drawing.Color.Transparent;
-            this.buttonAddMark.DisplayText = "";
+            this.buttonAddMark.DisplayText = "Add mark\nto selected";
             this.buttonAddMark.Enabled = false;
             this.buttonAddMark.FillColor = System.Drawing.Color.Lime;
             this.buttonAddMark.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -154,7 +156,7 @@ namespace Interface
             this.gradeHeader.BackColor = System.Drawing.Color.Transparent;
             this.gradeHeader.BorderColor = System.Drawing.Color.Black;
             this.gradeHeader.BorderThickness = 3F;
-            this.gradeHeader.DisplayText = "";
+            this.gradeHeader.DisplayText = "Subject:";
             this.gradeHeader.FillColor = System.Drawing.Color.Black;
             this.gradeHeader.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.gradeHeader.ForeColor = System.Drawing.Color.White;
@@ -164,7 +166,6 @@ namespace Interface
             this.gradeHeader.ShowText = true;
             this.gradeHeader.Size = new System.Drawing.Size(187, 39);
             this.gradeHeader.TabIndex = 1;
-            this.gradeHeader.DisplayText = "Subject:";
             this.gradeHeader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // comboBoxGrade
@@ -192,7 +193,6 @@ namespace Interface
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            //this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.Background")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 879);
             this.Controls.Add(this.tableContainer);

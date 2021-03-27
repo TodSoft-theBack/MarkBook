@@ -33,7 +33,6 @@ namespace Business.ViewModels
                 return output;
             }
         }
-
         public int Count { get => this.Data.Count; }
     }
 }
