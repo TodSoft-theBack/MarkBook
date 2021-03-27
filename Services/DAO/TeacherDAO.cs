@@ -51,7 +51,7 @@ namespace Services.DAO
         {
             return this.context.Teachers
                 .Include(t => t.Subjects)
-                .Where(t => t.Subjects.Where(s => s.GradeId == gradeId) != null)
+                .Where(t => t.Subjects.Any(s => s.GradeId == gradeId))
                 .ToList();
         }
         public int RemoveTeacherById(int teacherId)
