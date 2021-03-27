@@ -71,7 +71,7 @@ namespace Services.DAO
             var student = this.context.Students.Where(student => student.StudentId == id).FirstOrDefault();
             if (student == null)
             {
-                throw new ArgumentException("This student does not exist");
+                return null;
             }
 
             return context.Students
@@ -121,13 +121,13 @@ namespace Services.DAO
         {
             if (userID == 0)
             {
-                throw new ArgumentException("A valid id is required");
+                return null;
             }
 
             var student = this.context.Students.Where(st => st.UserId == userID).FirstOrDefault();
             if (student == null)
             {
-                throw new ArgumentException("This student does not exist");
+                return null;
             }
 
             return this.context.Students
