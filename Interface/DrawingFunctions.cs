@@ -43,6 +43,7 @@ namespace Interface
                         i
                     };
                     SetHover(mark);
+                    mark.Parent = cell;
                     mark.Location = GetLocation(cell, mark, 10, i);
                     mark.DisplayText = Math.Round(marks[i]).ToString();
                     cell.Controls.Add(mark);
@@ -115,7 +116,7 @@ namespace Interface
 
         private static void SelectedControl_MouseLeave(object sender, EventArgs e)
         {
-            if (ReadOnly)
+            if (ReadOnly || !((IHoverDataContainer)sender).ContainsDataInfo)
             {
                 try
                 {
@@ -132,7 +133,7 @@ namespace Interface
                     ((TableCell)sender).FillColor =
                     Color.FromArgb
                     (
-                        GetAlphaFromPercent(30),
+                        GetAlphaFromPercent(50),
                         ((TableCell)sender).FillColor
                     );
                 }

@@ -43,6 +43,7 @@ namespace Interface
             this.gradeHeader = new Interface.CustomControls.TableCell();
             this.comboBoxGrade = new System.Windows.Forms.ComboBox();
             this.tableContainer = new System.Windows.Forms.Label();
+            this.buttonDeleteMark = new Interface.CustomControls.CircularFlatButton();
             this.NavBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,11 +157,11 @@ namespace Interface
             this.buttonAddMark.FillColor = System.Drawing.Color.Lime;
             this.buttonAddMark.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonAddMark.Key = new int[0];
-            this.buttonAddMark.Location = new System.Drawing.Point(247, 718);
+            this.buttonAddMark.Location = new System.Drawing.Point(245, 718);
             this.buttonAddMark.Name = "buttonAddMark";
             this.buttonAddMark.Padding = new System.Windows.Forms.Padding(1);
             this.buttonAddMark.Selected = false;
-            this.buttonAddMark.Size = new System.Drawing.Size(135, 134);
+            this.buttonAddMark.Size = new System.Drawing.Size(135, 135);
             this.buttonAddMark.TabIndex = 2;
             this.buttonAddMark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonAddMark.Click += new System.EventHandler(this.buttonAddMark_Click);
@@ -205,6 +206,23 @@ namespace Interface
             this.tableContainer.Size = new System.Drawing.Size(500, 558);
             this.tableContainer.TabIndex = 4;
             // 
+            // buttonDeleteMark
+            // 
+            this.buttonDeleteMark.BackColor = System.Drawing.Color.Transparent;
+            this.buttonDeleteMark.ContainsDataInfo = false;
+            this.buttonDeleteMark.DisplayText = "Remove\nselected\nmark";
+            this.buttonDeleteMark.FillColor = System.Drawing.Color.Red;
+            this.buttonDeleteMark.Font = new System.Drawing.Font("Segoe Script", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonDeleteMark.Key = new int[0];
+            this.buttonDeleteMark.Location = new System.Drawing.Point(40, 718);
+            this.buttonDeleteMark.Name = "buttonDeleteMark";
+            this.buttonDeleteMark.Padding = new System.Windows.Forms.Padding(1);
+            this.buttonDeleteMark.Selected = false;
+            this.buttonDeleteMark.Size = new System.Drawing.Size(135, 135);
+            this.buttonDeleteMark.TabIndex = 5;
+            this.buttonDeleteMark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonDeleteMark.Click += new System.EventHandler(this.buttonDeleteMark_Click);
+            // 
             // TeacherView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -212,6 +230,7 @@ namespace Interface
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(581, 879);
+            this.Controls.Add(this.buttonDeleteMark);
             this.Controls.Add(this.tableContainer);
             this.Controls.Add(this.gradeHeader);
             this.Controls.Add(this.comboBoxGrade);
@@ -240,5 +259,6 @@ namespace Interface
         private System.Windows.Forms.ComboBox comboBoxGrade;
         private CircularFlatButton minimizeButton;
         private System.Windows.Forms.Label tableContainer;
+        private CircularFlatButton buttonDeleteMark;
     }
 }

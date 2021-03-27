@@ -41,6 +41,10 @@ namespace Business.Controllers
                 Data = teacherData
             };
         }
+        public void RemoveMarkById(int markId)
+        {
+            this.markDAO.RemoveMark(markId);
+        }
         public ICollection<Students> GetStudentsByGradeId(int gradeId)
         {
             return gradeDAO.GetStudentsByGradeId(gradeId);
