@@ -30,6 +30,7 @@ namespace Interface
             subjectsHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), subjectsHeader.FillColor);
             marksHeader.FillColor = Color.FromArgb(DrawingFunctions.GetAlphaFromPercent(30), marksHeader.FillColor);
             DrawingFunctions.ReadOnly = true;
+            DrawingFunctions.tableXOffset = subjectsHeader.Location.X;
             DrawingFunctions.DrawTable(tableContainer,StudentController.GetStudentData(student.StudentId), subjectsHeader, marksHeader);
             DrawingFunctions.SetHover(closeButton, minimizeButton);
         }

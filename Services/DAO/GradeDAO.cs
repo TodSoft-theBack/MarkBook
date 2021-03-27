@@ -28,6 +28,15 @@ namespace Services.DAO
                 .FirstOrDefault();
         }
 
+        public ICollection<Grades> GetAllGrades()
+        {
+            return this.context.Grades
+                .Include(g => g.Students)
+                .ThenInclude(s => s.Marks)
+                .Include(g => g.Subjects)
+                .ToList();
+        }
+
         public int AddGrade(int gradeNumber, string gradeForm)
         {
             if (gradeNumber < 1 || gradeNumber > 12)

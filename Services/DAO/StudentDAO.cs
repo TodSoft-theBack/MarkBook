@@ -61,6 +61,12 @@ namespace Services.DAO
             this.context.Students.Add(student);
             return this.context.SaveChanges();
         }
+
+        public ICollection<Students> GetStudentsByGradeId(int gradeId)
+        {
+            return this.context.Students.Where(s => s.GradeId == gradeId).ToList();
+        }
+
         public Students GetStudentById(int id)
         {
             if (id == 0)

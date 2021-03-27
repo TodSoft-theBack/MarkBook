@@ -81,39 +81,51 @@ namespace Interface
             // 
             this.NormalizeMaximizeForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NormalizeMaximizeForm.BackColor = System.Drawing.Color.Transparent;
+            this.NormalizeMaximizeForm.ContainsDataInfo = false;
             this.NormalizeMaximizeForm.DisplayText = "";
             this.NormalizeMaximizeForm.FillColor = System.Drawing.Color.Lime;
+            this.NormalizeMaximizeForm.Key = new int[0];
             this.NormalizeMaximizeForm.Location = new System.Drawing.Point(944, 9);
             this.NormalizeMaximizeForm.Name = "NormalizeMaximizeForm";
             this.NormalizeMaximizeForm.Padding = new System.Windows.Forms.Padding(1);
+            this.NormalizeMaximizeForm.Selected = false;
             this.NormalizeMaximizeForm.Size = new System.Drawing.Size(20, 20);
             this.NormalizeMaximizeForm.TabIndex = 1;
+            this.NormalizeMaximizeForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.NormalizeMaximizeForm.Click += new System.EventHandler(this.NormalizeMaximizeForm_Click);
             // 
             // minimizeButton
             // 
             this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeButton.ContainsDataInfo = false;
             this.minimizeButton.DisplayText = "";
             this.minimizeButton.FillColor = System.Drawing.Color.Yellow;
+            this.minimizeButton.Key = new int[0];
             this.minimizeButton.Location = new System.Drawing.Point(918, 9);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Padding = new System.Windows.Forms.Padding(1);
+            this.minimizeButton.Selected = false;
             this.minimizeButton.Size = new System.Drawing.Size(20, 20);
             this.minimizeButton.TabIndex = 1;
+            this.minimizeButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.minimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
             // 
             // CloseButton
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseButton.BackColor = System.Drawing.Color.Transparent;
+            this.CloseButton.ContainsDataInfo = false;
             this.CloseButton.DisplayText = "";
             this.CloseButton.FillColor = System.Drawing.Color.Red;
+            this.CloseButton.Key = new int[0];
             this.CloseButton.Location = new System.Drawing.Point(970, 9);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Padding = new System.Windows.Forms.Padding(1);
+            this.CloseButton.Selected = false;
             this.CloseButton.Size = new System.Drawing.Size(20, 20);
             this.CloseButton.TabIndex = 1;
+            this.CloseButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // listBoxSubjects
@@ -216,13 +228,13 @@ namespace Interface
             this.comboBoxGrade.Name = "comboBoxGrade";
             this.comboBoxGrade.Size = new System.Drawing.Size(291, 40);
             this.comboBoxGrade.TabIndex = 3;
+            this.comboBoxGrade.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrade_SelectedIndexChanged);
             // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            //this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.Background")));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1002, 605);

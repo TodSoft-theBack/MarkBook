@@ -12,12 +12,13 @@ namespace Interface
     class DrawingFunctions
     {
         public static bool ReadOnly = false;
+        public static int tableXOffset = 0;
         public static int GetAlphaFromPercent(int percent) => 255 - (percent * 255) / 100;
         private static void DrawCell(Control container, TableCell cell, Control header, int index, bool setHover)
         {
             int offset = (int)cell.BorderThickness;
             cell.Size = header.Size;
-            cell.Location = new Point(header.Location.X - 40, (index) * (header.Height - offset));
+            cell.Location = new Point(header.Location.X - tableXOffset, (index) * (header.Height - offset));
             cell.Name = header.Name + "_" + index;
             if (setHover) SetHover(cell);
             if (!cell.ShowText)

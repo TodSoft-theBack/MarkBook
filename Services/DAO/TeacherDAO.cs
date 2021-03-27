@@ -46,6 +46,14 @@ namespace Services.DAO
             this.context.Teachers.Add(Teacher);
             return this.context.SaveChanges();
         }
+
+        public ICollection<Teachers> GetTeachersByGradeId(int gradeId)
+        {
+            return this.context.Teachers
+                .Include(t => t.Subjects)
+                .Where(t => t.Subjects.Where(s => s.GradeId == gradeId) != null)
+                .ToList();
+        }
         public int RemoveTeacherById(int teacherId)
         {
             if (teacherId == 0)

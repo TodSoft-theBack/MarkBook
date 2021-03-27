@@ -38,6 +38,15 @@ namespace Services.DAO
             context.Subjects.Add(subject);
             return this.context.SaveChanges();
         }
+        public ICollection<Subjects> GetSubjectsByGradeId(int gradeId)
+        {
+            return this.context.Subjects
+                .Include(s => s.Grade)
+                .Include(s => s.Teacher)
+                .Include(s => s.Marks)
+                .Where(s => s.GradeId == gradeId)
+                .ToList();
+        }
         public int RemoveSubject(int subjectId)
         {
             context.Remove(context.Subjects.Where(t => t.TeacherId == subjectId).FirstOrDefault());
